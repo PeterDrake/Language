@@ -1,5 +1,5 @@
 package edu.lclark.language;
 
-public class EditTestContent {
+public class EditTestContent implements DisplayContentInterface{
 
 }

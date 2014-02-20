@@ -1,5 +1,5 @@
 package edu.lclark.language;
 
-public class ProfileContent {
+public class ProfileContent implements DisplayContentInterface{
 
 }

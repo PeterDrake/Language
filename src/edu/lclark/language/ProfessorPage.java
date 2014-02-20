@@ -1,5 +1,5 @@
 package edu.lclark.language;
 
-public class ProfessorPage {
+public class ProfessorPage implements PageInteface{
 
 }
