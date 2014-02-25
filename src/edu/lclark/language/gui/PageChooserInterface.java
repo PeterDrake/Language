@@ -1,4 +1,4 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
 public interface PageChooserInterface {
 

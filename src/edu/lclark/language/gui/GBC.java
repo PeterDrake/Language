@@ -1,7 +1,7 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+
+import java.awt.*;
 
 /**
  * This class simplifies the use of the GridBagConstraints class.
@@ -111,4 +111,3 @@ public class GBC extends GridBagConstraints
       return this;
    }
 }
-
