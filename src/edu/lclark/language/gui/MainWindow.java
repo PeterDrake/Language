@@ -1,4 +1,4 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
-import edu.lclark.language.professorPage.ProfessorPage;
+import edu.lclark.language.gui.professorPage.ProfessorPage;
 
 public class MainWindow extends JFrame{
 
@@ -14,7 +14,7 @@ public class MainWindow extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize((int)(0.75*screenSize.width), (int)(0.75 * screenSize.height));
 		
-		add(new StudentTestPage());
+		//add(new StudentTestPage());
 		//add(new ProfessorPage());
 
 	}

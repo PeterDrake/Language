@@ -4,6 +4,11 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import edu.lclark.language.ImageComponent;
+import edu.lclark.language.gui.AbstractUserPage;
+import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.PageInterface;
+
 import java.awt.event.*;
 
 public class StudentTestPage extends AbstractUserPage implements PageInterface {

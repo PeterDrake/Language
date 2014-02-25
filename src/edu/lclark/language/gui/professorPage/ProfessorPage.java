@@ -1,15 +1,18 @@
-package edu.lclark.language.professorPage;
+package edu.lclark.language.gui.professorPage;
 
 import javax.swing.*;
 
-import edu.lclark.language.AbstractUserPage;
-import edu.lclark.language.PageInterface;
+import edu.lclark.language.gui.AbstractUserPage;
+import edu.lclark.language.gui.PageInterface;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProfessorPage extends AbstractUserPage implements PageInterface {
+	
+	private JPanel buttonPanel;
+	private ButtonGroup buttonGroup;
 
 	private JToggleButton profileButton;
 	private JToggleButton editTestButton;
@@ -17,6 +20,10 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 	private AbstractContent currentContent;
 	
 	public ProfessorPage() {
+		
+		buttonPanel = new JPanel();
+		buttonGroup = new ButtonGroup();
+		add(buttonPanel, BorderLayout.CENTER);
 
 		profileButton = new JToggleButton("Profile", true);
 		profileButton.addActionListener(new DisplayProfileAction());

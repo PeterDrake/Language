@@ -1,4 +1,4 @@
-package edu.lclark.language.professorPage;
+package edu.lclark.language.gui.professorPage;
 
 import javax.swing.*;
 

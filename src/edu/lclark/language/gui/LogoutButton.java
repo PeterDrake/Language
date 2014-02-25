@@ -1,4 +1,4 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
