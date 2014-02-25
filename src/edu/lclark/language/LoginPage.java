@@ -10,12 +10,16 @@ import javax.swing.JTextField;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class LoginPage extends JFrame {
 
 	private JButton loginButton;
 	private JLabel name;
+	JTextField usernameInput;
 	private JLabel passwordText;
+	private JTextField passwordInput;
 	private Image logo;
 	private JLabel title1;
 	private JLabel title2;
@@ -47,12 +51,12 @@ public class LoginPage extends JFrame {
 
 		name = new JLabel();
 		name.setText("Username:");
-		JTextField txt = new JTextField(12);
+		usernameInput = new JTextField(12);
 
 		passwordText = new JLabel();
 		passwordText.setText("Password:");
 
-		JPasswordField password = new JPasswordField(12);
+		passwordInput = new JPasswordField(12);
 		
 		loginButton = new JButton();
 		loginButton.setText("Login");
@@ -62,14 +66,21 @@ public class LoginPage extends JFrame {
 		getContentPane().add(title2, new GBC(50,10 ));
 		getContentPane().add(title3, new GBC(51,10 ));
 		getContentPane().add(name, new GBC(49, 40));
-		getContentPane().add(txt, new GBC(50, 40));
+		getContentPane().add(usernameInput, new GBC(50, 40));
 		getContentPane().add(passwordText, new GBC(49, 60));
-		getContentPane().add(password, new GBC(50, 60));
+		getContentPane().add(passwordInput, new GBC(50, 60));
 		getContentPane().add(loginButton, new GBC(50, 80));
 
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// add action that will send you to the correct page
+				String nameText = usernameInput.getText();
+				String passwordText = passwordInput.getText();
+				//new BufferedWriter(new FileWriter("text.txt")).write(nameText);
+				System.out.println(nameText);
+				System.out.println(passwordText);
+				
+				//just need to extract the information into a text file
+				
 			}
 
 		});
