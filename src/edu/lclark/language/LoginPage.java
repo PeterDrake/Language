@@ -1,5 +1,5 @@
 package edu.lclark.language;
 
-public class LoginPage implements PageInteface {
+public class LoginPage implements PageInterface {
 
 }

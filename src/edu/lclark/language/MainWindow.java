@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
+import edu.lclark.language.professorPage.ProfessorPage;
+
 public class MainWindow extends JFrame{
 
 	public MainWindow(){
@@ -13,5 +15,7 @@ public class MainWindow extends JFrame{
 		setSize((int)(0.75*screenSize.width), (int)(0.75 * screenSize.height));
 		
 		add(new StudentTestPage());
+		//add(new ProfessorPage());
+
 	}
 }

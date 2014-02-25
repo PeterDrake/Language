@@ -1,6 +1,6 @@
 package edu.lclark.language;
 
-public interface PageInteface {
+public interface PageInterface {
 	
 	
 
