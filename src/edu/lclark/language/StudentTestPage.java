@@ -1,5 +1,5 @@
 package edu.lclark.language;
 
-public class StudentTestPage implements PageInteface{
+public class StudentTestPage implements PageInterface{
 
 }

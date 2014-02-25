@@ -2,28 +2,20 @@ package edu.lclark.language.professorPage;
 
 import javax.swing.*;
 
-import edu.lclark.language.PageInteface;
+import edu.lclark.language.AbstractUserPage;
+import edu.lclark.language.PageInterface;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProfessorPage extends JComponent implements PageInteface {
+public class ProfessorPage extends AbstractUserPage implements PageInterface {
 
-	private JPanel buttonPanel;
 	private JToggleButton profileButton;
 	private JToggleButton editTestButton;
 	private JToggleButton viewResultsButton;
-	private AbstractContent currentContent;
 	
-	private JPanel titlePanel;
-	private JLabel title;
-
 	public ProfessorPage() {
-		setLayout(new BorderLayout());
-
-		buttonPanel = new JPanel();
-		ButtonGroup buttonGroup = new ButtonGroup();
 
 		profileButton = new JToggleButton("Profile", true);
 		profileButton.addActionListener(new DisplayProfileAction());
@@ -39,14 +31,9 @@ public class ProfessorPage extends JComponent implements PageInteface {
 		viewResultsButton.addActionListener(new DisplayResultsAction());
 		buttonGroup.add(viewResultsButton);
 		buttonPanel.add(viewResultsButton);
+		
+		title.setText("Profile");
 
-		add(buttonPanel, BorderLayout.CENTER);
-		
-		titlePanel = new JPanel();
-		title = new JLabel("Profile");
-		titlePanel.add(title);
-		add(titlePanel, BorderLayout.NORTH);
-		
 		currentContent = new ProfileContent();
 		add(currentContent, BorderLayout.SOUTH);
 	}
