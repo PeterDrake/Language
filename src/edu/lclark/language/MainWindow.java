@@ -13,6 +13,5 @@ public class MainWindow extends JFrame{
 		setSize((int)(0.75*screenSize.width), (int)(0.75 * screenSize.height));
 		
 		add(new StudentTestPage());
-		pack();
 	}
 }
