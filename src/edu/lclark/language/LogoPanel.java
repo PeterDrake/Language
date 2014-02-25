@@ -25,11 +25,11 @@ public class LogoPanel extends JPanel {
 		setMinimumSize(size);
 		setMaximumSize(size);
 		setSize(size);
-		setLayout(null);
+		//setLayout(null);
 		
 	}
 	
 	public void paintComponent(Graphics g){
-		g.drawImage(logo, 0,0,null);
+		g.drawImage(logo, 0, 0,null);
 	}
 }
