@@ -14,6 +14,7 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 	private JToggleButton profileButton;
 	private JToggleButton editTestButton;
 	private JToggleButton viewResultsButton;
+	private AbstractContent currentContent;
 	
 	public ProfessorPage() {
 

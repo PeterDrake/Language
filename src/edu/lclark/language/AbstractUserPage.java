@@ -16,8 +16,6 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 	
 	protected JPanel buttonPanel;
 	protected ButtonGroup buttonGroup;
-	protected AbstractContent currentContent;
-	
 	protected JPanel titlePanel;
 	protected JLabel title;
 	
@@ -28,9 +26,9 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 		
 		setLayout(new BorderLayout());
 
-		buttonPanel = new JPanel();
-		buttonGroup = new ButtonGroup();
-		add(buttonPanel, BorderLayout.CENTER);
+		//buttonPanel = new JPanel();
+		//buttonGroup = new ButtonGroup();
+		//add(buttonPanel, BorderLayout.CENTER);
 		
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
@@ -47,9 +45,6 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 		titlePanel.add(refresh, BorderLayout.WEST);
 		
 		add(titlePanel, BorderLayout.NORTH);
-		
-		currentContent = new ProfileContent();
-		add(currentContent, BorderLayout.SOUTH);
 		
 	}
 
