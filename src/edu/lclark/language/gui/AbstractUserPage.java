@@ -1,4 +1,4 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -9,14 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import edu.lclark.language.professorPage.AbstractContent;
-import edu.lclark.language.professorPage.ProfileContent;
+import edu.lclark.language.gui.professorPage.AbstractContent;
+import edu.lclark.language.gui.professorPage.ProfileContent;
 
 public abstract class AbstractUserPage extends JComponent implements PageInterface {
-	
-	protected JPanel buttonPanel;
-	protected ButtonGroup buttonGroup;
-	protected AbstractContent currentContent;
 	
 	protected JPanel titlePanel;
 	protected JLabel title;
@@ -27,10 +23,6 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 	public AbstractUserPage() {
 		
 		setLayout(new BorderLayout());
-
-		buttonPanel = new JPanel();
-		buttonGroup = new ButtonGroup();
-		add(buttonPanel, BorderLayout.CENTER);
 		
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
@@ -47,9 +39,6 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 		titlePanel.add(refresh, BorderLayout.WEST);
 		
 		add(titlePanel, BorderLayout.NORTH);
-		
-		currentContent = new ProfileContent();
-		add(currentContent, BorderLayout.SOUTH);
 		
 	}
 

@@ -1,11 +1,11 @@
-package edu.lclark.language;
+package edu.lclark.language.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.*;
 
-import edu.lclark.language.professorPage.ProfessorPage;
+import edu.lclark.language.gui.professorPage.ProfessorPage;
 
 public class MainWindow extends JFrame{
 	
