@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.*;
 
 import edu.lclark.language.gui.professorPage.ProfessorPage;
+import edu.lclark.language.gui.studentPage.StudentTestPage;
 
 public class MainWindow extends JFrame{
 
@@ -14,8 +15,10 @@ public class MainWindow extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize((int)(0.75*screenSize.width), (int)(0.75 * screenSize.height));
 		
-		//add(new StudentTestPage());
+		add(new StudentTestPage());
 		//add(new ProfessorPage());
+		
+		//getContentPane().setBackground(Color.WHITE);
 
 	}
 }
