@@ -1,6 +1,7 @@
 package edu.lclark.language.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
@@ -25,6 +26,7 @@ public abstract class AbstractUserPage extends JComponent implements PageInterfa
 		setLayout(new BorderLayout());
 		
 		titlePanel = new JPanel();
+		titlePanel.setBackground(Color.WHITE);
 		titlePanel.setLayout(new BorderLayout());
 		
 		Font bigFont = new Font("SansSerif", Font.PLAIN, 24);

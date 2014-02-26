@@ -19,11 +19,21 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 	private JToggleButton viewResultsButton;
 	private AbstractContent currentContent;
 	
+	private String name;
+	
 	public ProfessorPage() {
 		
+		title.setText("Profile");
+		
+		JPanel contentPanel = new JPanel();
+		contentPanel.setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
+		add(contentPanel, BorderLayout.CENTER);
+		
 		buttonPanel = new JPanel();
+		buttonPanel.setBackground(Color.WHITE);
 		buttonGroup = new ButtonGroup();
-		add(buttonPanel, BorderLayout.CENTER);
+		contentPanel.add(buttonPanel, BorderLayout.NORTH);
 
 		profileButton = new JToggleButton("Profile", true);
 		profileButton.addActionListener(new DisplayProfileAction());
@@ -39,11 +49,18 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 		viewResultsButton.addActionListener(new DisplayResultsAction());
 		buttonGroup.add(viewResultsButton);
 		buttonPanel.add(viewResultsButton);
-		
-		title.setText("Profile");
 
-		currentContent = new ProfileContent();
-		add(currentContent, BorderLayout.SOUTH);
+		//This will be removed eventually
+		setName("Maggie");
+		
+		currentContent = new ProfileContent(name);
+		contentPanel.add(currentContent, BorderLayout.CENTER);
+		
+
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 
 	//TODO These actions will be performed even if the button is already depress. Fix?
@@ -51,7 +68,7 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			remove(currentContent);
-			currentContent = new ProfileContent();
+			currentContent = new ProfileContent(name);
 			add(currentContent, BorderLayout.SOUTH);
 			title.setText("Profile");
 		}
