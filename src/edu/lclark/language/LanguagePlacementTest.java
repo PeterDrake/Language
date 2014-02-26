@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.gui.*;
 
 
 public class LanguagePlacementTest {
