@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -32,7 +33,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 		String text = "";
 		//Reads sample test information
 		try {
-			Scanner in = new Scanner(Paths.get("edu/lclark/language/resources/SampleTestInstructions.txt"));
+			Scanner in = new Scanner(Paths.get("text.txt"));
 			while (in.hasNext()){
 				text += in.nextLine() + "\n";
 			}
