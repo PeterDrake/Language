@@ -3,26 +3,29 @@ package edu.lclark.language.gui.studentPage;
 import java.awt.*;
 
 import javax.swing.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 import java.nio.file.Paths;
 
 import edu.lclark.language.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.MainWindow;
 
 import java.awt.event.*;
 import java.util.Scanner;
 
 public class StudentInstructionPage extends AbstractUserPage {
 	
-	public StudentInstructionPage() {
+	public StudentInstructionPage(MainWindow main) {
+		super(main);
 		
 		JPanel content = new JPanel();
 		GridBagLayout layout = new GridBagLayout(); 
 		content.setLayout(layout);
+		content.setBackground(Color.WHITE);
 		add(content, BorderLayout.CENTER);
 		title.setText("Student");
 		

@@ -21,7 +21,10 @@ public abstract class AbstractUserPage extends AbstractPage{
 	protected LogoutButton logout;
 	protected RefreshButton refresh;
 	
-	public AbstractUserPage() {
+	
+	public AbstractUserPage(MainWindow main) {
+		
+		super(main);
 		
 		setLayout(new BorderLayout());		
 		titlePanel = new JPanel();
@@ -34,7 +37,7 @@ public abstract class AbstractUserPage extends AbstractPage{
 		title.setHorizontalAlignment(JLabel.CENTER);
 		titlePanel.add(title, BorderLayout.CENTER);
 		
-		logout = new LogoutButton();
+		logout = new LogoutButton(main);
 		titlePanel.add(logout, BorderLayout.EAST);
 		refresh = new RefreshButton();
 		titlePanel.add(refresh, BorderLayout.WEST);

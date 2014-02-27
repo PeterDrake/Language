@@ -7,8 +7,6 @@ import java.awt.Toolkit;
 import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
-import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 
 public class MainWindow extends JFrame{
 	
@@ -29,6 +27,10 @@ public class MainWindow extends JFrame{
 		getContentPane().add(page);
 		repaint();
 		revalidate();
+	}
+	
+	public void logout(){
+		switchPage(new LoginPage(this));
 	}
 }
 

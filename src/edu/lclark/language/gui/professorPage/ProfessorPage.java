@@ -3,7 +3,6 @@ package edu.lclark.language.gui.professorPage;
 import javax.swing.*;
 
 import edu.lclark.language.gui.AbstractUserPage;
-import edu.lclark.language.gui.AbstractPage;
 import edu.lclark.language.gui.MainWindow;
 
 import java.awt.*;
@@ -22,7 +21,9 @@ public class ProfessorPage extends AbstractUserPage {
 	
 	private String name;
 	
-	public ProfessorPage(MainWindow mainWindow) {
+	public ProfessorPage(MainWindow main) {
+		
+		super(main);
 		
 		title.setText("Profile");
 		

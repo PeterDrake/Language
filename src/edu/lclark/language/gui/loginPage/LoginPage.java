@@ -8,9 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import edu.lclark.language.gui.AbstractPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
+import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-public class LoginPage extends JComponent {
+public class LoginPage extends AbstractPage {
 
 	private JButton loginButton;
 	private JLabel name;
@@ -29,14 +31,10 @@ public class LoginPage extends JComponent {
 	private JLabel title1;
 	private JLabel title2;
 	private JLabel title3;
-	
-	private MainWindow mainWindow;
 
-	// private LoginPage loginPage;
-
-	public LoginPage(MainWindow mainWindow) {
+	public LoginPage(MainWindow main) {
 		
-		this.mainWindow = mainWindow;
+		super(main);
 		
 		LogoPanel logoPanel = new LogoPanel(new ImageIcon(
 				"LClogo.jpg").getImage());
@@ -94,11 +92,13 @@ public class LoginPage extends JComponent {
 			System.out.println(nameText);
 			System.out.println(passwordText);
 			
+			MainWindow main = getMainWindow();
+			
 			if(nameText.equals("professor")){
-				mainWindow.switchPage(new ProfessorPage(mainWindow));
+				main.switchPage(new ProfessorPage(main));
 			}
 			else if(nameText.equals("student")){
-				
+				main.switchPage(new StudentInstructionPage(main));				
 			}
 		}
 		

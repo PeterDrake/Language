@@ -5,9 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class LogoutButton extends JButton {
+import edu.lclark.language.gui.loginPage.LoginPage;
 
-	public LogoutButton() {
+public class LogoutButton extends JButton {
+	
+	private MainWindow main;
+
+	public LogoutButton(MainWindow main) {
+		
+		this.main = main;
 		
 		setText("Logout");
 		addActionListener(new LogoutAction());
@@ -18,7 +24,7 @@ public class LogoutButton extends JButton {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO Write logout code
+			main.logout();
 		}
 	}
 
