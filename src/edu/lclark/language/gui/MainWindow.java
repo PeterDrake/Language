@@ -16,8 +16,8 @@ public class MainWindow extends JFrame{
 		setSize((int)(0.75 * screenSize.width), (int)(0.75 * screenSize.height));
 		
 		
-//		add(new ProfessorPage());
-		add(new LoginPage());
+        add(new ProfessorPage());
+		//add(new LoginPage());
 		
 		getContentPane().setBackground(Color.WHITE);
 		
