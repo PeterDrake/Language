@@ -88,9 +88,6 @@ public class LoginPage extends AbstractPage {
 			
 			String nameText = usernameInput.getText();
 			String passwordText = passwordInput.getText();
-			//new BufferedWriter(new FileWriter("text.txt")).write(nameText);
-			System.out.println(nameText);
-			System.out.println(passwordText);
 			
 			MainWindow main = getMainWindow();
 			

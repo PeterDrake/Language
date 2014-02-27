@@ -22,7 +22,6 @@ public class MainWindow extends JFrame{
 		}
 	
 	public void switchPage(AbstractPage page){
-		System.out.println("Switch page");
 		getContentPane().removeAll();
 		getContentPane().add(page);
 		repaint();
