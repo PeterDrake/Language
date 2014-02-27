@@ -46,7 +46,7 @@ public class StudentTestPage extends AbstractUserPage implements PageInterface {
 		testInformation.setLineWrap(true);
 		JScrollPane testInformationPane = new JScrollPane(testInformation);
 		testInformation.setEditable(false);
-		ImageComponent logo = new ImageComponent("logo.jpg", 216, 154);
+		ImageComponent logo = new ImageComponent("LClogo.jpg", 216, 154);
 
 		// add components to GridBagLayout
 		content.add(beginTestButton, new GBC(0, 3).setWeight(0, 0)
