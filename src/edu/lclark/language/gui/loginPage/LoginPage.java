@@ -86,10 +86,6 @@ public class LoginPage extends JComponent {
 			}
 
 		});
-
-//		setSize(1000, 1000);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setVisible(true);
 	}
 
 }
