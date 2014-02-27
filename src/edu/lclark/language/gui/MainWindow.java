@@ -8,9 +8,9 @@ import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
+import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 
 public class MainWindow extends JFrame{
-	
 	
 	public MainWindow(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -30,5 +30,5 @@ public class MainWindow extends JFrame{
 		repaint();
 		revalidate();
 	}
-
 }
+

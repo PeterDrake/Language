@@ -23,8 +23,7 @@ public abstract class AbstractUserPage extends AbstractPage{
 	
 	public AbstractUserPage() {
 		
-		setLayout(new BorderLayout());
-		
+		setLayout(new BorderLayout());		
 		titlePanel = new JPanel();
 		titlePanel.setBackground(Color.WHITE);
 		titlePanel.setLayout(new BorderLayout());
