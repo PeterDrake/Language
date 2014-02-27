@@ -17,12 +17,12 @@ import edu.lclark.language.gui.PageInterface;
 import java.awt.event.*;
 import java.util.Scanner;
 
-public class StudentTestPage extends AbstractUserPage implements PageInterface {
+public class StudentInstructionPage extends AbstractUserPage implements PageInterface {
 	
-	public StudentTestPage() {
+	public StudentInstructionPage() {
 		
 		JPanel content = new JPanel();
-		GridBagLayout layout = new GridBagLayout();
+		GridBagLayout layout = new GridBagLayout(); 
 		content.setLayout(layout);
 		add(content, BorderLayout.CENTER);
 		title.setText("Student");

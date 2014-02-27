@@ -8,14 +8,14 @@ import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.gui.studentPage.StudentTestPage;
+import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 
 public class MainWindow extends JFrame{
 
 	public MainWindow(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize((int)(0.75*screenSize.width), (int)(0.75 * screenSize.height));		
-		add(new StudentTestPage());
+		add(new StudentInstructionPage());
 		//add(new ProfessorPage());		
 		//add(new LoginPage());	
 		getContentPane().setBackground(Color.WHITE);
