@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 import edu.lclark.language.gui.professorPage.AbstractContent;
 import edu.lclark.language.gui.professorPage.ProfileContent;
 
-public abstract class AbstractUserPage extends JComponent implements PageInterface {
+public abstract class AbstractUserPage extends AbstractPage{
 	
 	protected JPanel titlePanel;
 	protected JLabel title;

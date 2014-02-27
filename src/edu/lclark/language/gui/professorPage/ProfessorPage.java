@@ -3,13 +3,14 @@ package edu.lclark.language.gui.professorPage;
 import javax.swing.*;
 
 import edu.lclark.language.gui.AbstractUserPage;
-import edu.lclark.language.gui.PageInterface;
+import edu.lclark.language.gui.AbstractPage;
+import edu.lclark.language.gui.MainWindow;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ProfessorPage extends AbstractUserPage implements PageInterface {
+public class ProfessorPage extends AbstractUserPage {
 	
 	private JPanel buttonPanel;
 	private ButtonGroup buttonGroup;
@@ -21,7 +22,7 @@ public class ProfessorPage extends AbstractUserPage implements PageInterface {
 	
 	private String name;
 	
-	public ProfessorPage() {
+	public ProfessorPage(MainWindow mainWindow) {
 		
 		title.setText("Profile");
 		

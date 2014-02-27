@@ -9,6 +9,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.gui.professorPage.ProfessorPage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,10 +29,14 @@ public class LoginPage extends JComponent {
 	private JLabel title1;
 	private JLabel title2;
 	private JLabel title3;
+	
+	private MainWindow mainWindow;
 
 	// private LoginPage loginPage;
 
-	public LoginPage() {
+	public LoginPage(MainWindow mainWindow) {
+		
+		this.mainWindow = mainWindow;
 		
 		LogoPanel logoPanel = new LogoPanel(new ImageIcon(
 				"LClogo.jpg").getImage());
@@ -73,19 +79,28 @@ public class LoginPage extends JComponent {
 		add(passwordInput, new GBC(50, 60));
 		add(loginButton, new GBC(50, 80));
 
-		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nameText = usernameInput.getText();
-				String passwordText = passwordInput.getText();
-				//new BufferedWriter(new FileWriter("text.txt")).write(nameText);
-				System.out.println(nameText);
-				System.out.println(passwordText);
-				
-				//just need to extract the information into a text file
+		loginButton.addActionListener(new LoginAction());
+	}
+	
+	private class LoginAction implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			String nameText = usernameInput.getText();
+			String passwordText = passwordInput.getText();
+			//new BufferedWriter(new FileWriter("text.txt")).write(nameText);
+			System.out.println(nameText);
+			System.out.println(passwordText);
+			
+			if(nameText.equals("professor")){
+				mainWindow.switchPage(new ProfessorPage(mainWindow));
+			}
+			else if(nameText.equals("student")){
 				
 			}
-
-		});
+		}
+		
 	}
-
 }

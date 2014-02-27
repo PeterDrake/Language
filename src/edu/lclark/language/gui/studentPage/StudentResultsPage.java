@@ -1,7 +1,7 @@
 package edu.lclark.language.gui.studentPage;
 
-import edu.lclark.language.gui.PageInterface;
+import edu.lclark.language.gui.AbstractPage;
 
-public class StudentResultsPage implements PageInterface{
+public class StudentResultsPage extends AbstractPage{
 
 }

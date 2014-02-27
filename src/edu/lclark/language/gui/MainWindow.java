@@ -11,16 +11,24 @@ import edu.lclark.language.gui.professorPage.ProfessorPage;
 
 public class MainWindow extends JFrame{
 	
+	
 	public MainWindow(){
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize((int)(0.75 * screenSize.width), (int)(0.75 * screenSize.height));
+	
 		
-		
-        add(new ProfessorPage());
-		//add(new LoginPage());
+        add(new LoginPage(this));
 		
 		getContentPane().setBackground(Color.WHITE);
 		
 		}
+	
+	public void switchPage(AbstractPage page){
+		System.out.println("Switch page");
+		getContentPane().removeAll();
+		getContentPane().add(page);
+		repaint();
+		revalidate();
+	}
 
 }
