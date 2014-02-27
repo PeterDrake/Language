@@ -8,28 +8,27 @@ import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
 
-public class MainWindow extends JFrame{
-	
-	public MainWindow(){
+public class MainWindow extends JFrame {
+
+	public MainWindow() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize((int)(0.75 * screenSize.width), (int)(0.75 * screenSize.height));
-	
-		
-        add(new LoginPage(this));
-		
+		setSize((int) (0.75 * screenSize.width),
+				(int) (0.75 * screenSize.height));
+
+		add(new LoginPage(this));
+
 		getContentPane().setBackground(Color.WHITE);
-		
-		}
-	
-	public void switchPage(AbstractPage page){
+
+	}
+
+	public void switchPage(AbstractPage page) {
 		getContentPane().removeAll();
 		getContentPane().add(page);
 		repaint();
 		revalidate();
 	}
-	
-	public void logout(){
+
+	public void logout() {
 		switchPage(new LoginPage(this));
 	}
 }
-

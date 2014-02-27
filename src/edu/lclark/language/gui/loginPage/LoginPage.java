@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import edu.lclark.language.ImageComponent;
 import edu.lclark.language.gui.AbstractPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
@@ -36,12 +37,11 @@ public class LoginPage extends AbstractPage {
 		
 		super(main);
 		
-		LogoPanel logoPanel = new LogoPanel(new ImageIcon(
-				"LClogo.jpg").getImage());
+		ImageComponent logo = new ImageComponent("LClogo.jpg",  216, 154);
 
 		
 		setLayout(new GridBagLayout());
-		add(logoPanel, new GBC(48, 20, 51, 20));
+		add(logo, new GBC(48, 20, 51, 20));
 		
 		title1 = new JLabel();
 		title1.setText("Language ");

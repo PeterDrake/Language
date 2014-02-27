@@ -32,7 +32,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 		String text = "";
 		//Reads sample test information
 		try {
-			Scanner in = new Scanner(Paths.get("SampleTestInstructions.txt"));
+			Scanner in = new Scanner(Paths.get("edu/lclark/language/resources/SampleTestInstructions.txt"));
 			while (in.hasNext()){
 				text += in.nextLine() + "\n";
 			}

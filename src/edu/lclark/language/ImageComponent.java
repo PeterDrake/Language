@@ -1,6 +1,7 @@
 package edu.lclark.language;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -16,7 +17,7 @@ public class ImageComponent extends JComponent {
 	public ImageComponent(String imageName, int defaultWidth, int defaultHeight) {
 		this.defaultWidth = defaultWidth;
 		this.defaultHeight = defaultHeight;
-		image = new ImageIcon(imageName).getImage();
+		image = new ImageIcon(ImageComponent.class.getResource("resources/" + imageName)).getImage();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -33,5 +34,9 @@ public class ImageComponent extends JComponent {
 
 	public Dimension getPreferredSize() {
 		return new Dimension(defaultWidth, defaultHeight);
+	}
+	
+	public Image getImage(){
+		return image;
 	}
 }
