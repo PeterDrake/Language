@@ -12,13 +12,17 @@ public class ProfileContent extends AbstractContent{
 	public ProfileContent(String name){
 		super();
 		
-		setLayout(new BorderLayout());
+//		setLayout(new BorderLayout());
 		
 		this.name = name;
 		
-		JLabel message = new JLabel("Welcome, " + name + "!");
-		message.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		add(message, BorderLayout.NORTH);
-	}
+//		JLabel message = new JLabel("Welcome, " + name + "!");
+//		message.setFont(new Font("SansSerif", Font.PLAIN, 18));
+//		add(message, BorderLayout.NORTH);
+
+        JLabel message = new JLabel("This will be a page to view information about your profile.");
+        add(message);
+
+    }
 
 }

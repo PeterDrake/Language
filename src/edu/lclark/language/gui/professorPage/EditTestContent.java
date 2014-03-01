@@ -8,7 +8,7 @@ public class EditTestContent extends AbstractContent{
 	public EditTestContent(){
 		super();
 		
-		JLabel message = new JLabel("I am the test content panel!");
+		JLabel message = new JLabel("This will be a page for editing test questions.");
 		add(message);
 	}
 
