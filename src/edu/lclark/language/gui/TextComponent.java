@@ -7,6 +7,7 @@ import javax.swing.*;
  */
 public class TextComponent extends JTextArea{
 
+	// Odd that is is/has JTextArea
     private JTextArea textArea;
 
     public TextComponent(String textFile) {

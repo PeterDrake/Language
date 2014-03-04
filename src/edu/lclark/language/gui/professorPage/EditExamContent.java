@@ -6,10 +6,9 @@ import javax.swing.JLabel;
 /**
  * The content panel for editing test questions from the professor page
  */
-public class EditTestContent extends AbstractContent{
+public class EditExamContent extends AbstractContent{
 	
-	public EditTestContent(){
-		super();
+	public EditExamContent(){
 		
 		JLabel message = new JLabel("This will be a page for editing test questions.");
 		add(message);

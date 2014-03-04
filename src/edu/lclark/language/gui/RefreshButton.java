@@ -21,7 +21,7 @@ public class RefreshButton extends JButton {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO Write logout code
+			//TODO Write refresh code
 		}
 	}
 

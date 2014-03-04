@@ -16,7 +16,6 @@ public class ProfileContent extends AbstractContent{
 	 * @param name the username of the professor
 	 */
 	public ProfileContent(String name){
-		super();
 		
 //		setLayout(new BorderLayout());
 		
