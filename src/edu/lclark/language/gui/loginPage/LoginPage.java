@@ -23,7 +23,6 @@ public class LoginPage extends AbstractPage {
 	JTextField usernameInput;
 	private JLabel passwordText;
 	private JTextField passwordInput;
-	private Image logo;
 	private JLabel title1;
 	private JLabel title2;
 	private JLabel title3;
