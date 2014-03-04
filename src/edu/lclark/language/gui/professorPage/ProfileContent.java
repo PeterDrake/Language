@@ -5,10 +5,16 @@ import java.awt.Font;
 
 import javax.swing.*;
 
+/**
+ * The content panel for displaying profile information on the professor page
+ */
 public class ProfileContent extends AbstractContent{
 	
 	private String name;
 	
+	/**
+	 * @param name the username of the professor
+	 */
 	public ProfileContent(String name){
 		super();
 		

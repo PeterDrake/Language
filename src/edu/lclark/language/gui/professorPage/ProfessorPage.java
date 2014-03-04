@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The professor page, which contains the title and all other content panels for question editing, results viewing, etc.
+ */
 public class ProfessorPage extends AbstractUserPage {
 	
 	private JPanel buttonPanel;
@@ -22,6 +25,9 @@ public class ProfessorPage extends AbstractUserPage {
 	
 	private String name;
 	
+	/**
+	 * @param main the main JFrame that contains all components
+	 */
 	public ProfessorPage(MainWindow main) {
 		
 		super(main);
@@ -54,18 +60,26 @@ public class ProfessorPage extends AbstractUserPage {
 		buttonPanel.add(viewResultsButton);
 
 		//This will be removed eventually
-		setName("Professor");
+		setUserName("Professor");
 
         //TODO Fix switching views using toggle buttons (doesn't update correctly)
 		currentContent = new ProfileContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
 	}
 	
-	public void setName(String name){
+	/**
+	 * Sets the User's name for display on the professor page
+	 * 
+	 * @param name The user's name
+	 */
+	public void setUserName(String name){
 		this.name = name;
 	}
 
 	//TODO These actions will be performed even if the button is already depress. Fix?
+	/**
+	 * An action listener that switches to ProfileContent when the "Profile" button is clicked
+	 */
 	private class DisplayProfileAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -76,6 +90,9 @@ public class ProfessorPage extends AbstractUserPage {
 		}
 	}
 
+	/**
+	 * An action listener that switches to EditTestContent when the "Edit Questions" button is clicked
+	 */
 	private class DisplayQuestionsAction implements ActionListener {
 
 		@Override
@@ -88,6 +105,9 @@ public class ProfessorPage extends AbstractUserPage {
 
 	}
 	
+	/**
+	 * An action listener that switches to ResultsDatabaseContnet when the "Student Results" button is clicked
+	 */
 	private class DisplayResultsAction implements ActionListener {
 		
 		@Override
