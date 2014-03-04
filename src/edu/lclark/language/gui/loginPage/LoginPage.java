@@ -20,7 +20,7 @@ public class LoginPage extends AbstractPage {
 
 	private JButton loginButton;
 	private JLabel name;
-	JTextField usernameInput;
+	private JTextField usernameInput;
 	private JLabel passwordText;
 	private JTextField passwordInput;
 	private JLabel title1;

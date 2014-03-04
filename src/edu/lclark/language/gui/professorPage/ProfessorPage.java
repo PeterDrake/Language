@@ -98,7 +98,7 @@ public class ProfessorPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {		
 			contentPanel.remove(currentContent);
-			currentContent = new EditTestContent();
+			currentContent = new EditExamContent();
             contentPanel.add(currentContent, BorderLayout.CENTER);
 			title.setText("Edit Questions");
 		}
