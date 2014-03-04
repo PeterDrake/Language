@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * Refreshes the page, repolling the database if necessary.
+ */
 public class RefreshButton extends JButton {
 
 	public RefreshButton() {

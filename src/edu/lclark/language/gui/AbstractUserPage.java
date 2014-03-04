@@ -4,15 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import edu.lclark.language.gui.professorPage.AbstractContent;
-import edu.lclark.language.gui.professorPage.ProfileContent;
-
+/** Extended by pages that need a title bar and logout and refresh buttons.*/
 public abstract class AbstractUserPage extends AbstractPage{
 	
 	protected JPanel titlePanel;
@@ -20,7 +15,6 @@ public abstract class AbstractUserPage extends AbstractPage{
 	
 	protected LogoutButton logout;
 	protected RefreshButton refresh;
-	
 	
 	public AbstractUserPage(MainWindow main) {
 		

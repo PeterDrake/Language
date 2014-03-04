@@ -4,9 +4,6 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import java.io.File;
-import java.nio.file.Paths;
-
 import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
@@ -15,6 +12,7 @@ import edu.lclark.language.gui.MainWindow;
 import java.awt.event.*;
 import java.util.Scanner;
 
+/**Displays the instructions for a student about to take a test. Contains a "Begin Test" button that will send the student on to the test.*/
 public class StudentInstructionPage extends AbstractUserPage {
 	
 	public StudentInstructionPage(MainWindow main) {
@@ -24,7 +22,6 @@ public class StudentInstructionPage extends AbstractUserPage {
 		GridBagLayout layout = new GridBagLayout(); 
 		content.setLayout(layout);
 		content.setBackground(Color.WHITE);
-//		add(content, BorderLayout.CENTER);
 		title.setText("Test Instructions");
 		
 		String text = "Welcome to the test! Please read these instructions:\n\n";
@@ -35,7 +32,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 				text += in.nextLine() + "\n";
 			}
 		} catch (Exception e){
-			System.out.println("error reading latin.txt");
+			System.out.println("Error: File not found!");
 		}
 		
 		
@@ -46,7 +43,6 @@ public class StudentInstructionPage extends AbstractUserPage {
 		JTextArea testInformation = new JTextArea(text, 33, 66);
 		testInformation.setLineWrap(true);
         testInformation.setEditable(false);
-//        JScrollPane testInformationPane = new JScrollPane(testInformation);
 
 		ImageComponent logo = new ImageComponent("LClogo.jpg", 216, 154);
 
@@ -54,8 +50,6 @@ public class StudentInstructionPage extends AbstractUserPage {
 		content.add(beginTestButton, new GBC(0, 3).setWeight(0, 0)
 				.setAnchor(GBC.CENTER));
 		content.add(logo, new GBC(0, 1).setWeight(100, 100).setAnchor(GBC.CENTER));
-//		content.add(testInformationPane,
-//				new GBC(0, 2).setWeight(100, 100).setAnchor(GBC.CENTER));
 
         content.add(testInformation,
 				new GBC(0, 2).setWeight(100, 100).setAnchor(GBC.CENTER));
