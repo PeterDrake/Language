@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import edu.lclark.language.gui.loginPage.LoginPage;
 
+/**
+ *Sends the user back to the Login screen when clicked.
+ */
 public class LogoutButton extends JButton {
 	
 	private MainWindow main;
@@ -20,6 +22,9 @@ public class LogoutButton extends JButton {
 
 	}
 
+	/**
+	 *Calls the logout method from the MainWindow. 
+	 */
 	private class LogoutAction implements ActionListener {
 
 		@Override

@@ -8,6 +8,9 @@ import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
 
+/**
+ *The main JFrame of the program.
+ */
 public class MainWindow extends JFrame {
 
 	public MainWindow() {
@@ -21,6 +24,11 @@ public class MainWindow extends JFrame {
 
 	}
 
+	/**
+	 * Removes the current AbstractPage component from the frame and adds the new page.
+	 * 
+	 * @param page The page being switched to.
+	 */
 	public void switchPage(AbstractPage page) {
 		getContentPane().removeAll();
 		getContentPane().add(page);
@@ -28,6 +36,9 @@ public class MainWindow extends JFrame {
 		revalidate();
 	}
 
+	/**
+	 * Switches the page to the Login page.
+	 */
 	public void logout() {
 		switchPage(new LoginPage(this));
 	}
