@@ -1,14 +1,11 @@
 package edu.lclark.language.gui.loginPage;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import edu.lclark.language.ImageComponent;
+import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
@@ -18,8 +15,6 @@ import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class LoginPage extends AbstractPage {
 

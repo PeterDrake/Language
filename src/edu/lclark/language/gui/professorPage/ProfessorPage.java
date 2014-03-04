@@ -18,6 +18,7 @@ public class ProfessorPage extends AbstractUserPage {
 	private JToggleButton editTestButton;
 	private JToggleButton viewResultsButton;
 	private AbstractContent currentContent;
+    private JPanel contentPanel;
 	
 	private String name;
 	
@@ -27,7 +28,7 @@ public class ProfessorPage extends AbstractUserPage {
 		
 		title.setText("Profile");
 		
-		JPanel contentPanel = new JPanel();
+		contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		add(contentPanel, BorderLayout.CENTER);
@@ -53,12 +54,11 @@ public class ProfessorPage extends AbstractUserPage {
 		buttonPanel.add(viewResultsButton);
 
 		//This will be removed eventually
-		setName("Maggie");
-		
+		setName("Professor");
+
+        //TODO Fix switching views using toggle buttons (doesn't update correctly)
 		currentContent = new ProfileContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
-		
-
 	}
 	
 	public void setName(String name){
@@ -69,9 +69,9 @@ public class ProfessorPage extends AbstractUserPage {
 	private class DisplayProfileAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			remove(currentContent);
+			contentPanel.remove(currentContent);
 			currentContent = new ProfileContent(name);
-			add(currentContent, BorderLayout.SOUTH);
+			contentPanel.add(currentContent, BorderLayout.CENTER);
 			title.setText("Profile");
 		}
 	}
@@ -80,9 +80,9 @@ public class ProfessorPage extends AbstractUserPage {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {		
-			remove(currentContent);
+			contentPanel.remove(currentContent);
 			currentContent = new EditTestContent();
-			add(currentContent, BorderLayout.SOUTH);
+            contentPanel.add(currentContent, BorderLayout.CENTER);
 			title.setText("Edit Questions");
 		}
 
@@ -92,9 +92,9 @@ public class ProfessorPage extends AbstractUserPage {
 		
 		@Override
 		public void actionPerformed(ActionEvent e){		
-			remove(currentContent);
+			contentPanel.remove(currentContent);
 			currentContent = new ResultsDatabaseContent();
-			add(currentContent, BorderLayout.SOUTH);
+            contentPanel.add(currentContent, BorderLayout.CENTER);
 			title.setText("Student Results");
 		}
 	}
