@@ -1,5 +1,7 @@
 package edu.lclark.language.questions;
 
-public abstract class AbstractQuestion {
+import javax.swing.JFrame;
+
+public abstract class AbstractQuestion extends JFrame{
 
 }
