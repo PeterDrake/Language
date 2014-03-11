@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 
@@ -19,6 +20,7 @@ public class FillInTheBlankPanel extends JPanel {
 		for(String w : question.getWordsBeforeBlank()){
 			add(new JLabel(w));
 		}
+		add(new JTextField(10));
 		for(String w : question.getWordsAfterBlank()){
 			add(new JLabel(w));
 		}
