@@ -48,4 +48,9 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}
+	
+	@Override
+	public String toString(){
+		return question;
+	}
 }
