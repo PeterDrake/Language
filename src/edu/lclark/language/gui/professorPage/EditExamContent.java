@@ -32,11 +32,6 @@ public class EditExamContent extends AbstractContent {
 	public EditExamContent() {
 		exampleQuestionsArray = createExampleQuestions();
 		
-		for (int i = 0; i < exampleQuestionsArray.length; i++) {
-			
-			System.out.println(exampleQuestionsArray[i]);
-		}
-
 		setLayout(new BorderLayout());
 		
 		JPanel buttonPanel = new JPanel();
@@ -45,13 +40,13 @@ public class EditExamContent extends AbstractContent {
 
 		JButton addNewQuestionButton = new JButton("Add New Question");
 		addNewQuestionButton.addActionListener(new AddNewQuestionAction());
-		JButton editQuestionButton = new JButton("Edit Question");
+		
+//		JButton editQuestionButton = new JButton("Edit Question");
 //		editQuestionButton.addActionListener(new EditQuestionAction());
 		
+		//TODO need to change to level order instead of question type
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
 		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode("Multiple Choice");
-//		TODO need to change to level order instead of question type
-		
 		DefaultMutableTreeNode exampleQuestions = new DefaultMutableTreeNode("Example Questions");
 		
 		root.add(multipleChoice);
@@ -61,21 +56,21 @@ public class EditExamContent extends AbstractContent {
 			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
 			temp.setUserObject(exampleQuestionsArray[i]);
 			exampleQuestions.add(temp);
-			
 		}
 		
 		tree = new JTree(root);
 		
-		ImageIcon questionIcon = new ImageIcon(EditExamContent.class.getResource("/edu/lclark/language/resources/question-mark.jpg"));
+		ImageIcon questionIcon = new ImageIcon(ClassLoader.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
+//		ImageIcon questionIcon = new ImageIcon(EditExamContent.class.getResource("/edu/lclark/language/resources/question-mark.jpg"));
 		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(16,
 				16, Image.SCALE_DEFAULT);
 		questionIcon = new ImageIcon(resizedQuestionImage);
+		
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 		renderer.setLeafIcon(questionIcon);
+		
 		tree.setCellRenderer(renderer);
 		tree.addTreeSelectionListener(new SelectionListener());
-
-		
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
 
@@ -85,7 +80,6 @@ public class EditExamContent extends AbstractContent {
 //		buttonPanel.add(editQuestionButton);
 		add(buttonPanel, BorderLayout.NORTH);
 		add(sPane, BorderLayout.CENTER);
-		
 	}
 	
 	
@@ -106,7 +100,7 @@ public class EditExamContent extends AbstractContent {
 
 		@Override
 		public void actionPerformed(ActionEvent a) {
-
+			//TODO Add new question action
 		}
 	}
 		
@@ -117,7 +111,7 @@ public class EditExamContent extends AbstractContent {
 			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 			if (selectedNode.isLeaf()){
 				System.out.println(selectedNode.getUserObject());
-				
+				//TODO selection on tree when node is closed results in errors
 			}
 		}
 	}
