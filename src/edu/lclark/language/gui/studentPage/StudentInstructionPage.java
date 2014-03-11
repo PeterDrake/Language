@@ -1,13 +1,14 @@
 package edu.lclark.language.gui.studentPage;
 
 import java.awt.*;
-
 import javax.swing.*;
 
+import testPage.TestPage;
 import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.gui.professorPage.ProfessorPage;
 
 import java.awt.event.*;
 import java.util.Scanner;
@@ -64,7 +65,9 @@ public class StudentInstructionPage extends AbstractUserPage {
 
 		@Override
 		public void actionPerformed(ActionEvent a) {
-			System.out.println("Begin button!");
+			//System.out.println("Begin button!");
+			MainWindow main = getMainWindow();
+			main.switchPage(new TestPage(main));
 		}
 
 	}

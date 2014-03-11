@@ -12,7 +12,6 @@ public abstract class AbstractUserPage extends AbstractPage{
 	
 	protected JPanel titlePanel;
 	protected JLabel title;
-	
 	protected LogoutButton logout;
 	protected RefreshButton refresh;
 	
