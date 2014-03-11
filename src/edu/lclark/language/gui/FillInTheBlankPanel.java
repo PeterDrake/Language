@@ -3,6 +3,8 @@ package edu.lclark.language.gui;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,10 +22,21 @@ public class FillInTheBlankPanel extends JPanel {
 		for(String w : question.getWordsBeforeBlank()){
 			add(new JLabel(w));
 		}
-		add(new JTextField(10));
+		JTextField blank = new JTextField(10);
+		add(blank);
+		blank.addActionListener(new BlankListener());
 		for(String w : question.getWordsAfterBlank()){
 			add(new JLabel(w));
 		}
+	}
+	
+	private class BlankListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action received");
+		}
+		
 	}
 
 	public static void main(String[] args) {
