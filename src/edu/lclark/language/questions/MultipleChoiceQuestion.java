@@ -12,6 +12,7 @@ import java.awt.*;
 
 public class MultipleChoiceQuestion extends AbstractQuestion {
 
+
 	private JLabel questionText;
 	private JButton submitButton;
 	private JRadioButton answer1;
@@ -33,7 +34,7 @@ public static void main(String[] args) {
 		content.setLayout(layout);
 		content.setSize(500, 500);
 		
-		content.setBackground(Color.WHITE);
+		content.getContentPane().setBackground(Color.WHITE);
 		
 		//JPanel panel = new JPanel(new BorderLayout());
 		
@@ -41,7 +42,7 @@ public static void main(String[] args) {
 		
 		
 		questionText = new JLabel();
-		questionText.setText("Sample");
+		questionText.setText("E un fapt bine stabilit ccititorul va fi sustras de?");
 		content.add(questionText,new GBC(245,10));
 		
 		answer1 = new JRadioButton("Answer 1");
@@ -67,5 +68,14 @@ public static void main(String[] args) {
 		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+
+	private static final int NUMBER_OF_ANSWERS = 4;
+	
+	private String[] answers;
+	private String question;
+	private int correctAnswerIndex;
+	private int questionID;
+	
 	
 }
