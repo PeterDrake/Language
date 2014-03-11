@@ -34,7 +34,8 @@ public class FillInTheBlankPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Action received");
+			String answer = ((JTextField)(e.getSource())).getText();
+			System.out.println(question.isCorrect(answer));
 		}
 		
 	}
