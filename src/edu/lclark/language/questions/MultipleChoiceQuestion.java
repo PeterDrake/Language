@@ -39,14 +39,6 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	public void setCorrectAnswerIndex(int correctAnswerIndex) {
 		this.correctAnswerIndex = correctAnswerIndex;
 	}
-
-	public int getQuestionID() {
-		return questionID;
-	}
-
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
-	}
 	
 	@Override
 	public String toString(){
