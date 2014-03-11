@@ -14,4 +14,6 @@ public abstract class AbstractQuestion {
 	public abstract String getAnswer(int index);
 	public abstract void writeToFile();
 
+	private int questionId;
+
 }
