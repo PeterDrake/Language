@@ -7,7 +7,6 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	private String[] answers;
 	private String question;
 	private int correctAnswerIndex;
-	private int questionID;
 	
 	public MultipleChoiceQuestion()
 	{
