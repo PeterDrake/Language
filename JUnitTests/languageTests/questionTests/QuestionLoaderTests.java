@@ -13,17 +13,22 @@ public class QuestionLoaderTests {
 	private final int INVALID_LEVEL = 22;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		loader = new QuestionLoader();
 	}
 
 	@Test
 	public void testGetQuestion() {
-		Question validQuestion = loader.getQuestion(VALID_LEVEL);
-		Question invalidQuestion = loader.getQuestion(INVALID_LEVEL);
+		AbstractQuestion validQuestion = loader.getQuestion(VALID_LEVEL);
+		AbstractQuestion invalidQuestion = loader.getQuestion(INVALID_LEVEL);
 		assertNotNull(validQuestion);
 		assertNull(invalidQuestion);
 		assertEquals(VALID_LEVEL, validQuestion.getLevel());
+	}
+	
+	@Test
+	public void testWriteQuestions(){
+		loader.writeQuestions();
 	}
 
 }

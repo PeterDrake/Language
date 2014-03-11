@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<question level="102" type="multiple-choice">
+<text>Which of these words does not belong?</text>
+<answers quantity="4">
+<answer>el queso</answer>
+<answer>la manzana</answer>
+<answer>la zanahoria</answer>
+<answer>el jabón</answer>
+</answers>
+<correct>3</correct>
+</question>

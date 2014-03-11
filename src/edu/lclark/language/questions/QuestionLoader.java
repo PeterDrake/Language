@@ -11,10 +11,13 @@ import javax.xml.*;
  */
 public class QuestionLoader {
 
-	private ArrayList<Question> questions;
+	private ArrayList<AbstractQuestion> questions;
+	private QuestionXMLWriter writer;
 
 	public QuestionLoader() {
-		questions = new ArrayList<Question>();
+		writer = new QuestionXMLWriter();
+		
+		questions = new ArrayList<AbstractQuestion>();
 		loadQuestionsFromDatabase();
 	}
 
@@ -25,7 +28,7 @@ public class QuestionLoader {
 	public void loadQuestionsFromDatabase() {
 		// TODO: Read data from XML file and construct question objects, putting
 		// them into their respective lists.
-		Question sampleQuestion = new MultipleChoiceQuestion();
+		AbstractQuestion sampleQuestion = new MultipleChoiceQuestion();
 		sampleQuestion.setLevel(101);
 		questions.add(sampleQuestion);
 	}
@@ -37,7 +40,7 @@ public class QuestionLoader {
 	 *            The level of the question to be returned.
 	 * @return A random question of the given level.
 	 */
-	public Question getQuestion(int level) {
+	public AbstractQuestion getQuestion(int level) {
 		return getRandomQuestion(getQuestionsOfLevel(level));
 	}
 
@@ -48,9 +51,9 @@ public class QuestionLoader {
 	 *            The level of the questions to be filtered.
 	 * @return An ArrayList of questions of the given level.
 	 */
-	public ArrayList<Question> getQuestionsOfLevel(int level) {
-		ArrayList<Question> filteredQuestions = new ArrayList<Question>();
-		for (Question question : questions) {
+	public ArrayList<AbstractQuestion> getQuestionsOfLevel(int level) {
+		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
+		for (AbstractQuestion question : questions) {
 			if (question.getLevel() == level) {
 				filteredQuestions.add(question);
 			}
@@ -64,12 +67,20 @@ public class QuestionLoader {
 	 * @param list
 	 * @return A random question from the list.
 	 */
-	private Question getRandomQuestion(ArrayList<Question> list) {
+	private AbstractQuestion getRandomQuestion(ArrayList<AbstractQuestion> list) {
 		if (list.isEmpty()) {
 			return null;
 		}
 		Random random = new Random();
 		return list.get(random.nextInt(list.size()));
+	}
+	
+	public void writeQuestions(){
+		writer.createNewDocument();
+		for(AbstractQuestion question : questions){
+			writer.createQuestionXMLNode(question);
+		}
+		writer.writeToFile();
 	}
 
 }
