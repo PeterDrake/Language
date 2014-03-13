@@ -10,9 +10,11 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -28,61 +30,83 @@ public class EditExamContent extends AbstractContent {
 
 	private MultipleChoiceQuestion[] exampleQuestionsArray;
 	private JTree tree;
+	private JComboBox addNewQuestionButton;
+	private JSplitPane splitPane;
+	private JScrollPane viewEditScrollPane;
+	private JPanel viewEditPanel;
 
 	public EditExamContent() {
 		exampleQuestionsArray = createExampleQuestions();
-		
+
 		setLayout(new BorderLayout());
-		
+
+		String[] questionTypes = { "Add New Question", "Multiple Choice",
+				"Fill in the blank" };
+
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		buttonPanel.setBackground(Color.WHITE);
 
-		JButton addNewQuestionButton = new JButton("Add New Question");
+		addNewQuestionButton = new JComboBox(questionTypes);
 		addNewQuestionButton.addActionListener(new AddNewQuestionAction());
-		
-//		JButton editQuestionButton = new JButton("Edit Question");
-//		editQuestionButton.addActionListener(new EditQuestionAction());
-		
-		//TODO need to change to level order instead of question type
+
+		// JButton editQuestionButton = new JButton("Edit Question");
+		// editQuestionButton.addActionListener(new EditQuestionAction());
+
+		// TODO need to change to level order instead of question type
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
-		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode("Multiple Choice");
-		DefaultMutableTreeNode exampleQuestions = new DefaultMutableTreeNode("Example Questions");
-		
+		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode(
+				"Multiple Choice");
+		DefaultMutableTreeNode exampleQuestions = new DefaultMutableTreeNode(
+				"Example Questions");
+
 		root.add(multipleChoice);
 		multipleChoice.add(exampleQuestions);
-	
+
 		for (int i = 0; i < exampleQuestionsArray.length; i++) {
 			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
 			temp.setUserObject(exampleQuestionsArray[i]);
 			exampleQuestions.add(temp);
 		}
-		
+
 		tree = new JTree(root);
-		
-		ImageIcon questionIcon = new ImageIcon(ClassLoader.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
-//		ImageIcon questionIcon = new ImageIcon(EditExamContent.class.getResource("/edu/lclark/language/resources/question-mark.jpg"));
-		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(16,
-				16, Image.SCALE_DEFAULT);
+
+		ImageIcon questionIcon = new ImageIcon(
+				ClassLoader
+						.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
+		// ImageIcon questionIcon = new
+		// ImageIcon(EditExamContent.class.getResource("/edu/lclark/language/resources/question-mark.jpg"));
+		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(
+				16, 16, Image.SCALE_DEFAULT);
 		questionIcon = new ImageIcon(resizedQuestionImage);
-		
+
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 		renderer.setLeafIcon(questionIcon);
-		
+
 		tree.setCellRenderer(renderer);
 		tree.addTreeSelectionListener(new SelectionListener());
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
 
-		JScrollPane sPane = new JScrollPane(tree);
-		sPane.getVerticalScrollBar().setUnitIncrement(16);
+		JScrollPane treePane = new JScrollPane(tree);
+		treePane.getVerticalScrollBar().setUnitIncrement(16);
+
+		viewEditPanel = new JPanel();
+
+		viewEditScrollPane = new JScrollPane(viewEditPanel);
+
 		buttonPanel.add(addNewQuestionButton);
-//		buttonPanel.add(editQuestionButton);
+		// buttonPanel.add(editQuestionButton);
+
+		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		splitPane.setLeftComponent(treePane);
+		splitPane.setOneTouchExpandable(true);
+		splitPane.setResizeWeight(0.5);
+
 		add(buttonPanel, BorderLayout.NORTH);
-		add(sPane, BorderLayout.CENTER);
+		add(splitPane, BorderLayout.CENTER);
 	}
-	
-	
+
 	public MultipleChoiceQuestion[] createExampleQuestions() {
 		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
 		qs[0] = new MultipleChoiceQuestion("What is your name?", new String[] {
@@ -99,19 +123,38 @@ public class EditExamContent extends AbstractContent {
 	private class AddNewQuestionAction implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent a) {
-			//TODO Add new question action
+		public void actionPerformed(ActionEvent e) {
+			switch (addNewQuestionButton.getSelectedIndex()) {
+			case 0:
+				if (splitPane.getRightComponent() != null) {
+					splitPane.remove(splitPane.getRightComponent());
+				}
+				break;
+			case 1:
+				viewEditPanel = new MultipleChoiceViewEditPanel();
+				viewEditScrollPane.setViewportView(viewEditPanel);
+				splitPane.setRightComponent(viewEditScrollPane);
+				break;
+			case 2:
+				viewEditPanel = new FillInTheBlankViewEditPanel();
+				viewEditScrollPane.setViewportView(viewEditPanel);
+				splitPane.setRightComponent(viewEditScrollPane);
+				break;
+			default:
+				break;
+			}
 		}
 	}
-		
-	private class SelectionListener implements TreeSelectionListener{
+
+	private class SelectionListener implements TreeSelectionListener {
 
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
-			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-			if (selectedNode.isLeaf()){
-				System.out.println(selectedNode.getUserObject());
-				//TODO selection on tree when node is closed results in errors
+			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
+					.getLastSelectedPathComponent();
+			if (selectedNode != null && selectedNode.isLeaf()) {
+				// System.out.println(selectedNode.getUserObject());
+				// TODO selection on tree when node is closed results in errors
 			}
 		}
 	}
