@@ -79,6 +79,17 @@ public class QuestionXMLReader {
 	private AbstractQuestion makeQuestion(Node questionNode) {
 		//TODO: Finish parsing a question!
 		String type = questionNode.getAttributes().getNamedItem("type").getNodeValue();
+		AbstractQuestion newQuestion;
+		
+		if(type.equals("multiple-choice")){
+			newQuestion = new MultipleChoiceQuestion();
+		} else if (type.equals("fill-in-the-blank")){
+			//create new instance of fill in the blank question
+		} else if (type.equals("short-response")){
+			//create new instance of short response question
+		}
+		//can add more if statements as we add more question types
+		
 		return null;
 	}
 
