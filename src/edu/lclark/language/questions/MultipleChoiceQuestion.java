@@ -49,6 +49,11 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	public int getCorrectAnswerIndex() {
 		return correctAnswerIndex;
 	}
+	
+	@Override
+	public String toString(){
+		return question;
+	}
 
 	public void setCorrectAnswerIndex(int correctAnswerIndex) {
 		this.correctAnswerIndex = correctAnswerIndex;
