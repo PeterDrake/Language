@@ -13,7 +13,6 @@ public abstract class AbstractQuestion {
 	public abstract String getCorrectAnswer(int index); //this is awkward for multiple choice, as there is only ever one correct answer, will consider revising
 	public abstract String getAnswer(int index);
 	public abstract void writeToFile();
-
 	private int questionId;
 
 }

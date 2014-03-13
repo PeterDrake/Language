@@ -1,5 +1,15 @@
 package edu.lclark.language.questions;
 
+import java.awt.Color;
+import java.awt.GridBagLayout;
+
+import javax.swing.*;
+
+import edu.lclark.language.gui.GBC;
+
+import java.awt.*;
+
+
 public class MultipleChoiceQuestion extends AbstractQuestion {
 
 	private String[] answers;
