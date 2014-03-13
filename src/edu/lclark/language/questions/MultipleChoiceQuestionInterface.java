@@ -53,7 +53,7 @@ public class MultipleChoiceQuestionInterface extends JPanel {
 		answer4 = new JRadioButton("Answer 4");
 		
 		group = new ButtonGroup();
-		
+
 		group.add(answer1);
 		group.add(answer2);
 		group.add(answer3);
@@ -71,5 +71,21 @@ public class MultipleChoiceQuestionInterface extends JPanel {
 		
 	}
 	
-
+	public String getPressed(){
+		if (answer1.isSelected()){
+		return answer1.getText();
+	}
+		if (answer2.isSelected()){
+			return answer2.getText();
+		}
+		if (answer3.isSelected()){
+			return answer3.getText();
+		}
+		if (answer4.isSelected()){
+			return answer4.getText();
+		}
+		return null;
+		
+	}
 }
+
