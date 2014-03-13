@@ -7,14 +7,14 @@ import org.junit.Test;
 
 import edu.lclark.language.questions.*;
 
-public class QuestionLoaderTests {
-	public QuestionLoader loader;
+public class QuestionDatabaseTests {
+	public QuestionDatabase loader;
 	private final int VALID_LEVEL = 101;
 	private final int INVALID_LEVEL = 22;
 
 	@Before
 	public void setUp() {
-		loader = new QuestionLoader();
+		loader = new QuestionDatabase();
 	}
 
 	@Test

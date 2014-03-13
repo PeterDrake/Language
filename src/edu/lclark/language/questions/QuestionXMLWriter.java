@@ -2,6 +2,7 @@ package edu.lclark.language.questions;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -11,7 +12,7 @@ import javax.xml.transform.stream.*;
 import org.w3c.dom.*;
 
 public class QuestionXMLWriter {
-
+	
 	public static final String PATH = System.getProperty("user.dir") + File.separator + "questions.xml";
 	
 	private DocumentBuilderFactory docFactory;
@@ -36,11 +37,19 @@ public class QuestionXMLWriter {
 	public void createNewDocument() {
 		document = docBuilder.newDocument();
 	}
+	
+	public void fillXMLDocument(ArrayList<AbstractQuestion> questions){
+		Element rootElement = document.createElement("test");
+		document.appendChild(rootElement);
+		
+		for(AbstractQuestion question: questions){
+			rootElement.appendChild(createQuestionXMLNode(question));
+		}
+	}
 
-	public void createQuestionXMLNode(AbstractQuestion question) {
+	public Element createQuestionXMLNode(AbstractQuestion question) {
 
 		Element questionElement = document.createElement("question");
-		document.appendChild(questionElement);
 
 		questionElement.setAttribute("type", question.getType());
 		questionElement.setAttribute("level",
@@ -65,10 +74,12 @@ public class QuestionXMLWriter {
 		correctAnswer.appendChild(document.createTextNode(question
 				.getCorrectAnswer(0)));
 		questionElement.appendChild(correctAnswer);
-
+		
+		return questionElement;
 	}
 
 	public void writeToFile() {
+		System.out.println(getDocumentString());
 		try {
 			DOMSource source = new DOMSource(document);
 			StreamResult result = new StreamResult(new File(PATH));

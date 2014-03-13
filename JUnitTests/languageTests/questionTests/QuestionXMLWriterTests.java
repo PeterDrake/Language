@@ -10,7 +10,7 @@ import org.junit.Test;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionXMLWriter;
 
-public class QuestionWriterTest {
+public class QuestionXMLWriterTests {
 
 	private QuestionXMLWriter writer;
 

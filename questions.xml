@@ -1,11 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<question level="102" type="multiple-choice">
-<text>Which of these words does not belong?</text>
+<test>
+<question level="101" type="multiple-choice">
+<text>What is your name?</text>
+<answers quantity="3">
+<answer>Andi</answer>
+<answer>Srey</answer>
+<answer>Maggie</answer>
+</answers>
+<correct>2</correct>
+</question>
+<question level="101" type="multiple-choice">
+<text>What is your favorite color?</text>
 <answers quantity="4">
-<answer>el queso</answer>
-<answer>la manzana</answer>
-<answer>la zanahoria</answer>
-<answer>el jabón</answer>
+<answer>Blue</answer>
+<answer>Yellow</answer>
+<answer>Green</answer>
+<answer>Red</answer>
 </answers>
 <correct>3</correct>
 </question>
+<question level="101" type="multiple-choice">
+<text>What is your quest?</text>
+<answers quantity="2">
+<answer>Grail</answer>
+<answer>Food</answer>
+</answers>
+<correct>1</correct>
+</question>
+<question level="101" type="multiple-choice">
+<text>What is the avg speed of a swallow?</text>
+<answers quantity="3">
+<answer>45</answer>
+<answer>57</answer>
+<answer>20</answer>
+</answers>
+<correct>1</correct>
+</question>
+</test>
