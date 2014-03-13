@@ -28,9 +28,9 @@ public class TestPage extends AbstractUserPage{
 		
 		submitButton = new JButton("Submit");
 		JPanel testPagePanel = new JPanel();
-		//multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
+		multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
 		
-		shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde está su casa?");
+		//shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde está su casa?");
 		
 		
 		GridBagLayout layout = new GridBagLayout(); 
@@ -40,9 +40,9 @@ public class TestPage extends AbstractUserPage{
 		testPagePanel.add(submitButton,new GBC(750, 1500).setAnchor(GBC.SOUTH));
 		
 		title.setText("Language Placement Test");
-		//testPagePanel.add(multipleChoiceQuestionPanel);
+		testPagePanel.add(multipleChoiceQuestionPanel);
 		
-		testPagePanel.add(shortAnswerQuestionPanel);
+		//testPagePanel.add(shortAnswerQuestionPanel);
 		
 		add(testPagePanel);
 		submitButton.addActionListener(new SubmitAction());
@@ -53,8 +53,8 @@ public class TestPage extends AbstractUserPage{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println(multipleChoiceQuestionPanel.getPressed());
-				System.out.println(shortAnswerQuestionPanel.getStudentResponse());
+				System.out.println(multipleChoiceQuestionPanel.getPressed());
+				//System.out.println(shortAnswerQuestionPanel.getStudentResponse());
 				
 			}
 			
