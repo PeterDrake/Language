@@ -15,18 +15,24 @@ import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionInterface;
+import edu.lclark.language.questions.ShortAnswerQuestion;
 
 public class TestPage extends AbstractUserPage{
 
 	private JButton submitButton;
 	private MultipleChoiceQuestionInterface multipleChoiceQuestionPanel;
+	private ShortAnswerQuestion shortAnswerQuestionPanel;
 	public TestPage(MainWindow main) {
 		super(main);
 		
 		
 		submitButton = new JButton("Submit");
 		JPanel testPagePanel = new JPanel();
-		multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
+		//multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
+		
+		shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde está su casa?");
+		
+		
 		GridBagLayout layout = new GridBagLayout(); 
 		testPagePanel.setLayout(layout);
 		testPagePanel.setBackground(Color.WHITE);
@@ -34,7 +40,10 @@ public class TestPage extends AbstractUserPage{
 		testPagePanel.add(submitButton,new GBC(750, 1500).setAnchor(GBC.SOUTH));
 		
 		title.setText("Language Placement Test");
-		testPagePanel.add(multipleChoiceQuestionPanel);
+		//testPagePanel.add(multipleChoiceQuestionPanel);
+		
+		testPagePanel.add(shortAnswerQuestionPanel);
+		
 		add(testPagePanel);
 		submitButton.addActionListener(new SubmitAction());
 		
@@ -44,7 +53,8 @@ public class TestPage extends AbstractUserPage{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(multipleChoiceQuestionPanel.getPressed());
+				//System.out.println(multipleChoiceQuestionPanel.getPressed());
+				System.out.println(shortAnswerQuestionPanel.getStudentResponse());
 				
 			}
 			

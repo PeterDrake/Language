@@ -38,7 +38,6 @@ public class MultipleChoiceQuestionInterface extends JPanel {
 
 		setLayout(new GridBagLayout());
 		setSize(700, 700);
-		
 		setBackground(Color.WHITE);		
 		
 		
