@@ -50,8 +50,8 @@ public class QuestionXMLWriter {
 	public Element createQuestionXMLNode(AbstractQuestion question) {
 
 		Element questionElement = document.createElement("question");
-
-		questionElement.setAttribute("type", question.getType());
+		
+		questionElement.setAttribute("type", question.getType().toString());
 		questionElement.setAttribute("level",
 				Integer.toString(question.getLevel()));
 

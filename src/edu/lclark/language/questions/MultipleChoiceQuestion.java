@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
 import java.awt.*;
 
@@ -17,13 +18,13 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	private int correctAnswerIndex;
 	private int questionID;
 	private int level;
-	private final String type;
+	private final QuestionType type;
 	private int numberOfAnswers;
 
 	private int answerCandidateIndex;
 
 	public MultipleChoiceQuestion() {
-		type = "multiple-choice";
+		type = QuestionType.MULTIPLE_CHOICE;
 	}
 
 	@Override
@@ -101,7 +102,7 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	}
 
 	@Override
-	public String getType() {
+	public QuestionType getType() {
 		return type;
 	}
 

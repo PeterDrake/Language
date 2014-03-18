@@ -11,10 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class QuestionXMLReader {
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
-	public static final String PATH = System.getProperty("user.dir")
-			+ File.separator + "questions.xml";
+public class QuestionXMLReader {
 
 	private DocumentBuilderFactory docFactory;
 	private DocumentBuilder docBuilder;
@@ -31,7 +30,7 @@ public class QuestionXMLReader {
 	}
 
 	public File loadXMLFile() {
-		xmlFile = new File(PATH);
+		xmlFile = new File(QuestionInfo.PATH);
 		if (!xmlFile.exists()) {
 			try {
 				xmlFile.createNewFile();
@@ -81,7 +80,7 @@ public class QuestionXMLReader {
 		String type = questionNode.getAttributes().getNamedItem("type").getNodeValue();
 		AbstractQuestion newQuestion;
 		
-		if(type.equals("multiple-choice")){
+		if(type.equals(QuestionType.MULTIPLE_CHOICE)){
 			newQuestion = new MultipleChoiceQuestion();
 		} else if (type.equals("fill-in-the-blank")){
 			//create new instance of fill in the blank question

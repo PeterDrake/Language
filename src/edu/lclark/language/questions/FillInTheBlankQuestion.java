@@ -3,6 +3,8 @@ package edu.lclark.language.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+
 /** A question where the student fills a word or short phrase into a blank. */
 public class FillInTheBlankQuestion extends AbstractQuestion {
 
@@ -60,7 +62,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	}
 
 	@Override
-	public String getType() {
+	public QuestionType getType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

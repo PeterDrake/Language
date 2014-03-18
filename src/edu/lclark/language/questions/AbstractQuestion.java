@@ -1,11 +1,13 @@
 package edu.lclark.language.questions;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+
 public abstract class AbstractQuestion {
 	
 	public abstract boolean isCorrectAnswer();
 	
 	public abstract int getLevel();
-	public abstract String getType();
+	public abstract QuestionType getType();
 	public abstract void setLevel(int level);
 	public abstract String getQuestion();
 	public abstract int getNumberOfAnswers();
