@@ -109,14 +109,22 @@ public class EditExamContent extends AbstractContent {
 
 	public MultipleChoiceQuestion[] createExampleQuestions() {
 		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
-		qs[0] = new MultipleChoiceQuestion("What is your name?", new String[] {
-				"Andi", "Srey", "Maggie" }, 2);
-		qs[1] = new MultipleChoiceQuestion("What is your favorite color?",
-				new String[] { "Blue", "Yellow", "Green", "Red" }, 0);
-		qs[2] = new MultipleChoiceQuestion("What is your quest?", new String[] {
-				"Grail", "Food" }, 1);
-		qs[3] = new MultipleChoiceQuestion("What is the avg speed of swallow?",
-				new String[] { "45", "57", "20" }, 1);
+		qs[0] = new MultipleChoiceQuestion();
+		qs[0].setQuestion("What is your name?");
+		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
+		qs[0].setCorrectAnswerIndex(2);
+		qs[1] = new MultipleChoiceQuestion();
+		qs[1].setQuestion("What is your favorite color?");
+		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
+		qs[1].setCorrectAnswerIndex(3);
+		qs[2] = new MultipleChoiceQuestion();
+		qs[2].setQuestion("What is your quest?");
+		qs[2].setAnswers(new String[] { "Grail", "Food" });
+		qs[2].setCorrectAnswerIndex(1);
+		qs[3] = new MultipleChoiceQuestion();
+		qs[3].setQuestion("What is the avg speed of a swallow?");
+		qs[3].setAnswers(new String[] { "45", "57", "20" });
+		qs[3].setCorrectAnswerIndex(1);
 		return qs;
 	}
 

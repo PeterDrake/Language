@@ -3,6 +3,8 @@ package edu.lclark.language.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+
 /** A question where the student fills a word or short phrase into a blank. */
 public class FillInTheBlankQuestion extends AbstractQuestion {
 
@@ -15,7 +17,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	/** The correct answer to this question. */
 	private String correctAnswer;
 	
-	/** Example of argument: "¿Dónde _ el baño, por favor?" */
+	/** Example of argument: "��D��nde _ el ba��o, por favor?" */
 	public FillInTheBlankQuestion(String question, String correctAnswer) {
 		int blank = question.indexOf('_');
 		before = question.substring(0, blank);
@@ -45,6 +47,66 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 			answer.add(w + " ");
 		}
 		return answer;
+	}
+
+	@Override
+	public boolean isCorrectAnswer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public QuestionType getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLevel(int level) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getQuestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNumberOfAnswers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNumberOfCorrectAnswers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getCorrectAnswer(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getAnswer(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void writeToFile() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

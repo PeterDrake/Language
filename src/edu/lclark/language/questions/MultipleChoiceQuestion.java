@@ -6,24 +6,38 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
 import java.awt.*;
 
 
 public class MultipleChoiceQuestion extends AbstractQuestion {
 
-	private static final int NUMBER_OF_ANSWERS = 4;
 	private String[] answers;
 	private String question;
 	private int correctAnswerIndex;
-	
+	private int questionID;
+	private int level;
+	private final QuestionType type;
+	private int numberOfAnswers;
 
-	public MultipleChoiceQuestion(String question, String[] answers, int correctAnswerIndex)
-	{
-//		answers = new String[NUMBER_OF_ANSWERS];
-		this.answers = answers;
-		this.question = question;
-		this.correctAnswerIndex = correctAnswerIndex;
+	private int answerCandidateIndex;
+
+	public MultipleChoiceQuestion() {
+		type = QuestionType.MULTIPLE_CHOICE;
+	}
+
+	@Override
+	public boolean isCorrectAnswer() {
+		return true;
+	}
+
+	public int getNumberOfAnswers() {
+		return numberOfAnswers;
+	}
+
+	public void setNumberOfAnswers(int numberOfAnswers) {
+		this.numberOfAnswers = numberOfAnswers;
 	}
 
 	public String[] getAnswers() {
@@ -32,6 +46,7 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 
 	public void setAnswers(String[] answers) {
 		this.answers = answers;
+		numberOfAnswers = answers.length;
 	}
 
 	public String getQuestion() {
@@ -45,14 +60,50 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 	public int getCorrectAnswerIndex() {
 		return correctAnswerIndex;
 	}
-
-	public void setCorrectAnswerIndex(int correctAnswerIndex) {
-		this.correctAnswerIndex = correctAnswerIndex;
-	}
 	
 	@Override
 	public String toString(){
 		return question;
+	}
+
+	public void setCorrectAnswerIndex(int correctAnswerIndex) {
+		this.correctAnswerIndex = correctAnswerIndex;
+	}
+
+	@Override
+	public int getLevel() {
+		return level;
+	}
+
+	@Override
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	@Override
+	public void writeToFile() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String getAnswer(int index) {
+		return answers[index];
+	}
+
+	@Override
+	public int getNumberOfCorrectAnswers() {
+		return 1;
+	}
+
+	@Override
+	public String getCorrectAnswer(int index) {
+		return Integer.toString(correctAnswerIndex);
+	}
+
+	@Override
+	public QuestionType getType() {
+		return type;
 	}
 
 }
