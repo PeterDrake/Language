@@ -1,4 +1,4 @@
-package testPage;
+package edu.lclark.language.testPage;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -14,23 +14,25 @@ import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionInterface;
-import edu.lclark.language.questions.ShortAnswerQuestion;
+import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
+import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
 public class TestPage extends AbstractUserPage{
 
 	private JButton submitButton;
-	private MultipleChoiceQuestionInterface multipleChoiceQuestionPanel;
-	private ShortAnswerQuestion shortAnswerQuestionPanel;
+//	private MultipleChoiceQuestionPanel multipleChoiceQuestionPanel;
+//	private ShortAnswerQuestionPanel shortAnswerQuestionPanel;
+	private JPanel questionPanel;
+	private QuestionFactory factory;
 	public TestPage(MainWindow main) {
 		super(main);
 		
 		
 		submitButton = new JButton("Submit");
 		JPanel testPagePanel = new JPanel();
-		multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
+		questionPanel = factory.getNextQuestion();
 		
-		//shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde está su casa?");
+		//shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde est?? su casa?");
 		
 		
 		GridBagLayout layout = new GridBagLayout(); 
@@ -40,7 +42,7 @@ public class TestPage extends AbstractUserPage{
 		testPagePanel.add(submitButton,new GBC(750, 1500).setAnchor(GBC.SOUTH));
 		
 		title.setText("Language Placement Test");
-		testPagePanel.add(multipleChoiceQuestionPanel);
+		testPagePanel.add(questionPanel);
 		
 		//testPagePanel.add(shortAnswerQuestionPanel);
 		
@@ -54,6 +56,8 @@ public class TestPage extends AbstractUserPage{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(multipleChoiceQuestionPanel.getPressed());
+				questionPanel = factory.getNextQuestion();
+						
 				//System.out.println(shortAnswerQuestionPanel.getStudentResponse());
 				
 			}
