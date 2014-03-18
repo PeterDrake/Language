@@ -1,4 +1,5 @@
 package edu.lclark.language.testPage;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -17,52 +18,50 @@ import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
-public class TestPage extends AbstractUserPage{
+public class TestPage extends AbstractUserPage {
 
 	private JButton submitButton;
-//	private MultipleChoiceQuestionPanel multipleChoiceQuestionPanel;
-//	private ShortAnswerQuestionPanel shortAnswerQuestionPanel;
 	private JPanel questionPanel;
 	private QuestionFactory factory;
+
 	public TestPage(MainWindow main) {
 		super(main);
-		
-		
+		factory = new QuestionFactory();
+
 		submitButton = new JButton("Submit");
 		JPanel testPagePanel = new JPanel();
 		questionPanel = factory.getNextQuestion();
-		
-		//shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde est?? su casa?");
-		
-		
-		GridBagLayout layout = new GridBagLayout(); 
+
+		GridBagLayout layout = new GridBagLayout();
 		testPagePanel.setLayout(layout);
 		testPagePanel.setBackground(Color.WHITE);
 		testPagePanel.setSize(1500, 1500);
-		testPagePanel.add(submitButton,new GBC(750, 1500).setAnchor(GBC.SOUTH));
-		
+		testPagePanel
+				.add(submitButton, new GBC(750, 1500).setAnchor(GBC.SOUTH));
+
 		title.setText("Language Placement Test");
 		testPagePanel.add(questionPanel);
-		
-		//testPagePanel.add(shortAnswerQuestionPanel);
-		
+
+		// testPagePanel.add(shortAnswerQuestionPanel);
+
 		add(testPagePanel);
 		submitButton.addActionListener(new SubmitAction());
-		
-	}
-		private class SubmitAction implements ActionListener
-		{
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(multipleChoiceQuestionPanel.getPressed());
-				questionPanel = factory.getNextQuestion();
-						
-				//System.out.println(shortAnswerQuestionPanel.getStudentResponse());
-				
-			}
-			
-		}
 	}
-// Add arguments and a second overloaded constructor to take in the type of question, and create the Jpanel for it accordingly
+
+	private class SubmitAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//System.out.println(questionPanel.g.getPressed());
+			questionPanel = factory.getNextQuestion();
+
+			// System.out.println(shortAnswerQuestionPanel.getStudentResponse());
+
+		}
+
+	}
+}
+// Add arguments and a second overloaded constructor to take in the type of
+// question, and create the Jpanel for it accordingly
 
