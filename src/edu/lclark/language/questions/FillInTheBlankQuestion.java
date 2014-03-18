@@ -26,7 +26,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	}
 
 	/** Returns true if the answer is correct. */
-	public boolean isCorrect(String answer) {
+	public boolean isCorrectAnswer(String answer) {
 		return answer.trim().equals(correctAnswer);
 	}
 
@@ -53,60 +53,6 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	public boolean isCorrectAnswer() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public int getLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public QuestionType getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setLevel(int level) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getQuestion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getNumberOfAnswers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getNumberOfCorrectAnswers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getCorrectAnswer(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getAnswer(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void writeToFile() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -35,25 +35,25 @@ public class QuestionDatabase {
 	public void createExampleQuestions() {
 		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
 		qs[0] = new MultipleChoiceQuestion();
-		qs[0].setQuestion("What is your name?");
+		qs[0].setText("What is your name?");
 		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
-		qs[0].setCorrectAnswerIndex(2);
-		qs[0].setLevel(101);
+		qs[0].setCorrectAnswers(new String[] {"Srey"});
+		qs[0].setLevel("101");
 		qs[1] = new MultipleChoiceQuestion();
-		qs[1].setQuestion("What is your favorite color?");
+		qs[1].setText("What is your favorite color?");
 		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
-		qs[1].setCorrectAnswerIndex(3);
-		qs[1].setLevel(101);
+		qs[1].setCorrectAnswers(new String[] {"Red"});
+		qs[1].setLevel("101");
 		qs[2] = new MultipleChoiceQuestion();
-		qs[2].setQuestion("What is your quest?");
+		qs[2].setText("What is your quest?");
 		qs[2].setAnswers(new String[] { "Grail", "Food" });
-		qs[2].setCorrectAnswerIndex(1);
-		qs[2].setLevel(101);
+		qs[2].setCorrectAnswers(new String[] {"Food"});
+		qs[2].setLevel("101");
 		qs[3] = new MultipleChoiceQuestion();
-		qs[3].setQuestion("What is the avg speed of a swallow?");
+		qs[3].setText("What is the avg speed of a swallow?");
 		qs[3].setAnswers(new String[] { "45", "57", "20" });
-		qs[3].setCorrectAnswerIndex(1);
-		qs[3].setLevel(101);
+		qs[3].setCorrectAnswers(new String[] {"57"});
+		qs[3].setLevel("101");
 		questions.add(qs[0]);
 		questions.add(qs[1]);
 		questions.add(qs[2]);
@@ -81,7 +81,7 @@ public class QuestionDatabase {
 	public ArrayList<AbstractQuestion> getQuestionsOfLevel(int level) {
 		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
 		for (AbstractQuestion question : questions) {
-			if (question.getLevel() == level) {
+			if (question.getLevel().equals(Integer.toString(level))) {
 				filteredQuestions.add(question);
 			}
 		}

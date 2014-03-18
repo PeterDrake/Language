@@ -51,13 +51,13 @@ public class QuestionXMLWriter {
 
 		Element questionElement = document.createElement("question");
 		
-		questionElement.setAttribute("type", question.getType().toString());
+		questionElement.setAttribute("type", question.getQuestionType().toString());
 		questionElement.setAttribute("level",
-				Integer.toString(question.getLevel()));
+				question.getLevel());
 
 		Element questionText = document.createElement("text");
 		questionText
-				.appendChild(document.createTextNode(question.getQuestion()));
+				.appendChild(document.createTextNode(question.getText()));
 		questionElement.appendChild(questionText);
 
 		Element answers = document.createElement("answers");
@@ -66,14 +66,22 @@ public class QuestionXMLWriter {
 		questionElement.appendChild(answers);
 		for (int i = 0; i < question.getNumberOfAnswers(); i++) {
 			Element answer = document.createElement("answer");
-			answer.appendChild(document.createTextNode(question.getAnswer(i)));
+			answer.appendChild(document.createTextNode(question.getAnswerAtIndex(i)));
 			answers.appendChild(answer);
 		}
 
-		Element correctAnswer = document.createElement("correct");
-		correctAnswer.appendChild(document.createTextNode(question
-				.getCorrectAnswer(0)));
-		questionElement.appendChild(correctAnswer);
+		Element correctAnswers= document.createElement("correct-answers");
+		correctAnswers.setAttribute("quantity", Integer.toString(question.getNumberOfCorrectAnswers()));
+		
+		for(int i = 0; i < question.getNumberOfCorrectAnswers(); i++){
+			Element correctAnswer = document.createElement("correct");
+			correctAnswer.appendChild(document.createTextNode(question
+					.getCorrectAnswerAtIndex(i)));
+			
+			correctAnswers.appendChild(correctAnswer);
+		}
+		
+		questionElement.appendChild(correctAnswers);
 		
 		return questionElement;
 	}

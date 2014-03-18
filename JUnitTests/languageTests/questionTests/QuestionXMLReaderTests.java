@@ -34,10 +34,10 @@ public class QuestionXMLReaderTests {
 	}
 	
 	//TODO: Finish writing this test!
-	/*@Test
+	@Test
 	public void testLoadQuestionsFromFile(){
 		assertNotNull(reader.loadQuestionsFromFile());
 		reader.loadQuestionsFromFile();
-	}*/
+	}
 
 }

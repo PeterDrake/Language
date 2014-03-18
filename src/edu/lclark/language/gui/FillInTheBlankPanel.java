@@ -20,7 +20,7 @@ public class FillInTheBlankPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String answer = ((JTextField) (e.getSource())).getText();
-			System.out.println(question.isCorrect(answer));
+			System.out.println(question.isCorrectAnswer(answer));
 		}
 
 	}
@@ -40,7 +40,7 @@ public class FillInTheBlankPanel extends JPanel {
 				mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				mainWindow.add(new FillInTheBlankPanel(
 						new FillInTheBlankQuestion(
-								"¿Dónde _ el baño, por favor?", "está")));
+								"��D��nde _ el ba��o, por favor?", "est��")));
 				mainWindow.setVisible(true);
 			}
 		});

@@ -7,6 +7,8 @@
 <answer>la zanahoria</answer>
 <answer>el jabón</answer>
 </answers>
-<correct>3</correct>
+<correct-answers quantity="1">
+<correct>el jabón</correct>
+</correct-answers>
 </question>
 </test>

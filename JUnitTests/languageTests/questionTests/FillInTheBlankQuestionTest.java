@@ -1,10 +1,13 @@
-package edu.lclark.language.questions;
+package languageTests.questionTests;
 
 import static org.junit.Assert.*;
 
 import java.util.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.lclark.language.questions.FillInTheBlankQuestion;
 
 public class FillInTheBlankQuestionTest {
 
@@ -14,20 +17,20 @@ public class FillInTheBlankQuestionTest {
 
 	@Test
 	public void testIsCorrect() {
-		FillInTheBlankQuestion q = new FillInTheBlankQuestion("¿Dónde _ el baño, por favor?", "está");
-		assertTrue(q.isCorrect("está"));
-		assertFalse(q.isCorrect("esta"));
-		assertTrue(q.isCorrect("está "));
+		FillInTheBlankQuestion q = new FillInTheBlankQuestion("��D��nde _ el ba��o, por favor?", "est��");
+		assertTrue(q.isCorrectAnswer("est��"));
+		assertFalse(q.isCorrectAnswer("esta"));
+		assertTrue(q.isCorrectAnswer("est�� "));
 	}
 	
 	@Test
 	public void testSeparateWords() {
-		FillInTheBlankQuestion q = new FillInTheBlankQuestion("¿Dónde _ el baño, por favor?", "está");
+		FillInTheBlankQuestion q = new FillInTheBlankQuestion("��D��nde _ el ba��o, por favor?", "est��");
 		List<String> correctBefore = new ArrayList<String>();
-		correctBefore.add("¿Dónde ");
+		correctBefore.add("��D��nde ");
 		List<String> correctAfter = new ArrayList<String>();
 		correctAfter.add("el ");
-		correctAfter.add("baño, ");
+		correctAfter.add("ba��o, ");
 		correctAfter.add("por ");
 		correctAfter.add("favor? ");
 		assertEquals(correctBefore, q.getWordsBeforeBlank());

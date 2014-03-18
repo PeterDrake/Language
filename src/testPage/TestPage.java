@@ -14,13 +14,13 @@ import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionInterface;
+import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestion;
 
 public class TestPage extends AbstractUserPage{
 
 	private JButton submitButton;
-	private MultipleChoiceQuestionInterface multipleChoiceQuestionPanel;
+	private MultipleChoiceQuestionPanel multipleChoiceQuestionPanel;
 	private ShortAnswerQuestion shortAnswerQuestionPanel;
 	public TestPage(MainWindow main) {
 		super(main);
@@ -28,7 +28,7 @@ public class TestPage extends AbstractUserPage{
 		
 		submitButton = new JButton("Submit");
 		JPanel testPagePanel = new JPanel();
-		multipleChoiceQuestionPanel = new MultipleChoiceQuestionInterface(null, "name");
+		multipleChoiceQuestionPanel = new MultipleChoiceQuestionPanel(null, "name");
 		
 		//shortAnswerQuestionPanel = new ShortAnswerQuestion("Donde está su casa?");
 		
