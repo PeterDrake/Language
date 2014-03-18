@@ -31,18 +31,31 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 		
 		JLabel title = new JLabel();
 		title.setText("Multiple Choice Question");
-		add(title, new GBC(1,0,1,1));
+		add(title, new GBC(1,0,3,1));
 		
 		JLabel question = new JLabel();
-		question.setText("Question:");
+		question.setText("Question: ");
 		JTextArea questionField = new JTextArea(5,50);
-//		questionField.setPreferredSize(new Dimension(500,100));
 		questionField.setLineWrap(true);
 		questionField.setWrapStyleWord(true);
 		JScrollPane questionPane = new JScrollPane(questionField);
 		questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
 		add(question, new GBC(0,1));
 		add(questionPane, new GBC(1,1,2,1));
+		
+		JLabel chooseNumber = new JLabel();
+		chooseNumber.setText("Choose Number of Answers: ");
+		add(chooseNumber, new GBC(0,2));
+		
+		JLabel chooseCorrect = new JLabel();
+		chooseCorrect.setText("Choose the Corrct Answer: ");
+		add(chooseCorrect, new GBC(0,9));
+		
+		
+		
+		
+		
+		
 	}
 	
 }
