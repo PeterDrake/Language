@@ -13,61 +13,23 @@ public class QuestionDatabase {
 
 	private ArrayList<AbstractQuestion> questions;
 	private QuestionXMLWriter writer;
+	private QuestionXMLReader reader;
 
 	public QuestionDatabase() {
 		writer = new QuestionXMLWriter();
-		
+		reader = new QuestionXMLReader();
 		questions = new ArrayList<AbstractQuestion>();
-		loadQuestionsFromDatabase();
-	}
-
-	/**
-	 * Reads data from the questions XML file, constructs question objects from
-	 * the data and stores them in an ArrayList.
-	 */
-	public void loadQuestionsFromDatabase() {
-		// TODO: Read data from XML file and construct question objects, putting
-		// them into their respective lists.
-		createExampleQuestions();
-	}
-	
-	//TODO: This is for testing purposes only. Will implement the actual loadQuestionsFromDatabase once other branches are merged in
-	public void createExampleQuestions() {
-		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
-		qs[0] = new MultipleChoiceQuestion();
-		qs[0].setText("What is your name?");
-		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
-		qs[0].setCorrectAnswers(new String[] {"Srey"});
-		qs[0].setLevel("101");
-		qs[1] = new MultipleChoiceQuestion();
-		qs[1].setText("What is your favorite color?");
-		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
-		qs[1].setCorrectAnswers(new String[] {"Red"});
-		qs[1].setLevel("101");
-		qs[2] = new MultipleChoiceQuestion();
-		qs[2].setText("What is your quest?");
-		qs[2].setAnswers(new String[] { "Grail", "Food" });
-		qs[2].setCorrectAnswers(new String[] {"Food"});
-		qs[2].setLevel("101");
-		qs[3] = new MultipleChoiceQuestion();
-		qs[3].setText("What is the avg speed of a swallow?");
-		qs[3].setAnswers(new String[] { "45", "57", "20" });
-		qs[3].setCorrectAnswers(new String[] {"57"});
-		qs[3].setLevel("101");
-		questions.add(qs[0]);
-		questions.add(qs[1]);
-		questions.add(qs[2]);
-		questions.add(qs[3]);
+		loadQuestionsFromFile();
 	}
 
 	/**
 	 * Gets a random question of a given level.
 	 * 
-	 * @param level
+	 * @param VALID_LEVEL
 	 *            The level of the question to be returned.
 	 * @return A random question of the given level.
 	 */
-	public AbstractQuestion getQuestion(int level) {
+	public AbstractQuestion getQuestion(String level) {
 		return getRandomQuestion(getQuestionsOfLevel(level));
 	}
 
@@ -78,14 +40,22 @@ public class QuestionDatabase {
 	 *            The level of the questions to be filtered.
 	 * @return An ArrayList of questions of the given level.
 	 */
-	public ArrayList<AbstractQuestion> getQuestionsOfLevel(int level) {
+	public ArrayList<AbstractQuestion> getQuestionsOfLevel(String level) {
 		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
 		for (AbstractQuestion question : questions) {
-			if (question.getLevel().equals(Integer.toString(level))) {
+			if (question.getLevel().equals(level)) {
 				filteredQuestions.add(question);
 			}
 		}
 		return filteredQuestions;
+	}
+
+	public ArrayList<AbstractQuestion> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<AbstractQuestion> questions) {
+		this.questions = questions;
 	}
 
 	/**
@@ -102,7 +72,17 @@ public class QuestionDatabase {
 		return list.get(random.nextInt(list.size()));
 	}
 	
-	public void writeQuestions(){
+	/**
+	 * Reads data from the questions XML file, constructs question objects from
+	 * the data and stores them in an ArrayList.
+	 */
+	public void loadQuestionsFromFile() {
+		reader.loadXMLFile();
+		reader.parseXMLFile();
+		questions = reader.loadQuestionsFromFile();
+	}
+
+	public void writeQuestionsToFile(){
 		writer.createNewDocument();
 		writer.fillXMLDocument(questions);
 		writer.writeToFile();

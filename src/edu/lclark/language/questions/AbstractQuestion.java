@@ -6,12 +6,12 @@ public abstract class AbstractQuestion {
 	
 	public abstract boolean isCorrectAnswer();
 	
-	private int questionId;
-	private QuestionType type;
-	private String level;
-	private String text;
-	private String[] answers;
-	private String[] correctAnswers;
+	protected int questionId;
+	protected QuestionType type;
+	protected String level;
+	protected String text;
+	protected String[] answers;
+	protected String[] correctAnswers;
 	
 	public String getLevel(){
 		return level;

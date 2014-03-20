@@ -1,45 +1,17 @@
 package edu.lclark.language.questions;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import edu.lclark.language.gui.GBC;
-
-public class ShortAnswerQuestion extends JPanel {
-
-	private JTextField shortAnswerResponse;
-	private JButton submitButton;
-	private JLabel questionText;
-	private String question;
-	private JLabel questionInstructions;
-
-	public ShortAnswerQuestion(String question) {
-		this.question = question;
-		questionInstructions = new JLabel("(Please respond with 1-2 complete sentences.)");
-
-		setLayout(new GridBagLayout());
-		setSize(700, 700);
-		setBackground(Color.WHITE);
-
-		questionText = new JLabel();
-		questionText.setText(question);
-		add(questionText, new GBC(245, 10).setAnchor(GBC.NORTH));
-
-		shortAnswerResponse = new JTextField(24);
-		//shortAnswerResponse.setSize(50, 50);
-
-		add(shortAnswerResponse, new GBC(245, 100).setAnchor(GBC.WEST));
-		add(questionInstructions, new GBC(245, 120));
-
+public class ShortAnswerQuestion extends AbstractQuestion{
+	
+	public ShortAnswerQuestion(){
+		setQuestionType(QuestionType.SHORT_ANSWER);
 	}
 
-	public String getStudentResponse() {
-		return shortAnswerResponse.getText();
+	@Override
+	public boolean isCorrectAnswer() {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 }

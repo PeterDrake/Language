@@ -63,45 +63,56 @@ public class QuestionXMLReader {
 	}
 	
 	public ArrayList<AbstractQuestion> loadQuestionsFromFile(){
-		//TODO: Finish makeQuestion and return the arraylist.
 		ArrayList<AbstractQuestion> questions = new ArrayList<AbstractQuestion>();
 		Document doc = parseXMLFile();
 		
-		Element root = doc.getDocumentElement();
-		NodeList questionNodes = root.getElementsByTagName("question");
+		NodeList questionNodes = doc.getElementsByTagName("question");
 		for(int i = 0; i < questionNodes.getLength(); i++){
 			questions.add(makeQuestion(questionNodes.item(i)));
 		}
-		return null;
+		return questions;
 	}
 
-	private AbstractQuestion makeQuestion(Node questionNode) {
-		//TODO: Finish parsing a question!
+	public AbstractQuestion makeQuestion(Node questionNode) {
+		
 		String type = questionNode.getAttributes().getNamedItem("type").getNodeValue();
 		String level = questionNode.getAttributes().getNamedItem("level").getNodeValue();
 		
 		AbstractQuestion newQuestion = null;
 		
-		if(type.equals(QuestionType.MULTIPLE_CHOICE)){
+		if(type.equals(QuestionType.MULTIPLE_CHOICE.toString())){
 			newQuestion = new MultipleChoiceQuestion();
-		} else if (type.equals(QuestionType.FILL_IN_THE_BLANK)){
-			//create new instance of fill in the blank question
-		} else if (type.equals(QuestionType.SHORT_ANSWER)){
-			//create new instance of short response question
+		} else if (type.equals(QuestionType.FILL_IN_THE_BLANK.toString())){
+			newQuestion = new FillInTheBlankQuestion();
+		} else if (type.equals(QuestionType.SHORT_ANSWER.toString())){
+			newQuestion = new ShortAnswerQuestion();
 		}
 		//can add more if statements as we add more question types
 		
 		newQuestion.setLevel(level);
+		
 		NodeList questionNodeList = questionNode.getChildNodes();
-		Node text = questionNodeList.item(0);
-		Node answers = questionNodeList.item(1);
-		Node correct = questionNodeList.item(2);
+		newQuestion.setText(questionNodeList.item(0).getTextContent());
 		
+		String[] answers = getStringsFromNode(questionNodeList.item(1));
+		newQuestion.setAnswers(answers);
 		
+		String[] correctAnswers = getStringsFromNode(questionNodeList.item(2));
+		newQuestion.setCorrectAnswers(correctAnswers);
 		
+		return newQuestion;
+	}
+	
+	private String[] getStringsFromNode(Node nodeWithChildNodes){
 		
+		int quantity = Integer.parseInt(nodeWithChildNodes.getAttributes().getNamedItem("quantity").getNodeValue());
+		NodeList childrenNodes = nodeWithChildNodes.getChildNodes();
+		String[] strings = new String[quantity];
+		for(int i = 0; i < quantity; i++){
+			strings[i] = childrenNodes.item(i).getTextContent();
+		}
+		return strings;
 		
-		return null;
 	}
 
 }

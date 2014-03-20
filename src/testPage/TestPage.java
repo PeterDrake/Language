@@ -15,13 +15,13 @@ import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
-import edu.lclark.language.questions.ShortAnswerQuestion;
+import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
 public class TestPage extends AbstractUserPage{
 
 	private JButton submitButton;
 	private MultipleChoiceQuestionPanel multipleChoiceQuestionPanel;
-	private ShortAnswerQuestion shortAnswerQuestionPanel;
+	private ShortAnswerQuestionPanel shortAnswerQuestionPanel;
 	public TestPage(MainWindow main) {
 		super(main);
 		

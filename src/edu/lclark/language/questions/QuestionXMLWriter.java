@@ -87,11 +87,10 @@ public class QuestionXMLWriter {
 	}
 
 	public void writeToFile() {
-		System.out.println(getDocumentString());
 		try {
 			DOMSource source = new DOMSource(document);
 			StreamResult result = new StreamResult(new File(PATH));
-			transformer.setOutputProperty(OutputKeys.INDENT,"yes");
+			//transformer.setOutputProperty(OutputKeys.INDENT,"yes");
 			transformer.transform(source, result);
 		} catch (Exception e) {
 			e.printStackTrace();
