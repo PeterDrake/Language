@@ -7,16 +7,20 @@ import javax.swing.JPanel;
 import edu.lclark.language.questions.AbstractQuestionPanel;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
+import edu.lclark.language.questions.ShortAnswerQuestion;
+import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
 public class QuestionFactory {
 
 	private AbstractQuestionPanel questionPanel;
 	private ArrayList<JPanel> questions;
 	private MultipleChoiceQuestion[] exampleQuestionsArray;
+	private ShortAnswerQuestion[] exampleShort;
 	private int i;
 
 	public QuestionFactory(){
 		exampleQuestionsArray = createExampleQuestions();	
+		exampleShort = createSampleShortAnswerQ();	
 		i = 0;
 	}
 	
@@ -26,12 +30,19 @@ public class QuestionFactory {
 	}
 	
 	public AbstractQuestionPanel getNextQuestion() {
-		if (i >= exampleQuestionsArray.length){
-			System.exit(0);
+		
+		
+		if (i >= exampleShort.length){
+			i = 0;
 			// place holder for some type of finish test page or something 
 		}
-		questionPanel = new MultipleChoiceQuestionPanel(exampleQuestionsArray[i]);
+		if ((i%2 == 0)){
+			questionPanel = new MultipleChoiceQuestionPanel(exampleQuestionsArray[i]);			
+		} else {
+		questionPanel = new ShortAnswerQuestionPanel(exampleShort[i]);
+		}
 		i++;
+		
 		return questionPanel;
 	}
 
@@ -54,6 +65,21 @@ public class QuestionFactory {
 		qs[3].setAnswers(new String[] { "45", "57", "What kind, African of European?" });
 		qs[3].setCorrectAnswerIndex(1);
 		return qs;
+	}
+	
+	public ShortAnswerQuestion[] createSampleShortAnswerQ(){
+		
+		ShortAnswerQuestion[] shortQS = new ShortAnswerQuestion[4];
+		shortQS[0] = new ShortAnswerQuestion();
+		shortQS[0].setQuestion("Hello how are you doing today?");
+		shortQS[1] = new ShortAnswerQuestion();
+		shortQS[1].setQuestion("Please explain why you are in college?");
+		shortQS[2] = new ShortAnswerQuestion();
+		shortQS[2].setQuestion("What is your major?");
+		shortQS[3] = new ShortAnswerQuestion();
+		shortQS[3].setQuestion("What will you be doing this summer?");
+		
+		return shortQS;
 	}
 
 

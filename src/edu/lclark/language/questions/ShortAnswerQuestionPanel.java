@@ -19,8 +19,8 @@ public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 	private String question;
 	private JLabel questionInstructions;
 
-	public ShortAnswerQuestionPanel(String question) {
-		this.question = question;
+	public ShortAnswerQuestionPanel(ShortAnswerQuestion exampleShort) {
+		this.question = exampleShort.getQuestion();
 		questionInstructions = new JLabel("(Please respond with 1-2 complete sentences.)");
 
 		setLayout(new GridBagLayout());
@@ -28,7 +28,7 @@ public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 		setBackground(Color.WHITE);
 
 		questionText = new JLabel();
-		questionText.setText(question);
+		questionText.setText(exampleShort.getQuestion());
 		add(questionText, new GBC(245, 10).setAnchor(GBC.NORTH));
 
 		shortAnswerResponse = new JTextField(24);
