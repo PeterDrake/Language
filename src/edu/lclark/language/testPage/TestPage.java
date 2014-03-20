@@ -14,6 +14,7 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
+import edu.lclark.language.questions.AbstractQuestionPanel;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestionPanel;
@@ -21,15 +22,16 @@ import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 public class TestPage extends AbstractUserPage {
 
 	private JButton submitButton;
-	private JPanel questionPanel;
+	private AbstractQuestionPanel questionPanel;
 	private QuestionFactory factory;
+	private JPanel testPagePanel;
 
 	public TestPage(MainWindow main) {
 		super(main);
 		factory = new QuestionFactory();
 
 		submitButton = new JButton("Submit");
-		JPanel testPagePanel = new JPanel();
+		testPagePanel = new JPanel();
 		questionPanel = factory.getNextQuestion();
 
 		GridBagLayout layout = new GridBagLayout();
@@ -53,15 +55,14 @@ public class TestPage extends AbstractUserPage {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//System.out.println(questionPanel.g.getPressed());
+
+			System.out.println(questionPanel.getAnswer());
+			testPagePanel.remove(questionPanel);
 			questionPanel = factory.getNextQuestion();
-
-			// System.out.println(shortAnswerQuestionPanel.getStudentResponse());
-
+			testPagePanel.add(questionPanel);
+			testPagePanel.repaint();
+			testPagePanel.revalidate();
 		}
 
 	}
 }
-// Add arguments and a second overloaded constructor to take in the type of
-// question, and create the Jpanel for it accordingly
-

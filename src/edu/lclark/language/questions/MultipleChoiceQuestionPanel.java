@@ -13,7 +13,7 @@ import javax.swing.JRadioButton;
 
 import edu.lclark.language.gui.GBC;
 
-public class MultipleChoiceQuestionPanel extends JPanel {
+public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 
 	private JLabel questionText;
 	private JButton submitButton;
@@ -43,7 +43,7 @@ public class MultipleChoiceQuestionPanel extends JPanel {
 
 	}
 
-	public String getPressed() {
+	public String getAnswer() {
 
 		for (int i = 0; i < answers.size(); i++) {
 

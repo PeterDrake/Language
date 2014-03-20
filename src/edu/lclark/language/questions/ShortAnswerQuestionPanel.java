@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import edu.lclark.language.gui.GBC;
 
-public class ShortAnswerQuestionPanel extends JPanel {
+public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 
 	private JTextField shortAnswerResponse;
 	private JButton submitButton;
@@ -39,7 +39,7 @@ public class ShortAnswerQuestionPanel extends JPanel {
 
 	}
 
-	public String getStudentResponse() {
+	public String getAnswer() {
 		return shortAnswerResponse.getText();
 	}
 }
