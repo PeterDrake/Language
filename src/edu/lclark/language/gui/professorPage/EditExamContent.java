@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -48,7 +49,8 @@ public class EditExamContent extends AbstractContent {
 		buttonPanel.setBackground(Color.WHITE);
 
 		addNewQuestionButton = new JComboBox(questionTypes);
-		addNewQuestionButton.addActionListener(new AddNewQuestionAction());
+		addNewQuestionButton.addActionListener(EventHandler.create(
+				ActionListener.class, this, "addNewQuestionAction"));
 
 		// JButton editQuestionButton = new JButton("Edit Question");
 		// editQuestionButton.addActionListener(new EditQuestionAction());
@@ -84,7 +86,8 @@ public class EditExamContent extends AbstractContent {
 		renderer.setLeafIcon(questionIcon);
 
 		tree.setCellRenderer(renderer);
-		tree.addTreeSelectionListener(new SelectionListener());
+		tree.addTreeSelectionListener(EventHandler.create(TreeSelectionListener.class,
+				this, "selectionListener"));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
 
@@ -105,6 +108,14 @@ public class EditExamContent extends AbstractContent {
 
 		add(buttonPanel, BorderLayout.NORTH);
 		add(splitPane, BorderLayout.CENTER);
+	}
+
+	public void endEdit(AbstractQuestion q) {
+		if (q != null) {
+			// TODO Save question
+		}
+		addNewQuestionButton.setSelectedIndex(0);
+		addNewQuestionAction();
 	}
 
 	public MultipleChoiceQuestion[] createExampleQuestions() {
@@ -128,42 +139,35 @@ public class EditExamContent extends AbstractContent {
 		return qs;
 	}
 
-	private class AddNewQuestionAction implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			switch (addNewQuestionButton.getSelectedIndex()) {
-			case 0:
-				if (splitPane.getRightComponent() != null) {
-					splitPane.remove(splitPane.getRightComponent());
-				}
-				break;
-			case 1:
-				viewEditPanel = new MultipleChoiceViewEditPanel();
-				viewEditScrollPane.setViewportView(viewEditPanel);
-				splitPane.setRightComponent(viewEditScrollPane);
-				break;
-			case 2:
-				viewEditPanel = new FillInTheBlankViewEditPanel();
-				viewEditScrollPane.setViewportView(viewEditPanel);
-				splitPane.setRightComponent(viewEditScrollPane);
-				break;
-			default:
-				break;
+	public void addNewQuestionAction() {
+		switch (addNewQuestionButton.getSelectedIndex()) {
+		case 0:
+			if (splitPane.getRightComponent() != null) {
+				// TODO If text is entered, prompt for save
+				splitPane.remove(splitPane.getRightComponent());
 			}
+			break;
+		case 1:
+			viewEditPanel = new MultipleChoiceViewEditPanel();
+			viewEditScrollPane.setViewportView(viewEditPanel);
+			splitPane.setRightComponent(viewEditScrollPane);
+			break;
+		case 2:
+			viewEditPanel = new FillInTheBlankViewEditPanel();
+			viewEditScrollPane.setViewportView(viewEditPanel);
+			splitPane.setRightComponent(viewEditScrollPane);
+			break;
+		default:
+			break;
 		}
 	}
 
-	private class SelectionListener implements TreeSelectionListener {
-
-		@Override
-		public void valueChanged(TreeSelectionEvent e) {
-			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
-					.getLastSelectedPathComponent();
-			if (selectedNode != null && selectedNode.isLeaf()) {
-				// System.out.println(selectedNode.getUserObject());
-				// TODO selection on tree when node is closed results in errors
-			}
+	public void selectionListener() {
+		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
+				.getLastSelectedPathComponent();
+		if (selectedNode != null && selectedNode.isLeaf()) {
+			// System.out.println(selectedNode.getUserObject());
+			// TODO selection on tree when node is closed results in errors
 		}
 	}
 }
