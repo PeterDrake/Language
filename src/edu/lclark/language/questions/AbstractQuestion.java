@@ -1,6 +1,6 @@
 package edu.lclark.language.questions;
 
-import edu.lclark.language.questions.QuestionInfo.QuestionType;
+import edu.lclark.language.questions.QuestionInfo.*;
 
 public abstract class AbstractQuestion {
 	
@@ -8,15 +8,15 @@ public abstract class AbstractQuestion {
 	
 	protected int questionId;
 	protected QuestionType type;
-	protected String level;
+	protected QuestionLevel level;
 	protected String text;
 	protected String[] answers;
 	protected String[] correctAnswers;
 	
-	public String getLevel(){
+	public QuestionLevel getLevel(){
 		return level;
 	}
-	public void setLevel(String level){
+	public void setLevel(QuestionLevel level){
 		this.level = level;
 	}
 	public String getText(){

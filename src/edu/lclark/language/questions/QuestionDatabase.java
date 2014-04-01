@@ -5,11 +5,13 @@ import java.util.Random;
 
 import javax.xml.*;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+
 /**
  * Loads question info from the database and constructs question objects out of
  * it, storing them in the appropriate lists.
  */
-public class QuestionDatabase {
+public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabaseInterface{
 
 	private ArrayList<AbstractQuestion> questions;
 	private QuestionXMLWriter writer;
@@ -29,7 +31,7 @@ public class QuestionDatabase {
 	 *            The level of the question to be returned.
 	 * @return A random question of the given level.
 	 */
-	public AbstractQuestion getQuestion(String level) {
+	public AbstractQuestion getQuestion(QuestionLevel level) {
 		return getRandomQuestion(getQuestionsOfLevel(level));
 	}
 
@@ -40,7 +42,8 @@ public class QuestionDatabase {
 	 *            The level of the questions to be filtered.
 	 * @return An ArrayList of questions of the given level.
 	 */
-	public ArrayList<AbstractQuestion> getQuestionsOfLevel(String level) {
+	@Override
+	public ArrayList<AbstractQuestion> getQuestionsOfLevel(QuestionLevel level) {
 		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
 		for (AbstractQuestion question : questions) {
 			if (question.getLevel().equals(level)) {
@@ -50,8 +53,13 @@ public class QuestionDatabase {
 		return filteredQuestions;
 	}
 
-	public ArrayList<AbstractQuestion> getQuestions() {
-		return questions;
+	@Override
+	public ArrayList<AbstractQuestion> getAllQuestions() {
+		ArrayList<AbstractQuestion> allQuestions = new ArrayList<AbstractQuestion>();
+		for(AbstractQuestion question: questions){
+			allQuestions.add(question);
+		}
+		return allQuestions;
 	}
 
 	public void setQuestions(ArrayList<AbstractQuestion> questions) {
@@ -86,6 +94,23 @@ public class QuestionDatabase {
 		writer.createNewDocument();
 		writer.fillXMLDocument(questions);
 		writer.writeToFile();
+	}
+
+	@Override
+	public void deleteQuestion(AbstractQuestion question) {
+		questions.remove(question);
+		writeQuestionsToFile();
+	}
+
+	@Override
+	public void addQuestion(AbstractQuestion question) {
+		questions.add(question);
+		writeQuestionsToFile();
+	}
+
+	@Override
+	public void updateQuestions() {
+		writeQuestionsToFile();
 	}
 
 }

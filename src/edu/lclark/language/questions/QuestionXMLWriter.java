@@ -53,7 +53,7 @@ public class QuestionXMLWriter {
 		
 		questionElement.setAttribute("type", question.getQuestionType().toString());
 		questionElement.setAttribute("level",
-				question.getLevel());
+				question.getLevel().toString());
 
 		Element questionText = document.createElement("text");
 		questionText

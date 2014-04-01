@@ -89,7 +89,7 @@ public class QuestionXMLReader {
 		}
 		//can add more if statements as we add more question types
 		
-		newQuestion.setLevel(level);
+		newQuestion.setLevel(QuestionInfo.createQuestionLevel(level));
 		
 		NodeList questionNodeList = questionNode.getChildNodes();
 		newQuestion.setText(questionNodeList.item(0).getTextContent());
