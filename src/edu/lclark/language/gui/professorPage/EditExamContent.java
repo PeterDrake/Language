@@ -148,12 +148,12 @@ public class EditExamContent extends AbstractContent {
 			}
 			break;
 		case 1:
-			viewEditPanel = new MultipleChoiceViewEditPanel();
+			viewEditPanel = new MultipleChoiceViewEditPanel(this);
 			viewEditScrollPane.setViewportView(viewEditPanel);
 			splitPane.setRightComponent(viewEditScrollPane);
 			break;
 		case 2:
-			viewEditPanel = new FillInTheBlankViewEditPanel();
+			viewEditPanel = new FillInTheBlankViewEditPanel(this);
 			viewEditScrollPane.setViewportView(viewEditPanel);
 			splitPane.setRightComponent(viewEditScrollPane);
 			break;

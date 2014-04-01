@@ -11,6 +11,7 @@ import java.beans.EventHandler;
 import javax.swing.*;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
 
 public class MultipleChoiceViewEditPanel extends JPanel {
 
@@ -23,14 +24,18 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 	private int numberOfQuestions;
 	private JButton saveChangesButton;
 	private JButton deleteQuestionButton;
+	private EditExamContent previousPage;
+	private MultipleChoiceQuestion question;
 
-	public MultipleChoiceViewEditPanel() {
+	public MultipleChoiceViewEditPanel(EditExamContent previousPage) {
 		correctAnswer = 1;
 		numberOfQuestions = 4;
+		this.previousPage = previousPage;
+		question = new MultipleChoiceQuestion();
 		drawAll();
 	}
 
-	public void drawAll() {
+	private void drawAll() {
 
 		setBackground(Color.WHITE);
 
@@ -125,13 +130,20 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 	}
 
 	public void saveQuestion() {
-		// TODO 
-		updatePage(); 
+		if (!isFilledOut()) {
+			// TODO need to add pop up for not filled out
+		}
+		previousPage.endEdit(question);
 	}
 
 	public void deleteQuestion() {
-		updatePage();
-		// TODO
+		// TODO need to add pop up
+		Object[] options = { "Cancel", "Delete" };
+		int n = JOptionPane.showOptionDialog(this,
+				"Are you sure you want to delete question?",
+				"Delete Question?", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		previousPage.endEdit(null);
 	}
 
 	private void updatePage() {
@@ -148,5 +160,9 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 		}
 		updatePage();
 	}
-	
+
+	public boolean isFilledOut() {
+		return false;
+	}
+
 }

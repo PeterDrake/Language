@@ -6,7 +6,11 @@ import java.awt.Color;
 
 public class FillInTheBlankViewEditPanel extends JPanel{
 	
-	public FillInTheBlankViewEditPanel() {
+	private EditExamContent previousPage;
+	
+	public FillInTheBlankViewEditPanel(EditExamContent previousPage) {
+		
+		this.previousPage = previousPage;
 		
 		JLabel message = new JLabel("This will be an area to enter new fill in the blank questions");
 		add(message);
