@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /** Graphic panel for displaying a FillInTheBlankQuestion. */
-public class FillInTheBlankPanel extends JPanel {
+public class FillInTheBlankPanel extends AbstractQuestionPanel {
 
 	/** Listens for the student to hit enter when the JTextField has focus. */
 	private class BlankListener implements ActionListener {
@@ -41,6 +41,12 @@ public class FillInTheBlankPanel extends JPanel {
 		for (String w : question.getWordsAfterBlank()) {
 			add(new JLabel(w));
 		}
+	}
+
+	@Override
+	public String getAnswer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

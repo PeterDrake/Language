@@ -24,16 +24,6 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 		loadQuestionsFromFile();
 	}
 
-	/**
-	 * Gets a random question of a given level.
-	 * 
-	 * @param VALID_LEVEL
-	 *            The level of the question to be returned.
-	 * @return A random question of the given level.
-	 */
-	public AbstractQuestion getQuestion(QuestionLevel level) {
-		return getRandomQuestion(getQuestionsOfLevel(level));
-	}
 
 	/**
 	 * Generates an ArrayList of questions of a specified level.
@@ -66,19 +56,6 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 		this.questions = questions;
 	}
 
-	/**
-	 * Gets a random question from an ArrayList of Questions.
-	 * 
-	 * @param list
-	 * @return A random question from the list.
-	 */
-	private AbstractQuestion getRandomQuestion(ArrayList<AbstractQuestion> list) {
-		if (list.isEmpty()) {
-			return null;
-		}
-		Random random = new Random();
-		return list.get(random.nextInt(list.size()));
-	}
 	
 	/**
 	 * Reads data from the questions XML file, constructs question objects from

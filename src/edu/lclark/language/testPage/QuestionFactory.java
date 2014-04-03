@@ -1,86 +1,65 @@
 package edu.lclark.language.testPage;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
-import edu.lclark.language.questions.AbstractQuestionPanel;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
-import edu.lclark.language.questions.ShortAnswerQuestion;
-import edu.lclark.language.questions.ShortAnswerQuestionPanel;
+import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.questions.*;
+import edu.lclark.language.questions.QuestionInfo.*;
 
 public class QuestionFactory {
 
-	private AbstractQuestionPanel questionPanel;
-	private ArrayList<JPanel> questions;
-	private MultipleChoiceQuestion[] exampleQuestionsArray;
-	private ShortAnswerQuestion[] exampleShort;
-	private int i;
+	private ArrayList<AbstractQuestion> database;
 
-	public QuestionFactory(){
-		exampleQuestionsArray = createExampleQuestions();	
-		exampleShort = createSampleShortAnswerQ();	
-		i = 0;
+	public QuestionFactory() {
+		database = LanguagePlacementTest.questionDatabase.getAllQuestions();
 	}
-	
-	public AbstractQuestionPanel getQuestionPanel(){
-		return questionPanel;
-		
+
+	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
+		database = questions;
 	}
-	
-	public AbstractQuestionPanel getNextQuestion() {
+
+	public AbstractQuestionPanel getQuestionPanelOfLevel(QuestionLevel level) {
+		// TODO: Implement this method!
+		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
+		AbstractQuestionPanel panel = null;
 		
-		
-		if (i >= exampleShort.length){
-			System.exit(0);
-			// place holder for some type of finish test page or something 
+		if (question.getQuestionType() == QuestionType.MULTIPLE_CHOICE) {
+			panel = new MultipleChoiceQuestionPanel((MultipleChoiceQuestion) question);
+		} else if (question.getQuestionType() == QuestionType.SHORT_ANSWER) {
+			panel = new ShortAnswerQuestionPanel((ShortAnswerQuestion) question);
+		} else if (question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK) {
+			panel = new FillInTheBlankPanel((FillInTheBlankQuestion) question);
 		}
-		if ((i%2 == 0)){
-			questionPanel = new MultipleChoiceQuestionPanel(exampleQuestionsArray[i]);			
-		} else {
-		questionPanel = new ShortAnswerQuestionPanel(exampleShort[i]);
+		return panel;
+	}
+
+	public ArrayList<AbstractQuestion> getDatabase() {
+		return database;
+	}
+
+	private ArrayList<AbstractQuestion> getQuestionsOfLevel(QuestionLevel level) {
+		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
+		for (AbstractQuestion question : database) {
+			if (question.getLevel().equals(level)) {
+				filteredQuestions.add(question);
+			}
 		}
-		i++;
-		
-		return questionPanel;
+		return filteredQuestions;
 	}
 
-	public MultipleChoiceQuestion[] createExampleQuestions() {
-		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
-		qs[0] = new MultipleChoiceQuestion();
-		qs[0].setText("What is your name?");
-		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
-		qs[0].setCorrectAnswers(new String[] { "Srey" });
-		qs[1] = new MultipleChoiceQuestion();
-		qs[1].setText("What is your favorite color?");
-		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
-		qs[1].setCorrectAnswers(new String[] { "Red" });
-		qs[2] = new MultipleChoiceQuestion();
-		qs[2].setText("What is your quest?");
-		qs[2].setAnswers(new String[] { "To Seek the Holy Grail", "Food" });
-		qs[2].setCorrectAnswers(new String[] { "Food" });
-		qs[3] = new MultipleChoiceQuestion();
-		qs[3].setText("What is the avg speed of a swallow?");
-		qs[3].setAnswers(new String[] { "45", "57", "What kind, African of European?" });
-		qs[3].setCorrectAnswers(new String[] { "57" });
-		return qs;
+	public AbstractQuestion getRandomQuestion(
+			ArrayList<AbstractQuestion> questions) {
+		if (questions.isEmpty()) {
+			return null;
+		}
+		Random random = new Random();
+		AbstractQuestion question = questions.get(random.nextInt(questions
+				.size()));
+		database.remove(question);
+		return question;
 	}
-	
-	public ShortAnswerQuestion[] createSampleShortAnswerQ(){
-		
-		ShortAnswerQuestion[] shortQS = new ShortAnswerQuestion[4];
-		shortQS[0] = new ShortAnswerQuestion();
-		shortQS[0].setText("Hello how are you doing today?");
-		shortQS[1] = new ShortAnswerQuestion();
-		shortQS[1].setText("Please explain why you are in college?");
-		shortQS[2] = new ShortAnswerQuestion();
-		shortQS[2].setText("What is your major?");
-		shortQS[3] = new ShortAnswerQuestion();
-		shortQS[3].setText("What will you be doing this summer?");
-		
-		return shortQS;
-	}
-
 
 }
