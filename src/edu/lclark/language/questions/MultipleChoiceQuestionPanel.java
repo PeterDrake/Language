@@ -20,6 +20,8 @@ public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 	private ArrayList<JRadioButton> answers;
 	private ButtonGroup group;
 
+	private AccentMarksToolbar toolbar;
+	
 	public MultipleChoiceQuestionPanel(MultipleChoiceQuestion multipleChoice) {
 		// add arguments to create the question in this class
 		answers = new ArrayList<JRadioButton>();
@@ -27,6 +29,10 @@ public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 		setSize(700, 700);
 		setBackground(Color.WHITE);
 
+		toolbar = new AccentMarksToolbar();
+		add(toolbar, new GBC(245,10));
+		
+		
 		questionText = new JLabel();
 		questionText.setText(multipleChoice.getQuestion());
 		add(questionText, new GBC(245, 10).setAnchor(GBC.NORTH));

@@ -33,7 +33,7 @@ public class QuestionFactory {
 		
 		
 		if (i >= exampleShort.length){
-			i = 0;
+			System.exit(0);
 			// place holder for some type of finish test page or something 
 		}
 		if ((i%2 == 0)){
