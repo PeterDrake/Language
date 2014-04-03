@@ -56,7 +56,7 @@ public class TestPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			System.out.println(questionPanel.getAnswer());
+			System.out.println(questionPanel.getCurrentQuestion().isCorrectAnswer(questionPanel.getAnswer()));
 			testPagePanel.remove(questionPanel);
 			questionPanel = factory.getNextQuestion();
 			testPagePanel.add(questionPanel);

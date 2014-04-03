@@ -47,7 +47,7 @@ public final class QuestionInfo {
 	
 	public static FillInTheBlankQuestion getSampleFillInTheBlankQuestion(){
 		FillInTheBlankQuestion question = new FillInTheBlankQuestion();
-		question.setText("¿Hola, * estás?");
+		question.setText("¿Hola, _ estás?");
 		question.setAnswers(new String[0]);
 		question.setCorrectAnswers(new String[] { "cómo" });
 		question.setLevel(QuestionLevel.LEVEL_101);

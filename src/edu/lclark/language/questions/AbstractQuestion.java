@@ -4,8 +4,6 @@ import edu.lclark.language.questions.QuestionInfo.*;
 
 public abstract class AbstractQuestion {
 	
-	public abstract boolean isCorrectAnswer();
-	
 	protected int questionId;
 	protected QuestionType type;
 	protected QuestionLevel level;
@@ -57,6 +55,13 @@ public abstract class AbstractQuestion {
 	}
 	public String toString(){
 		return text;
+	}
+	public boolean isCorrectAnswer(String studentAnswer){
+		for(int i = 0; i < getNumberOfCorrectAnswers(); i++){
+			if(correctAnswers[i].equals(studentAnswer))
+				return true;
+		}
+		return false;
 	}
 	
 }

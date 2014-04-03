@@ -17,9 +17,4 @@ public class MultipleChoiceQuestion extends AbstractQuestion {
 		setQuestionType(QuestionType.MULTIPLE_CHOICE);
 	}
 
-	@Override
-	public boolean isCorrectAnswer() {
-		return true;
-	}
-
 }
