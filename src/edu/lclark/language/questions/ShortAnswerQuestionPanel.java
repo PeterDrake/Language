@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import edu.lclark.language.gui.GBC;
 
-public class ShortAnswerQuestionPanel extends JPanel {
+public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 
 	private JTextField shortAnswerResponse;
 	private JButton submitButton;
@@ -19,8 +19,9 @@ public class ShortAnswerQuestionPanel extends JPanel {
 	private String question;
 	private JLabel questionInstructions;
 
-	public ShortAnswerQuestionPanel(String question) {
-		this.question = question;
+
+	public ShortAnswerQuestionPanel(ShortAnswerQuestion exampleShort) {
+		this.question = exampleShort.getText();
 		questionInstructions = new JLabel("(Please respond with 1-2 complete sentences.)");
 
 		setLayout(new GridBagLayout());
@@ -39,7 +40,7 @@ public class ShortAnswerQuestionPanel extends JPanel {
 
 	}
 
-	public String getStudentResponse() {
+	public String getAnswer() {
 		return shortAnswerResponse.getText();
 	}
 }
