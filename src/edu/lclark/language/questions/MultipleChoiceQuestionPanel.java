@@ -89,8 +89,7 @@ public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 
 	@Override
 	public String getAnswer() {
-		// TODO Auto-generated method stub
-		return null;
+		return getPressed();
 	}
 }
 
