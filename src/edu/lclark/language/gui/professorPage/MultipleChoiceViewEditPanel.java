@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import edu.lclark.language.questions.QuestionInfo;
 
 import javax.swing.*;
 
@@ -56,14 +57,15 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 		title.setText("Multiple Choice Question");
 		add(title, new GBC(0, 0, 3, 1));
 
-		JLabel question = new JLabel();
-		question.setText("Question: ");
+		JLabel questionLabel = new JLabel();
+		questionLabel.setText("Question: ");
 		questionField = new JTextArea(5, 50);
 		questionField.setLineWrap(true);
 		questionField.setWrapStyleWord(true);
+		questionField.setText(question.getText());
 		JScrollPane questionPane = new JScrollPane(questionField);
 		questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
-		add(question, new GBC(0, 1).setAnchor(GBC.EAST));
+		add(questionLabel, new GBC(0, 1).setAnchor(GBC.EAST));
 		add(questionPane, new GBC(1, 1, 2, 1));
 
 		JLabel chooseNumber = new JLabel();
@@ -116,9 +118,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 		deleteQuestionButton.setText("Delete Question");
 		deleteQuestionButton.addActionListener(EventHandler.create(
 				ActionListener.class, this, "deleteQuestion"));
-		add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));
-
-		
+		add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));		
 		
 		revalidate();
 		repaint();
@@ -189,17 +189,30 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 	}
 	
 	private void saveContent() {
-		question.setQuestion(questionField.getText());
+		question.setText(questionField.getText());
 		String[] temp = new String[answers.length];
 		for (int i = 0; i < answers.length; i++) {
 			temp[i] = answers[i].getText();
 		}
 		question.setAnswers(temp);
-		question.setCorrectAnswerIndex(correctAnswer - 1);
-		question.setNumberOfAnswers(answers.length);
+		question.setCorrectAnswers(new String[] {temp[correctAnswer - 1]});
 		switch(levelIndex){
 		case 0:
-			//TODO
+			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_101);
+			break;
+		case 1:
+			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_102);
+			break;
+		case 2:
+			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_201);
+			break;
+		case 3:
+			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_202);
+			break;
+		case 4:
+			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_301);
+			break;
+		
 		}
 	}
 
