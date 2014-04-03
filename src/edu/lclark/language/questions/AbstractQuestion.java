@@ -1,20 +1,62 @@
 package edu.lclark.language.questions;
 
-import edu.lclark.language.questions.QuestionInfo.QuestionType;
+import edu.lclark.language.questions.QuestionInfo.*;
 
 public abstract class AbstractQuestion {
 	
 	public abstract boolean isCorrectAnswer();
 	
-	public abstract int getLevel();
-	public abstract QuestionType getType();
-	public abstract void setLevel(int level);
-	public abstract String getQuestion();
-	public abstract int getNumberOfAnswers();
-	public abstract int getNumberOfCorrectAnswers();
-	public abstract String getCorrectAnswer(int index); //this is awkward for multiple choice, as there is only ever one correct answer, will consider revising
-	public abstract String getAnswer(int index);
-	public abstract void writeToFile();
-	private int questionId;
-
+	protected int questionId;
+	protected QuestionType type;
+	protected QuestionLevel level;
+	protected String text;
+	protected String[] answers;
+	protected String[] correctAnswers;
+	
+	public QuestionLevel getLevel(){
+		return level;
+	}
+	public void setLevel(QuestionLevel level){
+		this.level = level;
+	}
+	public String getText(){
+		return text;
+	}
+	public void setText(String text){
+		this.text = text;
+	}
+	public void setAnswers(String[] answers){
+		this.answers = answers;
+	}
+	public String[] getAnswers(){
+		return answers;
+	}
+	public String getAnswerAtIndex(int index){
+		return answers[index];
+	}
+	public int getNumberOfAnswers(){
+		return answers.length;
+	}
+	public void setCorrectAnswers(String[] correctAnswers){
+		this.correctAnswers = correctAnswers;
+	}
+	public String[] getCorrectAnswers(){
+		return correctAnswers;
+	}
+	public String getCorrectAnswerAtIndex(int index){
+		return correctAnswers[index];
+	}
+	public int getNumberOfCorrectAnswers(){
+		return correctAnswers.length;
+	}
+	public QuestionType getQuestionType(){
+		return type;
+	}
+	public void setQuestionType(QuestionType type){
+		this.type = type;
+	}
+	public String toString(){
+		return text;
+	}
+	
 }

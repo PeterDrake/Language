@@ -5,69 +5,33 @@ import java.util.Random;
 
 import javax.xml.*;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+
 /**
  * Loads question info from the database and constructs question objects out of
  * it, storing them in the appropriate lists.
  */
-public class QuestionDatabase {
+public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabaseInterface{
 
 	private ArrayList<AbstractQuestion> questions;
 	private QuestionXMLWriter writer;
+	private QuestionXMLReader reader;
 
 	public QuestionDatabase() {
 		writer = new QuestionXMLWriter();
-		
+		reader = new QuestionXMLReader();
 		questions = new ArrayList<AbstractQuestion>();
-		loadQuestionsFromDatabase();
-	}
-
-	/**
-	 * Reads data from the questions XML file, constructs question objects from
-	 * the data and stores them in an ArrayList.
-	 */
-	public void loadQuestionsFromDatabase() {
-		// TODO: Read data from XML file and construct question objects, putting
-		// them into their respective lists.
-		createExampleQuestions();
-	}
-	
-	//TODO: This is for testing purposes only. Will implement the actual loadQuestionsFromDatabase once other branches are merged in
-	public void createExampleQuestions() {
-		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
-		qs[0] = new MultipleChoiceQuestion();
-		qs[0].setQuestion("What is your name?");
-		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
-		qs[0].setCorrectAnswerIndex(2);
-		qs[0].setLevel(101);
-		qs[1] = new MultipleChoiceQuestion();
-		qs[1].setQuestion("What is your favorite color?");
-		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
-		qs[1].setCorrectAnswerIndex(3);
-		qs[1].setLevel(101);
-		qs[2] = new MultipleChoiceQuestion();
-		qs[2].setQuestion("What is your quest?");
-		qs[2].setAnswers(new String[] { "Grail", "Food" });
-		qs[2].setCorrectAnswerIndex(1);
-		qs[2].setLevel(101);
-		qs[3] = new MultipleChoiceQuestion();
-		qs[3].setQuestion("What is the avg speed of a swallow?");
-		qs[3].setAnswers(new String[] { "45", "57", "20" });
-		qs[3].setCorrectAnswerIndex(1);
-		qs[3].setLevel(101);
-		questions.add(qs[0]);
-		questions.add(qs[1]);
-		questions.add(qs[2]);
-		questions.add(qs[3]);
+		loadQuestionsFromFile();
 	}
 
 	/**
 	 * Gets a random question of a given level.
 	 * 
-	 * @param level
+	 * @param VALID_LEVEL
 	 *            The level of the question to be returned.
 	 * @return A random question of the given level.
 	 */
-	public AbstractQuestion getQuestion(int level) {
+	public AbstractQuestion getQuestion(QuestionLevel level) {
 		return getRandomQuestion(getQuestionsOfLevel(level));
 	}
 
@@ -78,14 +42,28 @@ public class QuestionDatabase {
 	 *            The level of the questions to be filtered.
 	 * @return An ArrayList of questions of the given level.
 	 */
-	public ArrayList<AbstractQuestion> getQuestionsOfLevel(int level) {
+	@Override
+	public ArrayList<AbstractQuestion> getQuestionsOfLevel(QuestionLevel level) {
 		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
 		for (AbstractQuestion question : questions) {
-			if (question.getLevel() == level) {
+			if (question.getLevel().equals(level)) {
 				filteredQuestions.add(question);
 			}
 		}
 		return filteredQuestions;
+	}
+
+	@Override
+	public ArrayList<AbstractQuestion> getAllQuestions() {
+		ArrayList<AbstractQuestion> allQuestions = new ArrayList<AbstractQuestion>();
+		for(AbstractQuestion question: questions){
+			allQuestions.add(question);
+		}
+		return allQuestions;
+	}
+
+	public void setQuestions(ArrayList<AbstractQuestion> questions) {
+		this.questions = questions;
 	}
 
 	/**
@@ -102,10 +80,37 @@ public class QuestionDatabase {
 		return list.get(random.nextInt(list.size()));
 	}
 	
-	public void writeQuestions(){
+	/**
+	 * Reads data from the questions XML file, constructs question objects from
+	 * the data and stores them in an ArrayList.
+	 */
+	public void loadQuestionsFromFile() {
+		reader.loadXMLFile();
+		reader.parseXMLFile();
+		questions = reader.loadQuestionsFromFile();
+	}
+
+	public void writeQuestionsToFile(){
 		writer.createNewDocument();
 		writer.fillXMLDocument(questions);
 		writer.writeToFile();
+	}
+
+	@Override
+	public void deleteQuestion(AbstractQuestion question) {
+		questions.remove(question);
+		writeQuestionsToFile();
+	}
+
+	@Override
+	public void addQuestion(AbstractQuestion question) {
+		questions.add(question);
+		writeQuestionsToFile();
+	}
+
+	@Override
+	public void updateQuestions() {
+		writeQuestionsToFile();
 	}
 
 }

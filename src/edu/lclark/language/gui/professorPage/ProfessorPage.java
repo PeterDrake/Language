@@ -2,8 +2,11 @@ package edu.lclark.language.gui.professorPage;
 
 import javax.swing.*;
 
+import edu.lclark.language.LanguagePlacementTest;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.questions.ProfessorDatabaseInterface;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +25,8 @@ public class ProfessorPage extends AbstractUserPage {
 	private JToggleButton viewResultsButton;
 	private AbstractContent currentContent;
     private JPanel contentPanel;
+    
+    private ProfessorDatabaseInterface database;
 	
 	private String name;
 	
@@ -65,6 +70,8 @@ public class ProfessorPage extends AbstractUserPage {
         //TODO Fix switching views using toggle buttons (doesn't update correctly)
 		currentContent = new ProfileContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
+		
+		database = LanguagePlacementTest.questionDatabase;
 	}
 	
 	/**

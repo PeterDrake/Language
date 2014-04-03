@@ -11,7 +11,7 @@ import javax.swing.JRadioButton;
 
 import edu.lclark.language.gui.GBC;
 
-public class MultipleChoiceQuestionInterface extends JPanel {
+public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 	private String[] answers;
 	private String question;
 	private JLabel questionText;
@@ -27,11 +27,11 @@ public class MultipleChoiceQuestionInterface extends JPanel {
 //}
 	
 	
-	public MultipleChoiceQuestionInterface(String[] answers, String question) {
+	public MultipleChoiceQuestionPanel(MultipleChoiceQuestion question) {
 		//add arguments to create the question in this class
 		
-		this.answers = answers;
-		this.question = question;
+		this.answers = question.getAnswers();
+		this.question = question.getText();
 		
 		//JFrame content = new JFrame();
 		
@@ -85,6 +85,12 @@ public class MultipleChoiceQuestionInterface extends JPanel {
 		}
 		return null;
 		
+	}
+
+	@Override
+	public String getAnswer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

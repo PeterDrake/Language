@@ -11,6 +11,7 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
+import edu.lclark.language.questions.AccentMarksToolbar;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,16 +27,19 @@ public class LoginPage extends AbstractPage {
 	private JLabel title1;
 	private JLabel title2;
 	private JLabel title3;
+	
 
 	public LoginPage(MainWindow main) {
 		
 		super(main);
 		
 		ImageComponent logo = new ImageComponent("LClogo.jpg",  216, 154);
-
+		
+		
 		
 		setLayout(new GridBagLayout());
 		add(logo, new GBC(48, 20, 51, 20));
+		
 		
 		title1 = new JLabel();
 		title1.setText("Language ");
@@ -59,6 +63,8 @@ public class LoginPage extends AbstractPage {
 
 		passwordInput = new JPasswordField(12);
 		
+		passwordInput.addActionListener(new LoginAction());
+		
 		loginButton = new JButton();
 		loginButton.setText("Login");
 
@@ -72,8 +78,15 @@ public class LoginPage extends AbstractPage {
 		add(loginButton, new GBC(50, 80));
 
 		loginButton.addActionListener(new LoginAction());
+		
+		
 	}
 	
+	private void add(AccentMarksToolbar toolbar2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private class LoginAction implements ActionListener
 	{
 

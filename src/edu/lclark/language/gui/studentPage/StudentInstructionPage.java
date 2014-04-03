@@ -1,14 +1,15 @@
 package edu.lclark.language.gui.studentPage;
 
 import java.awt.*;
+
 import javax.swing.*;
 
-import testPage.TestPage;
 import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
+import edu.lclark.language.testPage.TestPage;
 
 import java.awt.event.*;
 import java.util.Scanner;

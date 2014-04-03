@@ -18,15 +18,19 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	private String correctAnswer;
 	
 	/** Example of argument: "��D��nde _ el ba��o, por favor?" */
-	public FillInTheBlankQuestion(String question, String correctAnswer) {
-		int blank = question.indexOf('_');
-		before = question.substring(0, blank);
-		after = question.substring(blank + 2, question.length());
-		this.correctAnswer = correctAnswer.trim();
+	public FillInTheBlankQuestion() {
+		setQuestionType(QuestionType.FILL_IN_THE_BLANK);
+	}
+	
+	public void setText(String text){
+		int blank = text.indexOf('_');
+		before = text.substring(0, blank);
+		after = text.substring(blank + 2, text.length());
+		this.text = text;
 	}
 
 	/** Returns true if the answer is correct. */
-	public boolean isCorrect(String answer) {
+	public boolean isCorrectAnswer(String answer) {
 		return answer.trim().equals(correctAnswer);
 	}
 
@@ -53,60 +57,6 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	public boolean isCorrectAnswer() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public int getLevel() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public QuestionType getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setLevel(int level) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getQuestion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getNumberOfAnswers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getNumberOfCorrectAnswers() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getCorrectAnswer(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getAnswer(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void writeToFile() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
