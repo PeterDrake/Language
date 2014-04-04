@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import edu.lclark.language.questions.AbstractQuestionPanel;
+import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
+import edu.lclark.language.gui.studentPage.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestion;
-import edu.lclark.language.questions.ShortAnswerQuestionPanel;
+import edu.lclark.language.gui.studentPage.ShortAnswerQuestionPanel;
 
 public class QuestionFactory {
 

@@ -21,6 +21,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
 
 import edu.lclark.language.questions.*;
 
@@ -35,6 +36,8 @@ public class EditExamContent extends AbstractContent {
 	private JSplitPane splitPane;
 	private JScrollPane viewEditScrollPane;
 	private JPanel viewEditPanel;
+
+    DefaultMutableTreeNode exampleQuestions;
 
 	public EditExamContent() {
 		exampleQuestionsArray = createExampleQuestions();
@@ -59,7 +62,7 @@ public class EditExamContent extends AbstractContent {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
 		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode(
 				"Multiple Choice");
-		DefaultMutableTreeNode exampleQuestions = new DefaultMutableTreeNode(
+		exampleQuestions = new DefaultMutableTreeNode(
 				"Example Questions");
 
 		root.add(multipleChoice);
@@ -112,8 +115,17 @@ public class EditExamContent extends AbstractContent {
 
 	public void endEdit(AbstractQuestion q) {
 		if (q != null) {
-			// TODO Save question
-		}
+			// TODO Save question for real
+
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            exampleQuestions.add(temp);
+
+            //TODO Fix this sloppy code and make all edits through model - matisse
+            DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+            DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+            model.reload(root);
+        }
 		addNewQuestionButton.setSelectedIndex(0);
 		addNewQuestionAction();
 	}
