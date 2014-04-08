@@ -11,7 +11,7 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
-import edu.lclark.language.questions.AccentMarksToolbar;
+import edu.lclark.language.gui.studentPage.AccentMarksToolbar;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
