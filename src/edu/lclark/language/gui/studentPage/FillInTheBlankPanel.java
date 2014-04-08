@@ -1,4 +1,6 @@
-package edu.lclark.language.questions;
+package edu.lclark.language.gui.studentPage;
+
+import edu.lclark.language.questions.FillInTheBlankQuestion;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

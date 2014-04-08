@@ -1,15 +1,14 @@
-package edu.lclark.language.questions;
+package edu.lclark.language.gui.studentPage;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.ShortAnswerQuestion;
 
 public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 

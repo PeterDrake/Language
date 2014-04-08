@@ -1,18 +1,19 @@
-package edu.lclark.language.testPage;
+package edu.lclark.language.questions;
 
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import edu.lclark.language.questions.AbstractQuestion;
-import edu.lclark.language.questions.AbstractQuestionPanel;
-import edu.lclark.language.questions.FillInTheBlankPanel;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.QuestionInfo;
+import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
+import edu.lclark.language.gui.studentPage.FillInTheBlankPanel;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
+import edu.lclark.language.gui.studentPage.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestion;
-import edu.lclark.language.questions.ShortAnswerQuestionPanel;
+import edu.lclark.language.gui.studentPage.ShortAnswerQuestionPanel;
 
 public class QuestionFactory {
 
