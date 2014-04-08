@@ -9,7 +9,6 @@ import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.testPage.TestPage;
 
 import java.awt.event.*;
 import java.util.Scanner;
@@ -68,7 +67,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 		public void actionPerformed(ActionEvent a) {
 			//System.out.println("Begin button!");
 			MainWindow main = getMainWindow();
-			main.switchPage(new TestPage(main));
+//			main.switchPage(new ExamPage(main));
 		}
 
 	}

@@ -1,15 +1,14 @@
-package edu.lclark.language.questions;
+package edu.lclark.language.gui.studentPage;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.ShortAnswerQuestion;
 
 public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 
@@ -20,8 +19,10 @@ public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 	private JLabel questionInstructions;
 
 
-	public ShortAnswerQuestionPanel(ShortAnswerQuestion exampleShort) {
-		this.question = exampleShort.getText();
+	public ShortAnswerQuestionPanel(ShortAnswerQuestion question) {
+		super(question);
+		
+		this.question = question.getText();
 		questionInstructions = new JLabel("(Please respond with 1-2 complete sentences.)");
 
 		setLayout(new GridBagLayout());
@@ -29,7 +30,7 @@ public class ShortAnswerQuestionPanel extends AbstractQuestionPanel {
 		setBackground(Color.WHITE);
 
 		questionText = new JLabel();
-		questionText.setText(question);
+		questionText.setText(question.getText());
 		add(questionText, new GBC(245, 10).setAnchor(GBC.NORTH));
 
 		shortAnswerResponse = new JTextField(24);

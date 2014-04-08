@@ -1,4 +1,4 @@
-package edu.lclark.language.testPage;
+package edu.lclark.language.gui.studentPage;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -6,27 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.gui.studentPage.StudentInstructionPage;
-import edu.lclark.language.questions.AbstractQuestionPanel;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
-import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
-public class TestPage extends AbstractUserPage {
+public class ExamPage extends AbstractUserPage {
 
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
 	private QuestionFactory factory;
 	private JPanel testPagePanel;
 
-	public TestPage(MainWindow main) {
+	public ExamPage(MainWindow main) {
 		super(main);
 		factory = new QuestionFactory();
 
@@ -56,7 +49,7 @@ public class TestPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			System.out.println(questionPanel.getAnswer());
+			System.out.println(questionPanel.isCorrectAnswerSelected());
 			testPagePanel.remove(questionPanel);
 			questionPanel = factory.getNextQuestion();
 			testPagePanel.add(questionPanel);

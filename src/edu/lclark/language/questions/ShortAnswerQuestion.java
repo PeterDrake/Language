@@ -8,10 +8,4 @@ public class ShortAnswerQuestion extends AbstractQuestion{
 		setQuestionType(QuestionType.SHORT_ANSWER);
 	}
 
-	@Override
-	public boolean isCorrectAnswer() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

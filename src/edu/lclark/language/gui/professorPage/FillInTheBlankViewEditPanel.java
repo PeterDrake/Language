@@ -4,6 +4,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 
+/**
+ * The Panel that handles entering and editing fill in the blank questions
+ */
 public class FillInTheBlankViewEditPanel extends JPanel{
 	
 	private EditExamContent previousPage;

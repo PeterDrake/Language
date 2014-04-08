@@ -1,232 +1,309 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
+import edu.lclark.language.gui.GBC;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
+import edu.lclark.language.questions.QuestionInfo;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
 import edu.lclark.language.questions.QuestionInfo;
 
-import javax.swing.*;
-
-import edu.lclark.language.gui.GBC;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
-
+/**
+ * The Panel that handles entering and editing multiple choice questions
+ */
 public class MultipleChoiceViewEditPanel extends JPanel {
 
-	private JPanel mcPanel;
-	private JComboBox numberOfAnswersDropDown;
-	private JComboBox correctAnswerDropDown;
-	private int correctAnswer;
-	public static final int MAX_ANSWERS = 6;
-	public static final int GBL_QUESTION_INDEX_START = 3;
-	private int numberOfQuestions;
-	private JButton saveChangesButton;
-	private JButton deleteQuestionButton;
-	private EditExamContent previousPage;
-	private MultipleChoiceQuestion question;
-	private JTextArea[] answers;
-	private JTextArea questionField;
-	private int levelIndex; 
-	private JComboBox levelDropDown; 
+    public static final int MAX_ANSWERS = 6;
+    public static final int GBL_QUESTION_INDEX_START = 3;
+
+    private EditExamContent previousPage;
+    private MultipleChoiceQuestion question;
+
+    private int correctAnswerIndex;
+    private int numberOfAnswers;
+    private int levelIndex;
+
+    private JComboBox numberOfAnswersDropDown;
+    private JComboBox correctAnswerDropDown;
+    private JComboBox levelDropDown;
+    private JTextArea[] answerFields;
+    private JLabel[] answerLabels;
+    private JLabel title;
+
+    private JLabel questionLabel;
+    private JTextArea questionField;
+    private JLabel chooseNumber;
+    private JLabel chooseCorrect;
+    private JLabel levelType;
+    private JButton saveChangesButton;
+    private JButton deleteQuestionButton;
 
 
-	public MultipleChoiceViewEditPanel(EditExamContent previousPage) {
-		correctAnswer = 1;
-		numberOfQuestions = 4;
-		this.previousPage = previousPage;
-		question = new MultipleChoiceQuestion();
-		levelIndex = 0; 
-		drawAll();
-	}
+    public MultipleChoiceViewEditPanel(EditExamContent previousPage) {
+        this.previousPage = previousPage;
+        question = new MultipleChoiceQuestion();
+        numberOfAnswers = 4;
+        correctAnswerIndex = 0;
+        levelIndex = 0;
 
-	private void drawAll() {
+        setBackground(Color.WHITE);
+        setLayout(new GridBagLayout());
 
-		setBackground(Color.WHITE);
-		
+        title = new JLabel();
+        title.setText("Multiple Choice Question");
 
-		mcPanel = new JPanel();
-		mcPanel.setLayout(new GridBagLayout());
-		mcPanel.setBackground(Color.WHITE);
-		setLayout(new GridBagLayout());
+        questionLabel = new JLabel();
+        questionLabel.setText("Question: ");
 
-		JLabel title = new JLabel();
-		title.setText("Multiple Choice Question");
-		add(title, new GBC(0, 0, 3, 1));
+        questionField = new JTextArea(5, 50);
+        questionField.setLineWrap(true);
+        questionField.setWrapStyleWord(true);
 
-		JLabel questionLabel = new JLabel();
-		questionLabel.setText("Question: ");
-		questionField = new JTextArea(5, 50);
-		questionField.setLineWrap(true);
-		questionField.setWrapStyleWord(true);
-		questionField.setText(question.getText());
-		JScrollPane questionPane = new JScrollPane(questionField);
-		questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
-		add(questionLabel, new GBC(0, 1).setAnchor(GBC.EAST));
-		add(questionPane, new GBC(1, 1, 2, 1));
+        chooseNumber = new JLabel();
+        chooseNumber.setText("Choose Number of Answers: ");
 
-		JLabel chooseNumber = new JLabel();
-		chooseNumber.setText("Choose Number of Answers: ");
-		add(chooseNumber, new GBC(0, 2).setAnchor(GBC.EAST));
+        chooseCorrect = new JLabel();
+        chooseCorrect.setText("Choose the Correct Answer: ");
 
-		JLabel chooseCorrect = new JLabel();
-		chooseCorrect.setText("Choose the Correct Answer: ");
-		add(chooseCorrect, new GBC(0, 9).setAnchor(GBC.EAST));
+        levelType = new JLabel();
+        levelType.setText("Choose Level: ");
 
-		JLabel levelType = new JLabel();
-		levelType.setText("Choose Level: ");
-		add(levelType, new GBC(0, 10).setAnchor(GBC.EAST));
+        String[] numOfAnswers = {"2", "3", "4", "5", "6"};
+        numberOfAnswersDropDown = new JComboBox(numOfAnswers);
+        numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
+        numberOfAnswersDropDown.addActionListener(EventHandler.create(
+                ActionListener.class, this, "numberOfAnswersAction"));
 
-		String[] numOfAnswers = { "2", "3", "4", "5", "6" };
-		String[] correctAnswerArray = new String[numberOfQuestions];
-		for (int i = 0; i < correctAnswerArray.length; i++) {
-			correctAnswerArray[i] = "" + (i + 1);
-		}
+        setCorrectAnswerDropDown();
 
-		numberOfAnswersDropDown = new JComboBox(numOfAnswers);
-		numberOfAnswersDropDown.setSelectedItem("" + numberOfQuestions);
-		numberOfAnswersDropDown.addActionListener(EventHandler.create(
-				ActionListener.class, this, "numberOfAnswersAction"));
-		add(numberOfAnswersDropDown, new GBC(1, 2));
-		
-		correctAnswerDropDown = new JComboBox(correctAnswerArray);
-		correctAnswerDropDown.setSelectedIndex(correctAnswer - 1);
-		add(correctAnswerDropDown, new GBC(1, 9));
-		correctAnswerDropDown.addActionListener(EventHandler.create(
-				ActionListener.class, this, "highlightCorrect"));
-		
-		createAnswerFields(numberOfQuestions);
-		
-		String[] levelArray = {"101", "102", "201", "202", "301"};
-		
-		levelDropDown = new JComboBox(levelArray);
-		add(levelDropDown, new GBC(1, 10));
-		levelDropDown.setSelectedIndex(levelIndex);
-		levelDropDown.addActionListener(EventHandler.create(
-				ActionListener.class, this, "levelListener"));
+        String[] levelArray = {"101", "102", "201", "202", "301"};
+        levelDropDown = new JComboBox(levelArray);
+        levelDropDown.setSelectedIndex(levelIndex);
+        levelDropDown.addActionListener(EventHandler.create(
+                ActionListener.class, this, "levelAction"));
 
-		saveChangesButton = new JButton();
-		saveChangesButton.setText("Save Changes");
-		saveChangesButton.addActionListener(EventHandler.create(
-				ActionListener.class, this, "saveQuestion"));
-		add(saveChangesButton, new GBC(2, 11).setAnchor(GBC.CENTER));
+        createAnswerFields();
 
-		deleteQuestionButton = new JButton();
-		deleteQuestionButton.setText("Delete Question");
-		deleteQuestionButton.addActionListener(EventHandler.create(
-				ActionListener.class, this, "deleteQuestion"));
-		add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));		
-		
-		revalidate();
-		repaint();
+        saveChangesButton = new JButton();
+        saveChangesButton.setText("Save Changes");
+        saveChangesButton.addActionListener(EventHandler.create(
+                ActionListener.class, this, "saveAction"));
 
-	}
+        deleteQuestionButton = new JButton();
+        deleteQuestionButton.setText("Delete Question");
+        deleteQuestionButton.addActionListener(EventHandler.create(
+                ActionListener.class, this, "deleteAction"));
 
-	public void createAnswerFields(int n) {
-		if (n > MAX_ANSWERS) {
-			n = MAX_ANSWERS;
-		}
-		answers = new JTextArea[n];
-		for (int i = GBL_QUESTION_INDEX_START, k = 0, j = 1; i < n
-				+ GBL_QUESTION_INDEX_START; i++, j++, k++) {
-			JLabel answer = new JLabel();
-			answer.setText("Answer " + j + ":");
-			JTextArea questionField = new JTextArea(2, 50);
-			answers[k] = questionField; 
-			questionField.setLineWrap(true);
-			questionField.setWrapStyleWord(true);
-			if (j == correctAnswer) {
-				questionField.setBackground(Color.GREEN);
-			}
-			JScrollPane questionPane = new JScrollPane(questionField);
-			questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
-			add(answer, new GBC(0, i).setAnchor(GBC.EAST));
-			add(questionPane, new GBC(1, i, 2, 1));
-		}
-	}
+        drawAll();
+    }
 
-	public void highlightCorrect() {
-		correctAnswer = correctAnswerDropDown.getSelectedIndex() + 1;
-		updatePage();
-	}
+    /**
+     * Adds all components to the grid bag layout after each interface update
+     */
+    private void drawAll() {
 
-	public void levelListener(){
-		levelIndex = levelDropDown.getSelectedIndex();
-	}
-	
-	public void saveQuestion() {
-		if (!isFilledOut()) {
-			JOptionPane.showMessageDialog(this,
-					"You need to fill out all fields before you can save.", "Not Done yet!", JOptionPane.PLAIN_MESSAGE);
-		} else {
-			int n = JOptionPane.showConfirmDialog(this,
-					"Are you sure you want to save this question?",
-					"Save Question?", JOptionPane.YES_NO_OPTION,
-					JOptionPane.PLAIN_MESSAGE, null);
-			if (n == 0) {
-				previousPage.endEdit(question);
-			}
-		}
-	}
+        add(title, new GBC(0, 0, 3, 1));
+        add(questionLabel, new GBC(0, 1).setAnchor(GBC.EAST));
 
-	public void deleteQuestion() {
-		int n = JOptionPane.showConfirmDialog(this,
-				"Are you sure you want to delete question?",
-				"Delete Question?", JOptionPane.YES_NO_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null);
-		if (n == 0) {
-			previousPage.endEdit(null);
-		}
-	}
+        JScrollPane questionPane = new JScrollPane(questionField);
+        questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(questionPane, new GBC(1, 1, 2, 1));
 
-	private void updatePage() {
-		saveContent();
-		removeAll();
-		drawAll();
-	}
-	
-	private void saveContent() {
-		question.setText(questionField.getText());
-		String[] temp = new String[answers.length];
-		for (int i = 0; i < answers.length; i++) {
-			temp[i] = answers[i].getText();
-		}
-		question.setAnswers(temp);
-		question.setCorrectAnswers(new String[] {temp[correctAnswer - 1]});
-		switch(levelIndex){
-		case 0:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_101);
-			break;
-		case 1:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_102);
-			break;
-		case 2:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_201);
-			break;
-		case 3:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_202);
-			break;
-		case 4:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_301);
-			break;
-		
-		}
-	}
+        add(chooseNumber, new GBC(0, 2).setAnchor(GBC.EAST));
+        add(chooseCorrect, new GBC(0, 9).setAnchor(GBC.EAST));
+        add(levelType, new GBC(0, 10).setAnchor(GBC.EAST));
+        add(numberOfAnswersDropDown, new GBC(1, 2));
 
-	public void numberOfAnswersAction() {
-		int n = numberOfAnswersDropDown.getSelectedIndex() + 2;
-		numberOfQuestions = n;
-		if (correctAnswer > n) {
-			correctAnswer = n;
-		}
-		updatePage();
-	}
+        setCorrectAnswerDropDown();
+        add(correctAnswerDropDown, new GBC(1, 9));
 
-	public boolean isFilledOut() {
-		return false;
-	}
+        add(levelDropDown, new GBC(1, 10));
+
+        showAnswerFields(numberOfAnswers);
+
+        add(saveChangesButton, new GBC(2, 11).setAnchor(GBC.CENTER));
+        add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));
+
+        revalidate();
+        repaint();
+    }
+
+    /**
+     * Creates the correct number of answer fields based on MAX_ANSWERS
+     */
+    public void createAnswerFields() {
+        answerFields = new JTextArea[MAX_ANSWERS];
+        answerLabels = new JLabel[MAX_ANSWERS];
+
+        for (int i = 0; i < MAX_ANSWERS; i++) {
+            answerLabels[i] = new JLabel();
+            answerLabels[i].setText("Answer " + (i + 1) + ":");
+
+            answerFields[i] = new JTextArea(2, 50);
+            answerFields[i].setLineWrap(true);
+            answerFields[i].setWrapStyleWord(true);
+        }
+    }
+
+    /**
+     * Shows the correct number of answer fields after each interface update
+     *
+     * @param n number of fields to show
+     */
+    public void showAnswerFields(int n) {
+        if (n > MAX_ANSWERS) {
+            n = MAX_ANSWERS;
+        }
+        for (int i = 0, j = GBL_QUESTION_INDEX_START; i < n; i++, j++) {
+            if (i == correctAnswerIndex) {
+                answerFields[i].setBackground(Color.GREEN);
+            } else {
+                answerFields[i].setBackground(Color.WHITE);
+            }
+
+            JScrollPane sp = new JScrollPane(answerFields[i]);
+            sp.setBorder(BorderFactory.createLineBorder(Color.black));
+
+            add(answerLabels[i], new GBC(0, j).setAnchor(GBC.EAST));
+            add(sp, new GBC(1, j, 2, 1));
+        }
+    }
+
+    /**
+     * Creates a new correctAnswerDropDown based on how many answer fields are shown
+     */
+    private void setCorrectAnswerDropDown() {
+        String[] correctAnswerArray = new String[numberOfAnswers];
+        for (int i = 0; i < correctAnswerArray.length; i++) {
+            correctAnswerArray[i] = "" + (i + 1);
+        }
+        correctAnswerDropDown = new JComboBox(correctAnswerArray);
+        correctAnswerDropDown.setSelectedIndex(correctAnswerIndex);
+        correctAnswerDropDown.addActionListener(EventHandler.create(
+                ActionListener.class, this, "highlightCorrectAction"));
+    }
+
+    /**
+     * Updates the panel after changing the number of answers or correct answer
+     */
+    private void updatePage() {
+        removeAll();
+        drawAll();
+    }
+
+    /**
+     * Indicates whether or not the question is complete and can be saved.
+     *
+     * @return true if done, false if incomplete
+     */
+    public boolean isFilledOut() {
+        if (questionField.getText().equals("")) {
+            return false;
+        }
+
+        for (int i = 0; i < numberOfAnswers; i++) {
+            if (answerFields[i].getText().equals("")) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Saves the entered information in a new MultipleChoiceQuestion object, ready to be saved to the master list.
+     */
+    private void saveContent() {
+        question.setText(questionField.getText());
+        question.setCorrectAnswers(new String[]{answerFields[correctAnswerIndex].getText()});
+
+        String[] temp = new String[answerFields.length];
+        for (int i = 0; i < answerFields.length; i++) {
+            temp[i] = answerFields[i].getText();
+        }
+        question.setAnswers(temp);
+
+        switch (levelIndex) {
+            case 0:
+                question.setLevel(QuestionInfo.QuestionLevel.LEVEL_101);
+                break;
+            case 1:
+                question.setLevel(QuestionInfo.QuestionLevel.LEVEL_102);
+                break;
+            case 2:
+                question.setLevel(QuestionInfo.QuestionLevel.LEVEL_201);
+                break;
+            case 3:
+                question.setLevel(QuestionInfo.QuestionLevel.LEVEL_202);
+                break;
+            case 4:
+                question.setLevel(QuestionInfo.QuestionLevel.LEVEL_301);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * The action performed when changing the numberOfAnswersDropDown, changes number of shown answer fields
+     */
+    public void numberOfAnswersAction() {
+        int n = numberOfAnswersDropDown.getSelectedIndex() + 2;
+        numberOfAnswers = n;
+        if (correctAnswerIndex > n - 1) {
+            correctAnswerIndex = n - 1;
+        }
+        updatePage();
+    }
+
+    /**
+     * The action performed when correctAnswerDropDown is changed, highlights the correct answer field
+     */
+    public void highlightCorrectAction() {
+        correctAnswerIndex = correctAnswerDropDown.getSelectedIndex();
+        updatePage();
+    }
+
+    /**
+     * Changes the level when levelDropDown is changed
+     */
+    public void levelAction() {
+        levelIndex = levelDropDown.getSelectedIndex();
+    }
+
+    /**
+     * The action performed when "Save" is pressed, checks if everything is filled out and saves the entered info.
+     * Will show a dialog if there is an error
+     */
+    public void saveAction() {
+        if (!isFilledOut()) {
+            JOptionPane.showMessageDialog(this,
+                    "You need to fill out all fields before you can save.", "Not Done yet!", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            int n = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to save this question?",
+                    "Save Question?", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null);
+            if (n == 0) {
+                saveContent();
+                previousPage.endEdit(question);
+            }
+        }
+    }
+
+    /**
+     * The action performed when "Delete" is pressed, shows dialog
+     */
+    public void deleteAction() {
+        int n = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete question?",
+                "Delete Question?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null);
+        if (n == 0) {
+            previousPage.endEdit(null);
+        }
+    }
 
 }
