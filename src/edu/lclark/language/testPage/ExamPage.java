@@ -19,14 +19,14 @@ import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
 import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
-public class TestPage extends AbstractUserPage {
+public class ExamPage extends AbstractUserPage {
 
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
 	private QuestionFactory factory;
 	private JPanel testPagePanel;
 
-	public TestPage(MainWindow main) {
+	public ExamPage(MainWindow main) {
 		super(main);
 		factory = new QuestionFactory();
 
@@ -56,7 +56,7 @@ public class TestPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			System.out.println(questionPanel.getCurrentQuestion().isCorrectAnswer(questionPanel.getAnswer()));
+			System.out.println(questionPanel.isCorrectAnswerSelected());
 			testPagePanel.remove(questionPanel);
 			questionPanel = factory.getNextQuestion();
 			testPagePanel.add(questionPanel);

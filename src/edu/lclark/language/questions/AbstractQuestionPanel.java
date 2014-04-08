@@ -18,4 +18,7 @@ public abstract class AbstractQuestionPanel extends JPanel{
 		currentQuestion = question;
 	}
 
+	public boolean isCorrectAnswerSelected(){
+		return currentQuestion.isCorrectAnswer(getAnswer());
+	}
 }
