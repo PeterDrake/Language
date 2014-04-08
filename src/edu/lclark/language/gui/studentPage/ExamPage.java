@@ -18,6 +18,9 @@ public class ExamPage extends AbstractUserPage {
 	private AbstractQuestionPanel questionPanel;
 	private QuestionFactory factory;
 	private JPanel testPagePanel;
+	
+	private int questionsAnswered;
+	private int questionsAnsweredCorrectly;
 
 	public ExamPage(MainWindow main) {
 		super(main);
@@ -25,7 +28,7 @@ public class ExamPage extends AbstractUserPage {
 
 		submitButton = new JButton("Submit");
 		testPagePanel = new JPanel();
-		questionPanel = factory.getNextQuestion();
+		questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
 
 		GridBagLayout layout = new GridBagLayout();
 		testPagePanel.setLayout(layout);
@@ -48,10 +51,14 @@ public class ExamPage extends AbstractUserPage {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-			System.out.println(questionPanel.isCorrectAnswerSelected());
+			boolean correct = questionPanel.isCorrectAnswerSelected();
+			questionsAnswered++;
+			if(correct){
+				questionsAnsweredCorrectly++;
+			}
+			System.out.println(correct);
 			testPagePanel.remove(questionPanel);
-			questionPanel = factory.getNextQuestion();
+			questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
 			testPagePanel.add(questionPanel);
 			testPagePanel.repaint();
 			testPagePanel.revalidate();
