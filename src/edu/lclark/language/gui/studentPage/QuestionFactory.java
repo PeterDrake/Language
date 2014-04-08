@@ -1,20 +1,26 @@
-package edu.lclark.language.testPage;
+package edu.lclark.language.gui.studentPage;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JPanel;
 
+import languageTest.testingResources.DatabaseGenerator;
 import edu.lclark.language.LanguagePlacementTest;
-import edu.lclark.language.questions.*;
-import edu.lclark.language.questions.QuestionInfo.*;
+import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.questions.FillInTheBlankQuestion;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
+import edu.lclark.language.questions.QuestionInfo;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+import edu.lclark.language.questions.ShortAnswerQuestion;
 
 public class QuestionFactory {
 
 	private ArrayList<AbstractQuestion> database;
 
 	public QuestionFactory() {
-		database = LanguagePlacementTest.questionDatabase.getAllQuestions();
+		database = DatabaseGenerator.createExampleQuestions();
 	}
 
 	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
@@ -64,6 +70,27 @@ public class QuestionFactory {
 	
 	public AbstractQuestionPanel getNextQuestion(){
 		return null;
+	}
+
+	public AbstractQuestionPanel getNextQuestion(int questionsAnswered, int questionsAnsweredCorrectly) {
+		QuestionLevel level = getLevelForNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
+		if(question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK){
+			return new FillInTheBlankPanel((FillInTheBlankQuestion)question);
+		}
+		else if(question.getQuestionType() == QuestionType.MULTIPLE_CHOICE){
+			return new MultipleChoiceQuestionPanel((MultipleChoiceQuestion)question);
+		}
+		else if(question.getQuestionType() == QuestionType.SHORT_ANSWER){
+			return new ShortAnswerQuestionPanel((ShortAnswerQuestion)question);
+		}
+		else{
+			return null;
+		}
+	}
+	
+	private QuestionLevel getLevelForNextQuestion(int questionsAnswered, int questionsAnsweredCorrectly){
+		return QuestionLevel.LEVEL_101;
 	}
 
 }

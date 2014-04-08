@@ -1,27 +1,16 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
+import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-
-import edu.lclark.language.questions.*;
+import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 /**
  * The content panel for editing test questions from the professor page
@@ -34,6 +23,8 @@ public class EditExamContent extends AbstractContent {
 	private JSplitPane splitPane;
 	private JScrollPane viewEditScrollPane;
 	private JPanel viewEditPanel;
+
+    DefaultMutableTreeNode exampleQuestions;
 
 	public EditExamContent() {
 		exampleQuestionsArray = createExampleQuestions();
@@ -48,7 +39,8 @@ public class EditExamContent extends AbstractContent {
 		buttonPanel.setBackground(Color.WHITE);
 
 		addNewQuestionButton = new JComboBox(questionTypes);
-		addNewQuestionButton.addActionListener(new AddNewQuestionAction());
+		addNewQuestionButton.addActionListener(EventHandler.create(
+				ActionListener.class, this, "addNewQuestionAction"));
 
 		// JButton editQuestionButton = new JButton("Edit Question");
 		// editQuestionButton.addActionListener(new EditQuestionAction());
@@ -57,7 +49,7 @@ public class EditExamContent extends AbstractContent {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
 		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode(
 				"Multiple Choice");
-		DefaultMutableTreeNode exampleQuestions = new DefaultMutableTreeNode(
+		exampleQuestions = new DefaultMutableTreeNode(
 				"Example Questions");
 
 		root.add(multipleChoice);
@@ -84,7 +76,8 @@ public class EditExamContent extends AbstractContent {
 		renderer.setLeafIcon(questionIcon);
 
 		tree.setCellRenderer(renderer);
-		tree.addTreeSelectionListener(new SelectionListener());
+		tree.addTreeSelectionListener(EventHandler.create(TreeSelectionListener.class,
+				this, "selectionListener"));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
 
@@ -105,6 +98,28 @@ public class EditExamContent extends AbstractContent {
 
 		add(buttonPanel, BorderLayout.NORTH);
 		add(splitPane, BorderLayout.CENTER);
+	}
+
+    /**
+     * The method called by the question enter/edit panel when it is done.
+     *
+     * @param q the question to be saved, null if no question is to be saved
+     */
+    public void endEdit(AbstractQuestion q) {
+		if (q != null) {
+			// TODO Save question for real
+
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            exampleQuestions.add(temp);
+
+            //TODO Fix this sloppy code and make all edits through model - matisse
+            DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+            DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+            model.reload(root);
+        }
+		addNewQuestionButton.setSelectedIndex(0);
+		addNewQuestionAction();
 	}
 
 	public MultipleChoiceQuestion[] createExampleQuestions() {
@@ -128,42 +143,41 @@ public class EditExamContent extends AbstractContent {
 		return qs;
 	}
 
-	private class AddNewQuestionAction implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			switch (addNewQuestionButton.getSelectedIndex()) {
-			case 0:
-				if (splitPane.getRightComponent() != null) {
-					splitPane.remove(splitPane.getRightComponent());
-				}
-				break;
-			case 1:
-				viewEditPanel = new MultipleChoiceViewEditPanel();
-				viewEditScrollPane.setViewportView(viewEditPanel);
-				splitPane.setRightComponent(viewEditScrollPane);
-				break;
-			case 2:
-				viewEditPanel = new FillInTheBlankViewEditPanel();
-				viewEditScrollPane.setViewportView(viewEditPanel);
-				splitPane.setRightComponent(viewEditScrollPane);
-				break;
-			default:
-				break;
+    /**
+     * The action listener that creates a new question editing panel based on the index of the JComboBox
+     */
+	public void addNewQuestionAction() {
+		switch (addNewQuestionButton.getSelectedIndex()) {
+		case 0:
+			if (splitPane.getRightComponent() != null) {
+				// TODO If text is entered, prompt for save
+				splitPane.remove(splitPane.getRightComponent());
 			}
+			break;
+		case 1:
+			viewEditPanel = new MultipleChoiceViewEditPanel(this);
+			viewEditScrollPane.setViewportView(viewEditPanel);
+			splitPane.setRightComponent(viewEditScrollPane);
+			break;
+		case 2:
+			viewEditPanel = new FillInTheBlankViewEditPanel(this);
+			viewEditScrollPane.setViewportView(viewEditPanel);
+			splitPane.setRightComponent(viewEditScrollPane);
+			break;
+		default:
+			break;
 		}
 	}
 
-	private class SelectionListener implements TreeSelectionListener {
-
-		@Override
-		public void valueChanged(TreeSelectionEvent e) {
-			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
-					.getLastSelectedPathComponent();
-			if (selectedNode != null && selectedNode.isLeaf()) {
-				// System.out.println(selectedNode.getUserObject());
-				// TODO selection on tree when node is closed results in errors
-			}
+    /**
+     * The action listener for the tree that handles selections
+     */
+	public void selectionListener() {
+		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
+				.getLastSelectedPathComponent();
+		if (selectedNode != null && selectedNode.isLeaf()) {
+			// System.out.println(selectedNode.getUserObject());
+			// TODO selection on tree when node is closed results in errors
 		}
 	}
 }

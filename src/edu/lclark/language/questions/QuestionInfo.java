@@ -35,7 +35,26 @@ public final class QuestionInfo {
 			return null;
 		}			
 	}
-
+	
+	public static MultipleChoiceQuestion getSampleMultipleChoiceQuestion(){
+		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+		question.setText("Translate: Hello");
+		question.setAnswers(new String[] { "Adiós", "Hola", "¿Cómo estás?" });
+		question.setCorrectAnswers(new String[] { "Hola" });
+		question.setLevel(QuestionLevel.LEVEL_101);
+		return question;
+	}
+	
+	public static FillInTheBlankQuestion getSampleFillInTheBlankQuestion(){
+		FillInTheBlankQuestion question = new FillInTheBlankQuestion();
+		question.setText("¿Hola, _ estás?");
+		question.setAnswers(new String[0]);
+		question.setCorrectAnswers(new String[] { "cómo" });
+		question.setLevel(QuestionLevel.LEVEL_101);
+		return question;
+	}
+	
+	
 	// private constructor to prevent instantiation
 	private QuestionInfo() {
 

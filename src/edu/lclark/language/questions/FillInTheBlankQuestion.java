@@ -53,10 +53,4 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 		return answer;
 	}
 
-	@Override
-	public boolean isCorrectAnswer() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
