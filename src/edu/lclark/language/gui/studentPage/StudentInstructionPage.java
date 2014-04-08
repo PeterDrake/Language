@@ -67,7 +67,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 		public void actionPerformed(ActionEvent a) {
 			//System.out.println("Begin button!");
 			MainWindow main = getMainWindow();
-			main.switchPage(new ExamPage(main));
+//			main.switchPage(new ExamPage(main));
 		}
 
 	}

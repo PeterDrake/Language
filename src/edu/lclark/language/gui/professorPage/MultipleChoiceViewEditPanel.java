@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import edu.lclark.language.questions.QuestionInfo;
 
 /**
  * The Panel that handles entering and editing multiple choice questions

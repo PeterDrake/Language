@@ -1,14 +1,9 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=master
+>>>>>>>=dd95830cbbd005ff9a3e356c2b3776ccb0b3acf1
 eclipse.preferences.version=1
 encoding//JUnitTests/languageTests/questionTests/FillInTheBlankQuestionTest.java=UTF-8
 encoding//JUnitTests/languageTests/questionTests/QuestionXMLWriterTests.java=UTF-8
-<<<<<<< HEAD
 encoding//src/edu/lclark/language/gui/studentPage/ExamPage.java=UTF-8
 encoding//src/edu/lclark/language/questions/FillInTheBlankQuestion.java=UTF-8
 encoding//src/edu/lclark/language/questions/QuestionInfo.java=UTF-8
-=======
-encoding//src/edu/lclark/language/questions/FillInTheBlankQuestion.java=UTF-8
-encoding//src/testPage/TestPage.java=UTF-8
->>>>>>> dd95830cbbd005ff9a3e356c2b3776ccb0b3acf1
