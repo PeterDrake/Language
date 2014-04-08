@@ -27,7 +27,7 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 	/**
 	 * Gets a random question of a given level.
 	 * 
-	 * @param VALID_LEVEL
+	 * @param level
 	 *            The level of the question to be returned.
 	 * @return A random question of the given level.
 	 */

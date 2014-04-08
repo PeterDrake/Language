@@ -1,16 +1,17 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionListener;
-import java.beans.EventHandler;
-
-import javax.swing.*;
-
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
+
+/**
+ * The Panel that handles entering and editing multiple choice questions
+ */
 public class MultipleChoiceViewEditPanel extends JPanel {
 
     public static final int MAX_ANSWERS = 6;
@@ -68,7 +69,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         levelType = new JLabel();
         levelType.setText("Choose Level: ");
 
-        String[] numOfAnswers = { "2", "3", "4", "5", "6" };
+        String[] numOfAnswers = {"2", "3", "4", "5", "6"};
         numberOfAnswersDropDown = new JComboBox(numOfAnswers);
         numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
         numberOfAnswersDropDown.addActionListener(EventHandler.create(
@@ -95,21 +96,24 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                 ActionListener.class, this, "deleteAction"));
 
         drawAll();
-	}
+    }
 
+    /**
+     * Adds all components to the grid bag layout after each interface update
+     */
     private void drawAll() {
 
-		add(title, new GBC(0, 0, 3, 1));
+        add(title, new GBC(0, 0, 3, 1));
         add(questionLabel, new GBC(0, 1).setAnchor(GBC.EAST));
 
         JScrollPane questionPane = new JScrollPane(questionField);
         questionPane.setBorder(BorderFactory.createLineBorder(Color.black));
-		add(questionPane, new GBC(1, 1, 2, 1));
+        add(questionPane, new GBC(1, 1, 2, 1));
 
-		add(chooseNumber, new GBC(0, 2).setAnchor(GBC.EAST));
-		add(chooseCorrect, new GBC(0, 9).setAnchor(GBC.EAST));
-		add(levelType, new GBC(0, 10).setAnchor(GBC.EAST));
-		add(numberOfAnswersDropDown, new GBC(1, 2));
+        add(chooseNumber, new GBC(0, 2).setAnchor(GBC.EAST));
+        add(chooseCorrect, new GBC(0, 9).setAnchor(GBC.EAST));
+        add(levelType, new GBC(0, 10).setAnchor(GBC.EAST));
+        add(numberOfAnswersDropDown, new GBC(1, 2));
 
         setCorrectAnswerDropDown();
         add(correctAnswerDropDown, new GBC(1, 9));
@@ -118,13 +122,16 @@ public class MultipleChoiceViewEditPanel extends JPanel {
 
         showAnswerFields(numberOfAnswers);
 
-		add(saveChangesButton, new GBC(2, 11).setAnchor(GBC.CENTER));
-		add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));
+        add(saveChangesButton, new GBC(2, 11).setAnchor(GBC.CENTER));
+        add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));
 
-		revalidate();
-		repaint();
-	}
+        revalidate();
+        repaint();
+    }
 
+    /**
+     * Creates the correct number of answer fields based on MAX_ANSWERS
+     */
     public void createAnswerFields() {
         answerFields = new JTextArea[MAX_ANSWERS];
         answerLabels = new JLabel[MAX_ANSWERS];
@@ -139,10 +146,15 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         }
     }
 
-	public void showAnswerFields(int n) {
-		if (n > MAX_ANSWERS) {
-			n = MAX_ANSWERS;
-		}
+    /**
+     * Shows the correct number of answer fields after each interface update
+     *
+     * @param n number of fields to show
+     */
+    public void showAnswerFields(int n) {
+        if (n > MAX_ANSWERS) {
+            n = MAX_ANSWERS;
+        }
         for (int i = 0, j = GBL_QUESTION_INDEX_START; i < n; i++, j++) {
             if (i == correctAnswerIndex) {
                 answerFields[i].setBackground(Color.GREEN);
@@ -156,8 +168,11 @@ public class MultipleChoiceViewEditPanel extends JPanel {
             add(answerLabels[i], new GBC(0, j).setAnchor(GBC.EAST));
             add(sp, new GBC(1, j, 2, 1));
         }
-	}
+    }
 
+    /**
+     * Creates a new correctAnswerDropDown based on how many answer fields are shown
+     */
     private void setCorrectAnswerDropDown() {
         String[] correctAnswerArray = new String[numberOfAnswers];
         for (int i = 0; i < correctAnswerArray.length; i++) {
@@ -169,18 +184,26 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                 ActionListener.class, this, "highlightCorrectAction"));
     }
 
+    /**
+     * Updates the panel after changing the number of answers or correct answer
+     */
     private void updatePage() {
         removeAll();
         drawAll();
     }
 
+    /**
+     * Indicates whether or not the question is complete and can be saved.
+     *
+     * @return true if done, false if incomplete
+     */
     public boolean isFilledOut() {
-        if(questionField.getText().equals("")) {
+        if (questionField.getText().equals("")) {
             return false;
         }
 
-        for(int i = 0; i < numberOfAnswers; i++) {
-            if(answerFields[i].getText().equals("")) {
+        for (int i = 0; i < numberOfAnswers; i++) {
+            if (answerFields[i].getText().equals("")) {
                 return false;
             }
         }
@@ -188,6 +211,9 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         return true;
     }
 
+    /**
+     * Saves the entered information in a new MultipleChoiceQuestion object, ready to be saved to the master list.
+     */
     private void saveContent() {
         question.setText(questionField.getText());
         question.setCorrectAnswers(new String[]{answerFields[correctAnswerIndex].getText()});
@@ -198,7 +224,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         }
         question.setAnswers(temp);
 
-        switch(levelIndex){
+        switch (levelIndex) {
             case 0:
                 question.setLevel(QuestionInfo.QuestionLevel.LEVEL_101);
                 break;
@@ -219,6 +245,9 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         }
     }
 
+    /**
+     * The action performed when changing the numberOfAnswersDropDown, changes number of shown answer fields
+     */
     public void numberOfAnswersAction() {
         int n = numberOfAnswersDropDown.getSelectedIndex() + 2;
         numberOfAnswers = n;
@@ -228,39 +257,52 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         updatePage();
     }
 
-	public void highlightCorrectAction() {
-		correctAnswerIndex = correctAnswerDropDown.getSelectedIndex();
-		updatePage();
-	}
+    /**
+     * The action performed when correctAnswerDropDown is changed, highlights the correct answer field
+     */
+    public void highlightCorrectAction() {
+        correctAnswerIndex = correctAnswerDropDown.getSelectedIndex();
+        updatePage();
+    }
 
-	public void levelAction(){
-		levelIndex = levelDropDown.getSelectedIndex();
-	}
+    /**
+     * Changes the level when levelDropDown is changed
+     */
+    public void levelAction() {
+        levelIndex = levelDropDown.getSelectedIndex();
+    }
 
-	public void saveAction() {
-		if (!isFilledOut()) {
-			JOptionPane.showMessageDialog(this,
-					"You need to fill out all fields before you can save.", "Not Done yet!", JOptionPane.PLAIN_MESSAGE);
-		} else {
-			int n = JOptionPane.showConfirmDialog(this,
-					"Are you sure you want to save this question?",
-					"Save Question?", JOptionPane.YES_NO_OPTION,
-					JOptionPane.PLAIN_MESSAGE, null);
-			if (n == 0) {
+    /**
+     * The action performed when "Save" is pressed, checks if everything is filled out and saves the entered info.
+     * Will show a dialog if there is an error
+     */
+    public void saveAction() {
+        if (!isFilledOut()) {
+            JOptionPane.showMessageDialog(this,
+                    "You need to fill out all fields before you can save.", "Not Done yet!", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            int n = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to save this question?",
+                    "Save Question?", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null);
+            if (n == 0) {
                 saveContent();
-				previousPage.endEdit(question);
-			}
-		}
-	}
+                previousPage.endEdit(question);
+            }
+        }
+    }
 
-	public void deleteAction() {
-		int n = JOptionPane.showConfirmDialog(this,
-				"Are you sure you want to delete question?",
-				"Delete Question?", JOptionPane.YES_NO_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null);
-		if (n == 0) {
-			previousPage.endEdit(null);
-		}
-	}
+    /**
+     * The action performed when "Delete" is pressed, shows dialog
+     */
+    public void deleteAction() {
+        int n = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete question?",
+                "Delete Question?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null);
+        if (n == 0) {
+            previousPage.endEdit(null);
+        }
+    }
 
 }

@@ -1,29 +1,16 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.EventHandler;
+import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
+import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-
-import edu.lclark.language.questions.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 /**
  * The content panel for editing test questions from the professor page
@@ -113,7 +100,12 @@ public class EditExamContent extends AbstractContent {
 		add(splitPane, BorderLayout.CENTER);
 	}
 
-	public void endEdit(AbstractQuestion q) {
+    /**
+     * The method called by the question enter/edit panel when it is done.
+     *
+     * @param q the question to be saved, null if no question is to be saved
+     */
+    public void endEdit(AbstractQuestion q) {
 		if (q != null) {
 			// TODO Save question for real
 
@@ -151,6 +143,9 @@ public class EditExamContent extends AbstractContent {
 		return qs;
 	}
 
+    /**
+     * The action listener that creates a new question editing panel based on the index of the JComboBox
+     */
 	public void addNewQuestionAction() {
 		switch (addNewQuestionButton.getSelectedIndex()) {
 		case 0:
@@ -174,6 +169,9 @@ public class EditExamContent extends AbstractContent {
 		}
 	}
 
+    /**
+     * The action listener for the tree that handles selections
+     */
 	public void selectionListener() {
 		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
 				.getLastSelectedPathComponent();
