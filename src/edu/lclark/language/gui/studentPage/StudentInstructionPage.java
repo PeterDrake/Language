@@ -9,7 +9,6 @@ import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.testPage.ExamPage;
 
 import java.awt.event.*;
 import java.util.Scanner;

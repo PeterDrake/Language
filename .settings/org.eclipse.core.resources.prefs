@@ -4,9 +4,6 @@
 eclipse.preferences.version=1
 encoding//JUnitTests/languageTests/questionTests/FillInTheBlankQuestionTest.java=UTF-8
 encoding//JUnitTests/languageTests/questionTests/QuestionXMLWriterTests.java=UTF-8
+encoding//src/edu/lclark/language/gui/studentPage/ExamPage.java=UTF-8
 encoding//src/edu/lclark/language/questions/FillInTheBlankQuestion.java=UTF-8
-<<<<<<< HEAD
 encoding//src/edu/lclark/language/questions/QuestionInfo.java=UTF-8
-encoding//src/edu/lclark/language/testPage/ExamPage.java=UTF-8
-=======
->>>>>>> master
