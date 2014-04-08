@@ -28,7 +28,13 @@ public class ExamPage extends AbstractUserPage {
 
 		submitButton = new JButton("Submit");
 		testPagePanel = new JPanel();
+		try{
 		questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+		}
+		catch (EmptyDatabaseException e){
+			e.printStackTrace();
+			System.exit(ERROR);
+		}
 
 		GridBagLayout layout = new GridBagLayout();
 		testPagePanel.setLayout(layout);
@@ -58,7 +64,13 @@ public class ExamPage extends AbstractUserPage {
 			}
 			System.out.println(correct);
 			testPagePanel.remove(questionPanel);
+			try{
 			questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+			}
+			catch (EmptyDatabaseException ex){
+				//will switch to results page, test is over as there are no more questions
+				System.out.println("Out of questions");
+			}
 			testPagePanel.add(questionPanel);
 			testPagePanel.repaint();
 			testPagePanel.revalidate();

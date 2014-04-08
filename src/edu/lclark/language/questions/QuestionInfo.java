@@ -12,7 +12,14 @@ public final class QuestionInfo {
 	}
 
 	public enum QuestionLevel {
-		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301
+		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301;
+		
+		public QuestionLevel next(){
+			if(this == QuestionLevel.LEVEL_101)
+				return QuestionLevel.LEVEL_102;
+			else
+				return null;
+		}
 	}
 	
 	public static QuestionLevel createQuestionLevel(String level){

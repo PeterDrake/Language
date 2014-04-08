@@ -10,8 +10,6 @@ import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 
 public class DatabaseGenerator {
-
-	private final static QuestionLevel VALID_LEVEL = QuestionLevel.LEVEL_101;
 	
 	public static ArrayList<AbstractQuestion> createExampleQuestions() {
 		ArrayList<AbstractQuestion> questions = new ArrayList<AbstractQuestion>();
@@ -24,14 +22,14 @@ public class DatabaseGenerator {
 		questions.add(multipleChoice);
 
 		ShortAnswerQuestion shortAnswer = new ShortAnswerQuestion();
-		shortAnswer.setLevel(VALID_LEVEL);
+		shortAnswer.setLevel(QuestionLevel.LEVEL_101);
 		shortAnswer.setText("Why is Sam the best LOTR character?");
 		shortAnswer.setAnswers(new String[0]);
 		shortAnswer.setCorrectAnswers(new String[] { "Because he is a BAMF!" });
 		questions.add(shortAnswer);
 		
 		ShortAnswerQuestion shortAnswer2 = new ShortAnswerQuestion();
-		shortAnswer2.setLevel(VALID_LEVEL);
+		shortAnswer2.setLevel(QuestionLevel.LEVEL_201);
 		shortAnswer2.setText("How did Gollum acquire the one ring?");
 		shortAnswer2.setAnswers(new String[0]);
 		shortAnswer2.setCorrectAnswers(new String[] { "He killed his cousin after he found it in a lake!" });
@@ -42,6 +40,20 @@ public class DatabaseGenerator {
 		fillInTheBlank.setText("One _ to rule them all.");
 		fillInTheBlank.setAnswers(new String[0]);
 		fillInTheBlank.setCorrectAnswers(new String[] { "ring" });
+		questions.add(fillInTheBlank);
+		
+		FillInTheBlankQuestion ex1 = new FillInTheBlankQuestion();
+		fillInTheBlank.setLevel(QuestionLevel.LEVEL_102);
+		fillInTheBlank.setText("Tú _ (lavar-lavarse) el auto antes de ir a la fiesta.");
+		fillInTheBlank.setAnswers(new String[0]);
+		fillInTheBlank.setCorrectAnswers(new String[] { "lavas" });
+		questions.add(fillInTheBlank);
+		
+		FillInTheBlankQuestion ex2 = new FillInTheBlankQuestion();
+		fillInTheBlank.setLevel(QuestionLevel.LEVEL_101);
+		fillInTheBlank.setText("Hola me llamo Ignacio y _ (ser-estar) de Argentina. ");
+		fillInTheBlank.setAnswers(new String[0]);
+		fillInTheBlank.setCorrectAnswers(new String[] { "soy" });
 		questions.add(fillInTheBlank);
 		
 		return questions;
