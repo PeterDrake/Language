@@ -61,5 +61,9 @@ public class QuestionFactory {
 		database.remove(question);
 		return question;
 	}
+	
+	public AbstractQuestionPanel getNextQuestion(){
+		return null;
+	}
 
 }
