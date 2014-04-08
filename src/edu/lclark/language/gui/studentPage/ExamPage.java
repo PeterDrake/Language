@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.questions.QuestionFactory;
 
 public class ExamPage extends AbstractUserPage {
 

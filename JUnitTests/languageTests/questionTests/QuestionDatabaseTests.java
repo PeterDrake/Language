@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import languageTest.testingResources.DatabaseGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,15 +20,8 @@ public class QuestionDatabaseTests {
 	@Before
 	public void setUp() {
 		database = new QuestionDatabase();
-		questions = createExampleQuestions();
+		questions = DatabaseGenerator.createExampleQuestions();
 		database.setQuestions(questions);
-	}
-
-	@Test
-	public void testGetQuestion() {
-		AbstractQuestion validQuestion = database.getQuestion(VALID_LEVEL);
-		assertNotNull(validQuestion);
-		assertEquals(VALID_LEVEL, validQuestion.getLevel());
 	}
 	
 	@Test
@@ -80,38 +75,5 @@ public class QuestionDatabaseTests {
 		assertTrue(questions.contains(shortAnswer));
 	}
 
-	public ArrayList<AbstractQuestion> createExampleQuestions() {
-		ArrayList<AbstractQuestion> questions = new ArrayList<AbstractQuestion>();
-		
-		MultipleChoiceQuestion multipleChoice = new MultipleChoiceQuestion();
-		multipleChoice.setLevel(QuestionLevel.LEVEL_102);
-		multipleChoice.setText("Who is the best Lord of the Rings character?");
-		multipleChoice.setAnswers(new String[] { "Frodo", "Sam", "Gandalf", "Aragorn" });
-		multipleChoice.setCorrectAnswers(new String[] { "Sam" });
-		questions.add(multipleChoice);
-
-		ShortAnswerQuestion shortAnswer = new ShortAnswerQuestion();
-		shortAnswer.setLevel(VALID_LEVEL);
-		shortAnswer.setText("Why is Sam the best LOTR character?");
-		shortAnswer.setAnswers(new String[0]);
-		shortAnswer.setCorrectAnswers(new String[] { "Because he is a BAMF!" });
-		questions.add(shortAnswer);
-		
-		ShortAnswerQuestion shortAnswer2 = new ShortAnswerQuestion();
-		shortAnswer2.setLevel(VALID_LEVEL);
-		shortAnswer2.setText("How did Gollum acquire the one ring?");
-		shortAnswer2.setAnswers(new String[0]);
-		shortAnswer2.setCorrectAnswers(new String[] { "He killed his cousin after he found it in a lake!" });
-		questions.add(shortAnswer2);
-
-		FillInTheBlankQuestion fillInTheBlank = new FillInTheBlankQuestion();
-		fillInTheBlank.setLevel(QuestionLevel.LEVEL_301);
-		fillInTheBlank.setText("One _ to rule them all.");
-		fillInTheBlank.setAnswers(new String[0]);
-		fillInTheBlank.setCorrectAnswers(new String[] { "ring" });
-		questions.add(fillInTheBlank);
-		
-		return questions;
-	}
 
 }

@@ -49,7 +49,6 @@ public class FillInTheBlankPanel extends AbstractQuestionPanel {
 			String answer = ((JTextField) (e.getSource())).getText();
 			System.out.println(getCurrentQuestion().isCorrectAnswer(answer));
 		}
-
 	}
 
 }
