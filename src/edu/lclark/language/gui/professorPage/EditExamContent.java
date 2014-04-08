@@ -1,33 +1,51 @@
 package edu.lclark.language.gui.professorPage;
 
+import edu.lclark.language.LanguagePlacementTest;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
+import edu.lclark.language.questions.ProfessorDatabaseInterface;
+import edu.lclark.language.questions.QuestionInfo;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
+import java.util.ArrayList;
 
 /**
  * The content panel for editing test questions from the professor page
  */
 public class EditExamContent extends AbstractContent {
 
-	private MultipleChoiceQuestion[] exampleQuestionsArray;
 	private JTree tree;
 	private JComboBox addNewQuestionButton;
 	private JSplitPane splitPane;
 	private JScrollPane viewEditScrollPane;
 	private JPanel viewEditPanel;
-
-    DefaultMutableTreeNode exampleQuestions;
-
+	
+	private ArrayList<AbstractQuestion> level101;
+	private ArrayList<AbstractQuestion> level102;
+	private ArrayList<AbstractQuestion> level201;
+	private ArrayList<AbstractQuestion> level202;
+	private ArrayList<AbstractQuestion> level301;
+	
+	private ProfessorDatabaseInterface database; 
+	private DefaultMutableTreeNode root; 
+	private DefaultMutableTreeNode tree101;
+	private DefaultMutableTreeNode tree102;
+	private DefaultMutableTreeNode tree201;
+	private DefaultMutableTreeNode tree202;
+	private DefaultMutableTreeNode tree301;
+	
 	public EditExamContent() {
-		exampleQuestionsArray = createExampleQuestions();
+		database = LanguagePlacementTest.questionDatabase;
+		fetchQuestions();
 
 		setLayout(new BorderLayout());
 
@@ -46,20 +64,28 @@ public class EditExamContent extends AbstractContent {
 		// editQuestionButton.addActionListener(new EditQuestionAction());
 
 		// TODO need to change to level order instead of question type
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
-		DefaultMutableTreeNode multipleChoice = new DefaultMutableTreeNode(
-				"Multiple Choice");
-		exampleQuestions = new DefaultMutableTreeNode(
-				"Example Questions");
+		root = new DefaultMutableTreeNode("Root");
+		tree101 = new DefaultMutableTreeNode(
+				"Level 101");
+		tree102 = new DefaultMutableTreeNode(
+				"Level 102");
+		tree201 = new DefaultMutableTreeNode(
+				"Level 201");
+		tree202 = new DefaultMutableTreeNode(
+				"Level 202");
+		tree301 = new DefaultMutableTreeNode(
+				"Level 301");
 
-		root.add(multipleChoice);
-		multipleChoice.add(exampleQuestions);
+		root.add(tree101);
+		root.add(tree102);
+		root.add(tree201);
+		root.add(tree202);
+		root.add(tree301);
 
-		for (int i = 0; i < exampleQuestionsArray.length; i++) {
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(exampleQuestionsArray[i]);
-			exampleQuestions.add(temp);
-		}
+
+
+		addNodesFromDatabase();
+		
 
 		tree = new JTree(root);
 
@@ -100,6 +126,39 @@ public class EditExamContent extends AbstractContent {
 		add(splitPane, BorderLayout.CENTER);
 	}
 
+	private void addNodesFromDatabase() {
+		tree101.removeAllChildren();
+		tree102.removeAllChildren();
+		tree201.removeAllChildren();
+		tree202.removeAllChildren();
+		tree301.removeAllChildren();
+		for(AbstractQuestion q : level101){
+			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+			temp.setUserObject(q);
+			tree101.add(temp);
+		}
+		for(AbstractQuestion q : level102){
+			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+			temp.setUserObject(q);
+			tree102.add(temp);
+		}
+		for(AbstractQuestion q : level201){
+			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+			temp.setUserObject(q);
+			tree201.add(temp);
+		}
+		for(AbstractQuestion q : level202){
+			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+			temp.setUserObject(q);
+			tree202.add(temp);
+		}
+		for(AbstractQuestion q : level301){
+			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+			temp.setUserObject(q);
+			tree301.add(temp);
+		}
+	}
+
     /**
      * The method called by the question enter/edit panel when it is done.
      *
@@ -108,39 +167,25 @@ public class EditExamContent extends AbstractContent {
     public void endEdit(AbstractQuestion q) {
 		if (q != null) {
 			// TODO Save question for real
+			database.addQuestion(q);
+			fetchQuestions();
 
-            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-            temp.setUserObject(q);
-            exampleQuestions.add(temp);
-
-            //TODO Fix this sloppy code and make all edits through model - matisse
             DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-            DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+            addNodesFromDatabase();
             model.reload(root);
         }
 		addNewQuestionButton.setSelectedIndex(0);
 		addNewQuestionAction();
 	}
 
-	public MultipleChoiceQuestion[] createExampleQuestions() {
-		MultipleChoiceQuestion[] qs = new MultipleChoiceQuestion[4];
-		qs[0] = new MultipleChoiceQuestion();
-		qs[0].setText("What is your name?");
-		qs[0].setAnswers(new String[] { "Andi", "Srey", "Maggie" });
-		qs[0].setCorrectAnswers(new String[] {"Maggie"});
-		qs[1] = new MultipleChoiceQuestion();
-		qs[1].setText("What is your favorite color?");
-		qs[1].setAnswers(new String[] { "Blue", "Yellow", "Green", "Red" });
-		qs[1].setCorrectAnswers(new String[] {"Red"});
-		qs[2] = new MultipleChoiceQuestion();
-		qs[2].setText("What is your quest?");
-		qs[2].setAnswers(new String[] { "Grail", "Food" });
-		qs[2].setCorrectAnswers(new String[] {"Food"});
-		qs[3] = new MultipleChoiceQuestion();
-		qs[3].setText("What is the avg speed of a swallow?");
-		qs[3].setAnswers(new String[] { "45", "57", "20" });
-		qs[3].setCorrectAnswers(new String[] {"20"});
-		return qs;
+	
+	public void fetchQuestions(){
+		level101 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_101);
+		level102 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_102);
+		level201 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_201);
+		level202 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_202);
+		level301 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_301);
+		
 	}
 
     /**
