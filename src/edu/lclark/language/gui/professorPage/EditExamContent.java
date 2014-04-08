@@ -45,7 +45,6 @@ public class EditExamContent extends AbstractContent {
 	
 	public EditExamContent() {
 		database = LanguagePlacementTest.questionDatabase;
-		fetchQuestions();
 
 		setLayout(new BorderLayout());
 
@@ -63,18 +62,12 @@ public class EditExamContent extends AbstractContent {
 		// JButton editQuestionButton = new JButton("Edit Question");
 		// editQuestionButton.addActionListener(new EditQuestionAction());
 
-		// TODO need to change to level order instead of question type
-		root = new DefaultMutableTreeNode("Root");
-		tree101 = new DefaultMutableTreeNode(
-				"Level 101");
-		tree102 = new DefaultMutableTreeNode(
-				"Level 102");
-		tree201 = new DefaultMutableTreeNode(
-				"Level 201");
-		tree202 = new DefaultMutableTreeNode(
-				"Level 202");
-		tree301 = new DefaultMutableTreeNode(
-				"Level 301");
+        root = new DefaultMutableTreeNode("Root");
+        tree101 = new DefaultMutableTreeNode("Level 101");
+        tree102 = new DefaultMutableTreeNode("Level 102");
+        tree201 = new DefaultMutableTreeNode("Level 201");
+        tree202 = new DefaultMutableTreeNode("Level 202");
+        tree301 = new DefaultMutableTreeNode("Level 301");
 
 		root.add(tree101);
 		root.add(tree102);
@@ -82,28 +75,19 @@ public class EditExamContent extends AbstractContent {
 		root.add(tree202);
 		root.add(tree301);
 
-
-
+        fetchQuestions();
 		addNodesFromDatabase();
-		
 
 		tree = new JTree(root);
-
-		ImageIcon questionIcon = new ImageIcon(
-				ClassLoader
-						.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
-		// ImageIcon questionIcon = new
-		// ImageIcon(EditExamContent.class.getResource("/edu/lclark/language/resources/question-mark.jpg"));
+        ImageIcon questionIcon = new ImageIcon(
+				ClassLoader.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
 		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(
 				16, 16, Image.SCALE_DEFAULT);
 		questionIcon = new ImageIcon(resizedQuestionImage);
-
 		DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 		renderer.setLeafIcon(questionIcon);
-
 		tree.setCellRenderer(renderer);
-		tree.addTreeSelectionListener(EventHandler.create(TreeSelectionListener.class,
-				this, "selectionListener"));
+		tree.addTreeSelectionListener(EventHandler.create(TreeSelectionListener.class, this, "selectionListener"));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
 
@@ -126,6 +110,20 @@ public class EditExamContent extends AbstractContent {
 		add(splitPane, BorderLayout.CENTER);
 	}
 
+    /**
+     * Fetch question ArrayLists from database
+     */
+    public void fetchQuestions(){
+        level101 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_101);
+        level102 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_102);
+        level201 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_201);
+        level202 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_202);
+        level301 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_301);
+    }
+
+    /**
+     * The method that adds all nodes to the tree from the fetched database, removing old nodes first
+     */
 	private void addNodesFromDatabase() {
 		tree101.removeAllChildren();
 		tree102.removeAllChildren();
@@ -176,16 +174,6 @@ public class EditExamContent extends AbstractContent {
         }
 		addNewQuestionButton.setSelectedIndex(0);
 		addNewQuestionAction();
-	}
-
-	
-	public void fetchQuestions(){
-		level101 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_101);
-		level102 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_102);
-		level201 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_201);
-		level202 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_202);
-		level301 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_301);
-		
 	}
 
     /**
