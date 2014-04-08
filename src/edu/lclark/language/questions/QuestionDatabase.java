@@ -24,7 +24,6 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 		loadQuestionsFromFile();
 	}
 
-
 	/**
 	 * Generates an ArrayList of questions of a specified level.
 	 * 

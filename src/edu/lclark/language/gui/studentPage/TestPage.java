@@ -1,4 +1,4 @@
-package edu.lclark.language.testPage;
+package edu.lclark.language.gui.studentPage;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -6,18 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.gui.professorPage.ProfessorPage;
-import edu.lclark.language.gui.studentPage.StudentInstructionPage;
-import edu.lclark.language.questions.AbstractQuestionPanel;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestionPanel;
-import edu.lclark.language.questions.ShortAnswerQuestionPanel;
 
 public class TestPage extends AbstractUserPage {
 

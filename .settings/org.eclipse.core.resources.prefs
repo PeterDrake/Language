@@ -4,6 +4,5 @@
 eclipse.preferences.version=1
 encoding//JUnitTests/languageTests/questionTests/FillInTheBlankQuestionTest.java=UTF-8
 encoding//JUnitTests/languageTests/questionTests/QuestionXMLWriterTests.java=UTF-8
-encoding//src/edu/lclark/language/questions/FillInTheBlankPanel.java=UTF-8
 encoding//src/edu/lclark/language/questions/FillInTheBlankQuestion.java=UTF-8
-encoding//src/edu/lclark/language/testPage/TestPage.java=UTF-8
+encoding//src/testPage/TestPage.java=UTF-8

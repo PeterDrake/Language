@@ -1,4 +1,4 @@
-package edu.lclark.language.questions;
+package edu.lclark.language.gui.studentPage;
 
 import javax.swing.JPanel;
 
