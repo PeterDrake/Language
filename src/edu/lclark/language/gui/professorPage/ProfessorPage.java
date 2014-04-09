@@ -69,15 +69,19 @@ public class ProfessorPage extends AbstractUserPage {
 		currentContent = new ProfileContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
 	}
-	
+
 	/**
 	 * Sets the User's name for display on the professor page
 	 * 
 	 * @param name The user's name
 	 */
 	public void setUserName(String name){
-		this.name = name;
+        this.name = name;
 	}
+
+    public void refresh() {
+        //TODO Write refresh method for refresh button
+    }
 
 	//TODO These actions will be performed even if the button is already depress. Fix?
 	/**

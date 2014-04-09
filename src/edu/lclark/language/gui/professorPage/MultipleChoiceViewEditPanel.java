@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
-import edu.lclark.language.questions.QuestionInfo;
 
 /**
  * The Panel that handles entering and editing multiple choice questions
@@ -288,7 +287,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                     JOptionPane.PLAIN_MESSAGE, null);
             if (n == 0) {
                 saveContent();
-                previousPage.endEdit(question);
+                previousPage.saveEdit(question);
             }
         }
     }
@@ -302,7 +301,12 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                 "Delete Question?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null);
         if (n == 0) {
-            previousPage.endEdit(null);
+            // TODO isNewQuestion is set to true if a question object is passed as well
+//            if (isNewQuestion) {
+                previousPage.endEdit();
+//            } else {
+//                previousPage.deleteEdit(question);
+//            }
         }
     }
 

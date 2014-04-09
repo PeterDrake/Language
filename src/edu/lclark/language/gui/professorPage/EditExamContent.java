@@ -2,16 +2,12 @@ package edu.lclark.language.gui.professorPage;
 
 import edu.lclark.language.LanguagePlacementTest;
 import edu.lclark.language.questions.AbstractQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.ProfessorDatabaseInterface;
-import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -63,22 +59,8 @@ public class EditExamContent extends AbstractContent {
 		// editQuestionButton.addActionListener(new EditQuestionAction());
 
         root = new DefaultMutableTreeNode("Root");
-        tree101 = new DefaultMutableTreeNode("Level 101");
-        tree102 = new DefaultMutableTreeNode("Level 102");
-        tree201 = new DefaultMutableTreeNode("Level 201");
-        tree202 = new DefaultMutableTreeNode("Level 202");
-        tree301 = new DefaultMutableTreeNode("Level 301");
 
-		root.add(tree101);
-		root.add(tree102);
-		root.add(tree201);
-		root.add(tree202);
-		root.add(tree301);
-
-        fetchQuestions();
-		addNodesFromDatabase();
-
-		tree = new JTree(root);
+        tree = new JTree(root);
         ImageIcon questionIcon = new ImageIcon(
 				ClassLoader.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
 		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(
@@ -90,6 +72,20 @@ public class EditExamContent extends AbstractContent {
 		tree.addTreeSelectionListener(EventHandler.create(TreeSelectionListener.class, this, "selectionListener"));
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(false);
+        tree.getSelectionModel().setSelectionMode
+                (TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        tree101 = new DefaultMutableTreeNode("Level 101");
+        tree102 = new DefaultMutableTreeNode("Level 102");
+        tree201 = new DefaultMutableTreeNode("Level 201");
+        tree202 = new DefaultMutableTreeNode("Level 202");
+        tree301 = new DefaultMutableTreeNode("Level 301");
+        root.add(tree101);
+        root.add(tree102);
+        root.add(tree201);
+        root.add(tree202);
+        root.add(tree301);
+        updateNodesFromDatabase();
 
 		JScrollPane treePane = new JScrollPane(tree);
 		treePane.getVerticalScrollBar().setUnitIncrement(16);
@@ -111,70 +107,81 @@ public class EditExamContent extends AbstractContent {
 	}
 
     /**
-     * Fetch question ArrayLists from database
+     * The method that adds all nodes to the tree from the fetched database, removing old nodes first
      */
-    public void fetchQuestions(){
+	private void updateNodesFromDatabase() {
         level101 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_101);
         level102 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_102);
         level201 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_201);
         level202 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_202);
         level301 = database.getQuestionsOfLevel(QuestionLevel.LEVEL_301);
+
+		tree101.removeAllChildren();
+        tree102.removeAllChildren();
+        tree201.removeAllChildren();
+        tree202.removeAllChildren();
+        tree301.removeAllChildren();
+
+        for(AbstractQuestion q : level101){
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            tree101.add(temp);
+        }
+        for(AbstractQuestion q : level102){
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            tree102.add(temp);
+        }
+        for(AbstractQuestion q : level201){
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            tree201.add(temp);
+        }
+        for(AbstractQuestion q : level202){
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            tree202.add(temp);
+        }
+        for(AbstractQuestion q : level301){
+            DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+            temp.setUserObject(q);
+            tree301.add(temp);
+        }
+
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        model.reload(root);
+        // Might we use model.isertNodeInto() (or remove) down bellow?
     }
 
     /**
-     * The method that adds all nodes to the tree from the fetched database, removing old nodes first
+     * The method called by the question enter/edit panel when it is done and wants to save.
+     *
+     * @param q the question to be saved
      */
-	private void addNodesFromDatabase() {
-		tree101.removeAllChildren();
-		tree102.removeAllChildren();
-		tree201.removeAllChildren();
-		tree202.removeAllChildren();
-		tree301.removeAllChildren();
-		for(AbstractQuestion q : level101){
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(q);
-			tree101.add(temp);
-		}
-		for(AbstractQuestion q : level102){
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(q);
-			tree102.add(temp);
-		}
-		for(AbstractQuestion q : level201){
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(q);
-			tree201.add(temp);
-		}
-		for(AbstractQuestion q : level202){
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(q);
-			tree202.add(temp);
-		}
-		for(AbstractQuestion q : level301){
-			DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-			temp.setUserObject(q);
-			tree301.add(temp);
-		}
-	}
+    public void saveEdit(AbstractQuestion q) {
+        database.addQuestion(q);
+        updateNodesFromDatabase();
+        endEdit();
+    }
 
     /**
-     * The method called by the question enter/edit panel when it is done.
+     * The method called by the question enter/edit panel when it is done and wants to delete.
      *
-     * @param q the question to be saved, null if no question is to be saved
+     * @param q the question to be deleted
      */
-    public void endEdit(AbstractQuestion q) {
-		if (q != null) {
-			// TODO Save question for real
-			database.addQuestion(q);
-			fetchQuestions();
+    public void deleteEdit(AbstractQuestion q) {
+        database.deleteQuestion(q);
+        updateNodesFromDatabase();
+        endEdit();
+    }
 
-            DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-            addNodesFromDatabase();
-            model.reload(root);
-        }
-		addNewQuestionButton.setSelectedIndex(0);
-		addNewQuestionAction();
-	}
+    /**
+     * The method called by the question enter/edit panel when it is done and has nothing to save or delete.
+     */
+    public void endEdit() {
+        addNewQuestionButton.setSelectedIndex(0);
+        addNewQuestionAction();
+    }
 
     /**
      * The action listener that creates a new question editing panel based on the index of the JComboBox

@@ -47,6 +47,10 @@ public class ExamPage extends AbstractUserPage {
 
 	}
 
+    public void refresh() {
+        //TODO Write refresh method for refresh button
+    }
+
 	private class SubmitAction implements ActionListener {
 
 		@Override
