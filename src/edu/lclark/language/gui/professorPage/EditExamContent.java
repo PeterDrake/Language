@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class EditExamContent extends AbstractContent {
 
 	private JTree tree;
+    private DefaultTreeModel model;
 	private JComboBox addNewQuestionButton;
 	private JSplitPane splitPane;
 	private JScrollPane viewEditScrollPane;
@@ -61,6 +62,7 @@ public class EditExamContent extends AbstractContent {
         root = new DefaultMutableTreeNode("Root");
 
         tree = new JTree(root);
+        model = (DefaultTreeModel) tree.getModel();
         ImageIcon questionIcon = new ImageIcon(
 				ClassLoader.getSystemResource("edu/lclark/language/resources/question-mark.jpg"));
 		Image resizedQuestionImage = questionIcon.getImage().getScaledInstance(
@@ -148,9 +150,8 @@ public class EditExamContent extends AbstractContent {
             tree301.add(temp);
         }
 
-        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
         model.reload(root);
-        // Might we use model.isertNodeInto() (or remove) down bellow?
+        // TODO Might we use model.isertNodeInto() (or remove) down bellow or reload with ifs? Would we need compareTo?
     }
 
     /**
@@ -160,6 +161,9 @@ public class EditExamContent extends AbstractContent {
      */
     public void saveEdit(AbstractQuestion q) {
         database.addQuestion(q);
+//        DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+//        temp.setUserObject(q);
+//        model.insertNodeInto(temp,tree101,1);
         updateNodesFromDatabase();
         endEdit();
     }
@@ -171,6 +175,7 @@ public class EditExamContent extends AbstractContent {
      */
     public void deleteEdit(AbstractQuestion q) {
         database.deleteQuestion(q);
+        //TODO Could we use node.getUserObject and compare to delete?
         updateNodesFromDatabase();
         endEdit();
     }
