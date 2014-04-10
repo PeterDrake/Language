@@ -26,8 +26,6 @@ public class ProfessorPage extends AbstractUserPage {
 	private AbstractContent currentContent;
     private JPanel contentPanel;
     
-    private ProfessorDatabaseInterface database;
-	
 	private String name;
 	
 	/**
@@ -70,18 +68,20 @@ public class ProfessorPage extends AbstractUserPage {
         //TODO Fix switching views using toggle buttons (doesn't update correctly)
 		currentContent = new ProfileContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
-		
-		database = LanguagePlacementTest.questionDatabase;
 	}
-	
+
 	/**
 	 * Sets the User's name for display on the professor page
 	 * 
 	 * @param name The user's name
 	 */
 	public void setUserName(String name){
-		this.name = name;
+        this.name = name;
 	}
+
+    public void refresh() {
+        //TODO Write refresh method for refresh button
+    }
 
 	//TODO These actions will be performed even if the button is already depress. Fix?
 	/**

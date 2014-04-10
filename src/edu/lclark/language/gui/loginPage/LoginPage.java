@@ -97,10 +97,10 @@ public class LoginPage extends AbstractPage {
 			
 			MainWindow main = getMainWindow();
 			
-			if(nameText.equals("professor")){
+			if(nameText.equals("professor") || nameText.equals("p")){
 				main.switchPage(new ProfessorPage(main));
 			}
-			else if(nameText.equals("student")){
+			else if(nameText.equals("student") || nameText.equals("s")){
 				main.switchPage(new StudentInstructionPage(main));				
 			}
 		}

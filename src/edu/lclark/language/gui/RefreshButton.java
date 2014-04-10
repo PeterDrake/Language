@@ -10,7 +10,10 @@ import javax.swing.JButton;
  */
 public class RefreshButton extends JButton {
 
-	public RefreshButton() {
+    private AbstractUserPage parent;
+
+	public RefreshButton(AbstractUserPage parent) {
+        this.parent = parent;
 		
 		setText("Refresh");
 		addActionListener(new RefreshAction());
@@ -21,7 +24,7 @@ public class RefreshButton extends JButton {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO Write refresh code
+			parent.refresh();
 		}
 	}
 
