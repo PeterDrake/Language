@@ -11,30 +11,22 @@ import javax.swing.JPanel;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.studentLogic.ProgressTracker;
 
 public class ExamPage extends AbstractUserPage {
 
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
-	private QuestionFactory factory;
 	private JPanel testPagePanel;
-	
-	private int questionsAnswered;
-	private int questionsAnsweredCorrectly;
+	private ProgressTracker tracker;
+
 
 	public ExamPage(MainWindow main) {
 		super(main);
-		factory = new QuestionFactory();
-
+		tracker = new ProgressTracker();
 		submitButton = new JButton("Submit");
 		testPagePanel = new JPanel();
-		try{
-		questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
-		}
-		catch (EmptyDatabaseException e){
-			e.printStackTrace();
-			System.exit(ERROR);
-		}
+		questionPanel = tracker.getFirstQuestionPanel();
 
 		GridBagLayout layout = new GridBagLayout();
 		testPagePanel.setLayout(layout);
@@ -62,18 +54,13 @@ public class ExamPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			boolean correct = questionPanel.isCorrectAnswerSelected();
-			questionsAnswered++;
-			if(correct){
-				questionsAnsweredCorrectly++;
-			}
 			System.out.println(correct);
+			tracker.updateTestProgress(correct);
 			testPagePanel.remove(questionPanel);
 			try{
-			questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
-			}
-			catch (EmptyDatabaseException ex){
-				//will switch to results page, test is over as there are no more questions
-				System.out.println("Out of questions");
+				questionPanel = tracker.getNextQuestionPanel();
+			} catch (EmptyDatabaseException ex){
+				System.out.println("Out of Questions");
 			}
 			testPagePanel.add(questionPanel);
 			testPagePanel.repaint();

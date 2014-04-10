@@ -29,7 +29,6 @@ public class FillInTheBlankPanel extends AbstractQuestionPanel {
 		}
 		blank = new JTextField(10);
 		add(blank);
-		blank.addActionListener(new BlankListener());
 		for (String w : question.getWordsAfterBlank()) {
 			add(new JLabel(w));
 		}
@@ -38,17 +37,6 @@ public class FillInTheBlankPanel extends AbstractQuestionPanel {
 	@Override
 	public String getAnswer() {
 		return blank.getText();
-	}
-	
-
-	/** Listens for the student to hit enter when the JTextField has focus. */
-	private class BlankListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String answer = ((JTextField) (e.getSource())).getText();
-			System.out.println(getCurrentQuestion().isCorrectAnswer(answer));
-		}
 	}
 
 }

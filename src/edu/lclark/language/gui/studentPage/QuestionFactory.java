@@ -18,17 +18,19 @@ import edu.lclark.language.questions.ShortAnswerQuestion;
 public class QuestionFactory {
 
 	private ArrayList<AbstractQuestion> database;
-	
-	private QuestionLevel currentLevel;
 
 	public QuestionFactory() {
 		database = DatabaseGenerator.createExampleQuestions();
-		currentLevel = QuestionLevel.LEVEL_101;
+	}
+	
+	public void printDatabase(){
+		for (AbstractQuestion question:database){
+			System.out.print(question.getText() + ",");
+		}
 	}
 
 	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
 		database = questions;
-		currentLevel = QuestionLevel.LEVEL_101;
 	}
 
 	public AbstractQuestionPanel getQuestionPanelOfLevel(QuestionLevel level) {
@@ -72,8 +74,7 @@ public class QuestionFactory {
 		return question;
 	}
 
-	public AbstractQuestionPanel getNextQuestion(int questionsAnswered, int questionsAnsweredCorrectly) throws EmptyDatabaseException {
-		QuestionLevel level = getLevelForNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+	public AbstractQuestionPanel getNextQuestion(QuestionLevel level) throws EmptyDatabaseException {
 		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
 		if(question == null){
 			throw new EmptyDatabaseException();
@@ -92,21 +93,6 @@ public class QuestionFactory {
 			return null;
 		}
 
-	}
-	
-	private QuestionLevel getLevelForNextQuestion(int questionsAnswered, int correct){
-		if(questionsAnswered == 2 && correct == 2){
-			System.out.println(QuestionInfo.getNextLevel(currentLevel));
-			return QuestionInfo.getNextLevel(currentLevel);
-		}
-		else if(questionsAnswered == 2 && correct < 2){
-			System.out.println(QuestionInfo.getPreviousLevel(currentLevel));
-			return QuestionInfo.getPreviousLevel(currentLevel);
-		}
-		else
-		{
-			return currentLevel;
-		}
 	}
 
 }
