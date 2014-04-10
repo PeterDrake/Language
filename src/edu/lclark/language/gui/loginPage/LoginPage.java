@@ -11,7 +11,6 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
-import edu.lclark.language.gui.studentPage.AccentMarksToolbar;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -82,10 +81,10 @@ public class LoginPage extends AbstractPage {
 		
 	}
 	
-	private void add(AccentMarksToolbar toolbar2) {
-		// TODO Auto-generated method stub
-		
-	}
+//	private void add(AccentMarksToolbar toolbar2) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	private class LoginAction implements ActionListener
 	{
@@ -98,10 +97,10 @@ public class LoginPage extends AbstractPage {
 			
 			MainWindow main = getMainWindow();
 			
-			if(nameText.equals("professor")){
+			if(nameText.equals("professor") || nameText.equals("p")){
 				main.switchPage(new ProfessorPage(main));
 			}
-			else if(nameText.equals("student")){
+			else if(nameText.equals("student") || nameText.equals("s")){
 				main.switchPage(new StudentInstructionPage(main));				
 			}
 		}

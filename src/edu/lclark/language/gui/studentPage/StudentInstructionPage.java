@@ -41,6 +41,7 @@ public class StudentInstructionPage extends AbstractUserPage {
 		JButton beginTestButton = new JButton("Begin Test");
 		beginTestButton.addActionListener(new BeginButtonAction());
 
+        // Should use JTextPane for HTML formatted text
 		JTextArea testInformation = new JTextArea(text, 33, 66);
 		testInformation.setLineWrap(true);
         testInformation.setEditable(false);
@@ -59,6 +60,10 @@ public class StudentInstructionPage extends AbstractUserPage {
         sPane.getVerticalScrollBar().setUnitIncrement(16);
         add(sPane, BorderLayout.CENTER);
 
+    }
+
+    public void refresh() {
+        //TODO Write refresh method for refresh button
     }
 
 	private class BeginButtonAction implements ActionListener {

@@ -59,12 +59,13 @@ public class MultipleChoiceViewEditPanel extends JPanel {
         questionField = new JTextArea(5, 50);
         questionField.setLineWrap(true);
         questionField.setWrapStyleWord(true);
+        questionField.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
 
         chooseNumber = new JLabel();
-        chooseNumber.setText("Choose Number of Answers: ");
+        chooseNumber.setText("Number of Answers: ");
 
         chooseCorrect = new JLabel();
-        chooseCorrect.setText("Choose the Correct Answer: ");
+        chooseCorrect.setText("Correct Answer: ");
 
         levelType = new JLabel();
         levelType.setText("Choose Level: ");
@@ -103,7 +104,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
      */
     private void drawAll() {
 
-        add(title, new GBC(0, 0, 3, 1));
+        add(title, new GBC(0, 0, 3, 1).setIpad(25,25));
         add(questionLabel, new GBC(0, 1).setAnchor(GBC.EAST));
 
         JScrollPane questionPane = new JScrollPane(questionField);
@@ -143,6 +144,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
             answerFields[i] = new JTextArea(2, 50);
             answerFields[i].setLineWrap(true);
             answerFields[i].setWrapStyleWord(true);
+            answerFields[i].setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS));
         }
     }
 
@@ -287,7 +289,7 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                     JOptionPane.PLAIN_MESSAGE, null);
             if (n == 0) {
                 saveContent();
-                previousPage.endEdit(question);
+                previousPage.saveEdit(question);
             }
         }
     }
@@ -301,7 +303,12 @@ public class MultipleChoiceViewEditPanel extends JPanel {
                 "Delete Question?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null);
         if (n == 0) {
-            previousPage.endEdit(null);
+            // TODO isNewQuestion is set to true if a question object is passed as well
+//            if (isNewQuestion) {
+            previousPage.endEdit();
+//            } else {
+//                previousPage.deleteEdit(question);
+//            }
         }
     }
 

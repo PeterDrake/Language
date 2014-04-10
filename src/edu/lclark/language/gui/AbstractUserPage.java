@@ -32,11 +32,13 @@ public abstract class AbstractUserPage extends AbstractPage{
 		
 		logout = new LogoutButton(main);
 		titlePanel.add(logout, BorderLayout.EAST);
-		refresh = new RefreshButton();
+		refresh = new RefreshButton(this);
 		titlePanel.add(refresh, BorderLayout.WEST);
 		
 		add(titlePanel, BorderLayout.NORTH);
 		
 	}
+
+    public abstract void refresh();
 
 }
