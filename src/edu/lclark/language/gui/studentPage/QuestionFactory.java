@@ -96,8 +96,12 @@ public class QuestionFactory {
 	
 	private QuestionLevel getLevelForNextQuestion(int questionsAnswered, int correct){
 		if(questionsAnswered == 2 && correct == 2){
-			System.out.println(currentLevel.next());
-			return currentLevel.next();
+			System.out.println(QuestionInfo.getNextLevel(currentLevel));
+			return QuestionInfo.getNextLevel(currentLevel);
+		}
+		else if(questionsAnswered == 2 && correct < 2){
+			System.out.println(QuestionInfo.getPreviousLevel(currentLevel));
+			return QuestionInfo.getPreviousLevel(currentLevel);
 		}
 		else
 		{

@@ -13,12 +13,41 @@ public final class QuestionInfo {
 
 	public enum QuestionLevel {
 		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301;
-		
-		public QuestionLevel next(){
-			if(this == QuestionLevel.LEVEL_101)
-				return QuestionLevel.LEVEL_102;
-			else
-				return null;
+	}
+	
+	public static QuestionLevel getNextLevel(QuestionLevel currentLevel){
+		if(currentLevel == QuestionLevel.LEVEL_101){
+			return QuestionLevel.LEVEL_102;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_102){
+			return QuestionLevel.LEVEL_201;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_201){
+			return QuestionLevel.LEVEL_202;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_202){
+			return QuestionLevel.LEVEL_301;
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public static QuestionLevel getPreviousLevel(QuestionLevel currentLevel){
+		if(currentLevel == QuestionLevel.LEVEL_301){
+			return QuestionLevel.LEVEL_202;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_202){
+			return QuestionLevel.LEVEL_201;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_201){
+			return QuestionLevel.LEVEL_102;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_102){
+			return QuestionLevel.LEVEL_101;
+		}
+		else{
+			return null;
 		}
 	}
 	
