@@ -19,10 +19,12 @@ public class ExamPage extends AbstractUserPage {
 	private AbstractQuestionPanel questionPanel;
 	private JPanel testPagePanel;
 	private ProgressTracker tracker;
+	private MainWindow windowCopy;
 
 
 	public ExamPage(MainWindow main) {
 		super(main);
+		windowCopy = main;
 		tracker = new ProgressTracker();
 		submitButton = new JButton("Submit");
 		testPagePanel = new JPanel();
@@ -60,6 +62,9 @@ public class ExamPage extends AbstractUserPage {
 			try{
 				questionPanel = tracker.getNextQuestionPanel();
 			} catch (EmptyDatabaseException ex){
+				StudentResultsPage srp = new StudentResultsPage(windowCopy);
+				srp.setLevel(tracker.getCurrentLevel());
+				windowCopy.switchPage(new StudentResultsPage(windowCopy));
 				System.out.println("Out of Questions");
 			}
 			testPagePanel.add(questionPanel);
