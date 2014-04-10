@@ -2,6 +2,8 @@ package edu.lclark.language.gui.professorPage;
 
 import edu.lclark.language.LanguagePlacementTest;
 import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.questions.FillInTheBlankQuestion;
+import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.ProfessorDatabaseInterface;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
@@ -223,6 +225,16 @@ public class EditExamContent extends AbstractContent {
 		if (selectedNode != null && selectedNode.isLeaf()) {
 			// System.out.println(selectedNode.getUserObject());
 			// TODO selection on tree when node is closed results in errors
+			if(selectedNode.getUserObject() instanceof FillInTheBlankQuestion){
+				viewEditPanel = new FillInTheBlankViewEditPanel(this, (FillInTheBlankQuestion)selectedNode.getUserObject());
+				viewEditScrollPane.setViewportView(viewEditPanel);
+				splitPane.setRightComponent(viewEditScrollPane);
+			}
+			if(selectedNode.getUserObject() instanceof MultipleChoiceQuestion){
+				viewEditPanel = new MultipleChoiceViewEditPanel(this, (MultipleChoiceQuestion)selectedNode.getUserObject());
+				viewEditScrollPane.setViewportView(viewEditPanel);
+				splitPane.setRightComponent(viewEditScrollPane);
+			}
 		}
 	}
 }

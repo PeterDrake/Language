@@ -20,11 +20,13 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	/** Example of argument: "��D��nde _ el ba��o, por favor?" */
 	public FillInTheBlankQuestion() {
 		setQuestionType(QuestionType.FILL_IN_THE_BLANK);
+		setAnswers(new String[0]);
 	}
 	
 	public void setText(String text){
 		int blank = text.indexOf('_');
 		before = text.substring(0, blank);
+		// TODO Doesn't work when the question ends in "_" (with no characters after it)
 		after = text.substring(blank + 2, text.length());
 		this.text = text;
 	}
