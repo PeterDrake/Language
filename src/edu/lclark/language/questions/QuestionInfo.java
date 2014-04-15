@@ -16,16 +16,22 @@ public final class QuestionInfo {
 	}
 
 	public enum QuestionLevel {
-		LEVEL_101(new Topic[] { Topic.SER_ESTAR, Topic.GUSTAR, Topic.SABER_CONOCER }),
-		LEVEL_102(new Topic[] { Topic.DO_IO, Topic.CONJ_PRET_IRREG, Topic.COMPARATIVE_SUPERLATIVE}),
-		LEVEL_201(new Topic[] { Topic.POSSESSIVES, Topic.REFLEXIVES }),
-		LEVEL_202(new Topic[] { Topic.CONJ_PRES_IRREG, Topic.CONJ_PRET_REG }),
-		LEVEL_301(new Topic[] { Topic.CONJ_PRES_REG, Topic.DO_IO });
+		LEVEL_101(0, new Topic[] { Topic.SER_ESTAR, Topic.GUSTAR, Topic.SABER_CONOCER }),
+		LEVEL_102(1, new Topic[] { Topic.DO_IO, Topic.CONJ_PRET_IRREG, Topic.COMPARATIVE_SUPERLATIVE}),
+		LEVEL_201(2, new Topic[] { Topic.POSSESSIVES, Topic.REFLEXIVES }),
+		LEVEL_202(3,new Topic[] { Topic.CONJ_PRES_IRREG, Topic.CONJ_PRET_REG }),
+		LEVEL_301(4,new Topic[] { Topic.CONJ_PRES_REG, Topic.DO_IO });
 
 		private Topic[] topics;
+		private int index;
 
-		private QuestionLevel(Topic[] topics) {
+		private QuestionLevel(int index, Topic[] topics) {
 			this.topics = topics;
+			this.index = index;
+		}
+		
+		public int getIndex(){
+			return index;
 		}
 
 		public Topic[] getTopics() {
