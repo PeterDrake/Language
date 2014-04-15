@@ -77,6 +77,7 @@ public class QuestionXMLReader {
 		
 		String type = questionNode.getAttributes().getNamedItem("type").getNodeValue();
 		String level = questionNode.getAttributes().getNamedItem("level").getNodeValue();
+		String topic = questionNode.getAttributes().getNamedItem("topic").getNodeValue();
 		
 		AbstractQuestion newQuestion = null;
 		
@@ -90,6 +91,7 @@ public class QuestionXMLReader {
 		//can add more if statements as we add more question types
 		
 		newQuestion.setLevel(QuestionInfo.createQuestionLevel(level));
+		newQuestion.setTopic(QuestionInfo.createQuestionTopic(topic));
 		
 		NodeList questionNodeList = questionNode.getChildNodes();
 		newQuestion.setText(questionNodeList.item(0).getTextContent());
