@@ -30,26 +30,35 @@ public class FillInTheBlankViewEditPanel extends AbstractViewEditPanel{
 		 this.previousPage = previousPage;
 	        question = new FillInTheBlankQuestion();
 	        numberOfAnswers = 1;
-
-	        title = new JLabel();
-	        title.setText("Fill in the Blank Question");
-
-	        String[] numOfAnswers = {"1", "2", "3", "4", "5", "6"};
-	        numberOfAnswersDropDown = new JComboBox(numOfAnswers);
-	        numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
-	        numberOfAnswersDropDown.addActionListener(EventHandler.create(
-	                ActionListener.class, this, "numberOfAnswersAction"));
-
+	        createAll();
 	        drawAll();
 	}
+
 	
 	public FillInTheBlankViewEditPanel(EditExamContent previousPage, FillInTheBlankQuestion question) {
-		this(previousPage);
+		super(previousPage, question);
 		numberOfAnswers = question.getNumberOfCorrectAnswers(); 
-		for (int i = 0; i < MAX_ANSWERS; i++) {
+		createAll();
+		setAll();
+		drawAll();
+	}
+
+	@Override
+	protected void setSpecific() {
+		for (int i = 0; i < numberOfAnswers; i++) {
 			answerFields[i].setText(question.getCorrectAnswerAtIndex(i));
 		}
-		drawAll();
+	}
+
+	protected void createSpecific() {
+		title = new JLabel();
+		title.setText("Fill in the Blank Question");
+		
+		String[] numOfAnswers = {"1", "2", "3", "4", "5", "6"};
+		numberOfAnswersDropDown = new JComboBox(numOfAnswers);
+		numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
+		numberOfAnswersDropDown.addActionListener(EventHandler.create(
+				ActionListener.class, this, "numberOfAnswersAction"));
 	}
 	
 	@Override
@@ -85,5 +94,8 @@ public class FillInTheBlankViewEditPanel extends AbstractViewEditPanel{
 		numberOfAnswers = n;
 		updatePage();
 	}
+
+
+	
 	
 }

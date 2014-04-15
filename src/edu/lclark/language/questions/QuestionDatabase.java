@@ -23,6 +23,11 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 		questions = new ArrayList<AbstractQuestion>();
 		loadQuestionsFromFile();
 	}
+	
+	public void setTestPath(){
+		writer.setTestPath();
+		reader.setTestPath(); 
+	}
 
 	/**
 	 * Generates an ArrayList of questions of a specified level.

@@ -169,6 +169,15 @@ public class EditExamContent extends AbstractContent {
         updateNodesFromDatabase();
         endEdit();
     }
+    
+    public void saveEdit() {
+        database.updateQuestions();
+//        DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
+//        temp.setUserObject(q);
+//        model.insertNodeInto(temp,tree101,1);
+        updateNodesFromDatabase();
+        endEdit();
+    }
 
     /**
      * The method called by the question enter/edit panel when it is done and wants to delete.

@@ -24,38 +24,46 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 		question = new MultipleChoiceQuestion();
 		numberOfAnswers = 4;
 		correctAnswerIndex = 0;
+		createAll(); 
+		drawAll();
+	}
 
+	
+	public MultipleChoiceViewEditPanel(EditExamContent previousPage, MultipleChoiceQuestion question) {
+		super(previousPage, question);
+		numberOfAnswers = question.getNumberOfAnswers();
+		createAll(); 
+		setAll(); 
+		drawAll();
+	}
+
+	@Override
+	protected void setSpecific() {
+		for (int i = 0; i < numberOfAnswers; i++) {
+			answerFields[i].setText(question.getAnswerAtIndex(i));
+			if(question.getCorrectAnswerAtIndex(0).equals(question.getAnswerAtIndex(i))){
+				correctAnswerIndex = i; 
+			}
+		}
+	}
+
+	protected void createSpecific() {
 		title = new JLabel();
 		title.setText("Multiple Choice Question");
-
+		
 		chooseCorrect = new JLabel();
 		chooseCorrect.setText("Correct Answer: ");
-
+		
 		levelType = new JLabel();
 		levelType.setText("Choose Level: ");
-
+		
 		String[] numOfAnswers = { "2", "3", "4", "5", "6" };
 		numberOfAnswersDropDown = new JComboBox(numOfAnswers);
 		numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
 		numberOfAnswersDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "numberOfAnswersAction"));
-
-		setCorrectAnswerDropDown();
-
-		drawAll();
-	}
-	
-	public MultipleChoiceViewEditPanel(EditExamContent previousPage, MultipleChoiceQuestion question) {
-		this(previousPage);
-		numberOfAnswers = question.getNumberOfAnswers();
-		for (int i = 0; i < MAX_ANSWERS; i++) {
-			answerFields[i].setText(question.getAnswerAtIndex(i));
-			if(question.getCorrectAnswerAtIndex(0) == question.getAnswerAtIndex(i)){
-				correctAnswerIndex = i; 
-			}
-		}
 		
-		drawAll();
+		setCorrectAnswerDropDown();
 	}
 
 	@Override
@@ -72,7 +80,7 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 		super.showAnswerFields(n);
 		for (int i = 0, j = GBL_QUESTION_INDEX_START; i < n; i++, j++) {
 			if (i == correctAnswerIndex) {
-				answerFields[i].setBackground(Color.GREEN);
+				answerFields[i].setBackground(new Color(194, 255, 133));
 			} else {
 				answerFields[i].setBackground(Color.WHITE);
 			}

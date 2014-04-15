@@ -40,11 +40,48 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	protected JLabel levelType;
 	protected JButton saveChangesButton;
 	protected JButton deleteQuestionButton;
+	protected boolean isEditing;
 
 	public AbstractViewEditPanel(EditExamContent previousPage) {
 		this.previousPage = previousPage;
 		levelIndex = 0;
+		isEditing = false;
+	}
 
+	public AbstractViewEditPanel(EditExamContent previousPage,
+			AbstractQuestion question) {
+		this.previousPage = previousPage;
+		this.question = question;
+		isEditing = true;
+
+	}
+
+	protected void setAll() {
+		questionField.setText(question.getText());
+		switch (question.getLevel()) {
+		case LEVEL_101:
+			levelIndex = 0;
+			break;
+		case LEVEL_102:
+			levelIndex = 1;
+			break;
+		case LEVEL_201:
+			levelIndex = 2;
+			break;
+		case LEVEL_202:
+			levelIndex = 3;
+			break;
+		case LEVEL_301:
+			levelIndex = 4;
+			break;
+		default:
+			break;
+		}
+		levelDropDown.setSelectedIndex(levelIndex);
+		setSpecific();
+	}
+
+	protected void createAll() {
 		setBackground(Color.WHITE);
 		setLayout(new GridBagLayout());
 
@@ -74,7 +111,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		createAnswerFields();
 
 		saveChangesButton = new JButton();
-		saveChangesButton.setText("Save Changes");
+		saveChangesButton.setText("Save Question");
 		saveChangesButton.addActionListener(EventHandler.create(
 				ActionListener.class, this, "saveAction"));
 
@@ -82,33 +119,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		deleteQuestionButton.setText("Delete Question");
 		deleteQuestionButton.addActionListener(EventHandler.create(
 				ActionListener.class, this, "deleteAction"));
-	}
-
-	public AbstractViewEditPanel(EditExamContent previousPage,
-			AbstractQuestion question) {
-		this(previousPage);
-		this.question = question;
-		questionField.setText(question.getText());
-		switch (question.getLevel()) {
-		case LEVEL_101:
-			levelIndex = 0;
-			break;
-		case LEVEL_102:
-			levelIndex = 1;
-			break;
-		case LEVEL_201:
-			levelIndex = 2;
-			break;
-		case LEVEL_202:
-			levelIndex = 3;
-			break;
-		case LEVEL_301:
-			levelIndex = 4;
-			break;
-		default:
-			break;
-		}
-		
+		createSpecific();
 	}
 
 	/**
@@ -260,7 +271,11 @@ public abstract class AbstractViewEditPanel extends JPanel {
 					JOptionPane.PLAIN_MESSAGE, null);
 			if (n == 0) {
 				saveContent();
-				previousPage.saveEdit(question);
+				if (isEditing) {
+					previousPage.saveEdit();
+				} else {
+					previousPage.saveEdit(question);
+				}
 			}
 		}
 	}
@@ -274,13 +289,11 @@ public abstract class AbstractViewEditPanel extends JPanel {
 				"Delete Question?", JOptionPane.YES_NO_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null);
 		if (n == 0) {
-			// TODO isNewQuestion is set to true if a question object is passed
-			// as well
-			// if (isNewQuestion) {
-			previousPage.endEdit();
-			// } else {
-			// previousPage.deleteEdit(question);
-			// }
+			if (isEditing) {
+				previousPage.deleteEdit(question);
+			} else {
+				previousPage.endEdit();
+			}
 		}
 	}
 
@@ -295,5 +308,9 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	public abstract void numberOfAnswersAction();
 
 	public abstract boolean isSpecificFilledOut();
+
+	protected abstract void createSpecific();
+
+	protected abstract void setSpecific();
 
 }

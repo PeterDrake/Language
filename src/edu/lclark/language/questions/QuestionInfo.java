@@ -2,10 +2,12 @@ package edu.lclark.language.questions;
 
 import java.io.File;
 
+import edu.lclark.language.LanguagePlacementTest;
+
 public final class QuestionInfo {
 
-	public static final String PATH = System.getProperty("user.dir")
-			+ File.separator + "questions.xml";
+	public static String QUESTIONS_PATH = LanguagePlacementTest.PATH + "questions.xml";
+	public static final String TEST_QUESTIONS_PATH = LanguagePlacementTest.PATH + "testQuestions.xml";
 
 	public enum QuestionType {
 		MULTIPLE_CHOICE, FILL_IN_THE_BLANK, SHORT_ANSWER
@@ -53,7 +55,6 @@ public final class QuestionInfo {
 		question.setLevel(QuestionLevel.LEVEL_101);
 		return question;
 	}
-	
 	
 	// private constructor to prevent instantiation
 	private QuestionInfo() {

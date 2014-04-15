@@ -19,6 +19,7 @@ public class QuestionXMLReaderTests {
 	@Before
 	public void setUp(){
 		reader = new QuestionXMLReader();
+		reader.setTestPath();
 		reader.loadXMLFile();
 	}
 

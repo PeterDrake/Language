@@ -20,6 +20,7 @@ public class QuestionXMLWriterTests {
 	@Before
 	public void setUp() {
 		writer = new QuestionXMLWriter();
+		writer.setTestPath();
 
 		ArrayList<AbstractQuestion> questions = new ArrayList<AbstractQuestion>();
 		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
@@ -44,6 +45,6 @@ public class QuestionXMLWriterTests {
 	@Test
 	public void testWriteToFile() {
 		writer.writeToFile();
-		assertTrue(new File(writer.PATH).exists());
+		assertTrue(new File(writer.getPath()).exists());
 	}
 }
