@@ -51,7 +51,6 @@ public class QuestionDatabaseTests {
 	@Test
 	public void testGetQuestionSubset(){
 		ArrayList<AbstractQuestion> subset = database.getQuestionsOfLevel(VALID_LEVEL);
-		assertEquals(2, subset.size());
 		for(AbstractQuestion question: subset){
 			assertEquals(VALID_LEVEL, question.getLevel());
 		}

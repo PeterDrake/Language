@@ -5,6 +5,10 @@ import java.io.File;
 import edu.lclark.language.LanguagePlacementTest;
 
 public final class QuestionInfo {
+	
+	public static final int QUESTIONS_PER_LEVEL = 2;
+	public static final int QUESTIONS_CORRECT_TO_PASS = 2;
+	public static final int MAX_ITERATIONS = 7;
 
 	public static String QUESTIONS_PATH = LanguagePlacementTest.PATH + "questions.xml";
 	public static final String TEST_QUESTIONS_PATH = LanguagePlacementTest.PATH + "testQuestions.xml";
@@ -14,7 +18,44 @@ public final class QuestionInfo {
 	}
 
 	public enum QuestionLevel {
-		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301
+		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301;
+	}
+	
+	
+	public static QuestionLevel getNextLevel(QuestionLevel currentLevel){
+		if(currentLevel == QuestionLevel.LEVEL_101){
+			return QuestionLevel.LEVEL_102;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_102){
+			return QuestionLevel.LEVEL_201;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_201){
+			return QuestionLevel.LEVEL_202;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_202){
+			return QuestionLevel.LEVEL_301;
+		}
+		else{
+			return currentLevel;
+		}
+	}
+	
+	public static QuestionLevel getPreviousLevel(QuestionLevel currentLevel){
+		if(currentLevel == QuestionLevel.LEVEL_301){
+			return QuestionLevel.LEVEL_202;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_202){
+			return QuestionLevel.LEVEL_201;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_201){
+			return QuestionLevel.LEVEL_102;
+		}
+		else if(currentLevel == QuestionLevel.LEVEL_102){
+			return QuestionLevel.LEVEL_101;
+		}
+		else{
+			return currentLevel;
+		}
 	}
 	
 	public static QuestionLevel createQuestionLevel(String level){

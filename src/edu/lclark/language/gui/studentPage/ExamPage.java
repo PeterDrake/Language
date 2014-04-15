@@ -11,24 +11,24 @@ import javax.swing.JPanel;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.questions.QuestionInfo;
+import edu.lclark.language.studentLogic.ProgressTracker;
 
 public class ExamPage extends AbstractUserPage {
 
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
-	private QuestionFactory factory;
 	private JPanel testPagePanel;
-	
-	private int questionsAnswered;
-	private int questionsAnsweredCorrectly;
+	private ProgressTracker tracker;
+	private MainWindow windowCopy;
 
 	public ExamPage(MainWindow main) {
 		super(main);
-		factory = new QuestionFactory();
-
+		windowCopy = main;
+		tracker = new ProgressTracker();
 		submitButton = new JButton("Submit");
 		testPagePanel = new JPanel();
-		questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+		questionPanel = tracker.getFirstQuestionPanel();
 
 		GridBagLayout layout = new GridBagLayout();
 		testPagePanel.setLayout(layout);
@@ -47,25 +47,36 @@ public class ExamPage extends AbstractUserPage {
 
 	}
 
-    public void refresh() {
-        //TODO Write refresh method for refresh button
-    }
+	public void refresh() {
+		// TODO Write refresh method for refresh button
+	}
 
 	private class SubmitAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			boolean correct = questionPanel.isCorrectAnswerSelected();
-			questionsAnswered++;
-			if(correct){
-				questionsAnsweredCorrectly++;
-			}
 			System.out.println(correct);
-			testPagePanel.remove(questionPanel);
-			questionPanel = factory.getNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
-			testPagePanel.add(questionPanel);
-			testPagePanel.repaint();
-			testPagePanel.revalidate();
+			tracker.updateTestProgress(correct);
+			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
+				StudentResultsPage srp = new StudentResultsPage(windowCopy,
+						tracker.getCurrentLevel());
+				windowCopy.switchPage(srp);
+			} else {
+
+				testPagePanel.remove(questionPanel);
+				try {
+					questionPanel = tracker.getNextQuestionPanel();
+				} catch (EmptyDatabaseException ex) {
+					StudentResultsPage srp = new StudentResultsPage(windowCopy,
+							tracker.getCurrentLevel());
+					windowCopy.switchPage(srp);
+					System.out.println("Out of Questions");
+				}
+				testPagePanel.add(questionPanel);
+				testPagePanel.repaint();
+				testPagePanel.revalidate();
+			}
 		}
 
 	}

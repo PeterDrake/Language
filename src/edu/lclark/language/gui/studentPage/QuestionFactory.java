@@ -20,7 +20,14 @@ public class QuestionFactory {
 	private ArrayList<AbstractQuestion> database;
 
 	public QuestionFactory() {
-		database = DatabaseGenerator.createExampleQuestions();
+		//database = DatabaseGenerator.createExampleQuestions();
+		database = DatabaseGenerator.createLargeDatabase();
+	}
+	
+	public void printDatabase(){
+		for (AbstractQuestion question:database){
+			System.out.print(question.getText() + ",");
+		}
 	}
 
 	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
@@ -39,6 +46,7 @@ public class QuestionFactory {
 		} else if (question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK) {
 			panel = new FillInTheBlankPanel((FillInTheBlankQuestion) question);
 		}
+		 
 		return panel;
 	}
 
@@ -68,9 +76,12 @@ public class QuestionFactory {
 		return question;
 	}
 
-	public AbstractQuestionPanel getNextQuestion(int questionsAnswered, int questionsAnsweredCorrectly) {
-		QuestionLevel level = getLevelForNextQuestion(questionsAnswered, questionsAnsweredCorrectly);
+	public AbstractQuestionPanel getNextQuestion(QuestionLevel level) throws EmptyDatabaseException {
 		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
+		if(question == null){
+			throw new EmptyDatabaseException();
+		}
+		
 		if(question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK){
 			return new FillInTheBlankPanel((FillInTheBlankQuestion)question);
 		}
@@ -83,10 +94,7 @@ public class QuestionFactory {
 		else{
 			return null;
 		}
-	}
-	
-	private QuestionLevel getLevelForNextQuestion(int questionsAnswered, int questionsAnsweredCorrectly){
-		return QuestionLevel.LEVEL_101;
+
 	}
 
 }

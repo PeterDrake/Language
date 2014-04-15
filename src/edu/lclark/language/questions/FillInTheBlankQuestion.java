@@ -10,37 +10,41 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 
 	/** The part of the question before the blank. */
 	private String before;
-	
+
 	/** The part of the question after the blank. */
 	private String after;
-	
-	/** The correct answer to this question. */
-	private String correctAnswer;
-	
+
 	/** Example of argument: "��D��nde _ el ba��o, por favor?" */
 	public FillInTheBlankQuestion() {
 		setQuestionType(QuestionType.FILL_IN_THE_BLANK);
 		setAnswers(new String[0]);
 	}
-	
-	public void setText(String text){
+
+	public void setText(String text) {
 		int blank = text.indexOf('_');
 		before = text.substring(0, blank);
-		// TODO Doesn't work when the question ends in "_" (with no characters after it)
-		after = text.substring(blank + 2, text.length());
+		if(blank == text.length() - 1){
+			after = "";
+		}else{
+			after = text.substring(blank + 2, text.length());
+		}
 		this.text = text;
 	}
 
-	/** Returns true if the answer is correct. */
-	public boolean isCorrectAnswer(String answer) {
-		return answer.trim().equals(correctAnswer);
+	public boolean isCorrectAnswer(String studentAnswer) {
+		studentAnswer= studentAnswer.trim();
+		for (int i = 0; i < getNumberOfCorrectAnswers(); i++) {
+			if (correctAnswers[i].equals(studentAnswer))
+				return true;
+		}
+		return false;
 	}
 
 	/** Returns a list of words before the blank. */
 	public List<String> getWordsBeforeBlank() {
 		String[] words = before.split(" ");
 		List<String> answer = new ArrayList<String>();
-		for(String w : words){
+		for (String w : words) {
 			answer.add(w + " ");
 		}
 		return answer;
@@ -49,7 +53,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	public List<String> getWordsAfterBlank() {
 		String[] words = after.split(" ");
 		List<String> answer = new ArrayList<String>();
-		for(String w : words){
+		for (String w : words) {
 			answer.add(w + " ");
 		}
 		return answer;
