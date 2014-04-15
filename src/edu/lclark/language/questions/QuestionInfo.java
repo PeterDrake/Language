@@ -6,6 +6,7 @@ public final class QuestionInfo {
 	
 	public static final int QUESTIONS_PER_LEVEL = 2;
 	public static final int QUESTIONS_CORRECT_TO_PASS = 2;
+	public static final int MAX_ITERATIONS = 7;
 
 	public static final String PATH = System.getProperty("user.dir")
 			+ File.separator + "questions.xml";
@@ -17,6 +18,7 @@ public final class QuestionInfo {
 	public enum QuestionLevel {
 		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301;
 	}
+	
 	
 	public static QuestionLevel getNextLevel(QuestionLevel currentLevel){
 		if(currentLevel == QuestionLevel.LEVEL_101){

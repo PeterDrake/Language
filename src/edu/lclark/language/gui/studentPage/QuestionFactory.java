@@ -46,6 +46,7 @@ public class QuestionFactory {
 		} else if (question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK) {
 			panel = new FillInTheBlankPanel((FillInTheBlankQuestion) question);
 		}
+		 
 		return panel;
 	}
 

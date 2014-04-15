@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.studentLogic.ProgressTracker;
 
 public class ExamPage extends AbstractUserPage {
@@ -20,7 +21,6 @@ public class ExamPage extends AbstractUserPage {
 	private JPanel testPagePanel;
 	private ProgressTracker tracker;
 	private MainWindow windowCopy;
-
 
 	public ExamPage(MainWindow main) {
 		super(main);
@@ -47,9 +47,9 @@ public class ExamPage extends AbstractUserPage {
 
 	}
 
-    public void refresh() {
-        //TODO Write refresh method for refresh button
-    }
+	public void refresh() {
+		// TODO Write refresh method for refresh button
+	}
 
 	private class SubmitAction implements ActionListener {
 
@@ -58,17 +58,25 @@ public class ExamPage extends AbstractUserPage {
 			boolean correct = questionPanel.isCorrectAnswerSelected();
 			System.out.println(correct);
 			tracker.updateTestProgress(correct);
-			testPagePanel.remove(questionPanel);
-			try{
-				questionPanel = tracker.getNextQuestionPanel();
-			} catch (EmptyDatabaseException ex){
-				StudentResultsPage srp = new StudentResultsPage(windowCopy, tracker.getCurrentLevel());
+			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
+				StudentResultsPage srp = new StudentResultsPage(windowCopy,
+						tracker.getCurrentLevel());
 				windowCopy.switchPage(srp);
-				System.out.println("Out of Questions");
+			} else {
+
+				testPagePanel.remove(questionPanel);
+				try {
+					questionPanel = tracker.getNextQuestionPanel();
+				} catch (EmptyDatabaseException ex) {
+					StudentResultsPage srp = new StudentResultsPage(windowCopy,
+							tracker.getCurrentLevel());
+					windowCopy.switchPage(srp);
+					System.out.println("Out of Questions");
+				}
+				testPagePanel.add(questionPanel);
+				testPagePanel.repaint();
+				testPagePanel.revalidate();
 			}
-			testPagePanel.add(questionPanel);
-			testPagePanel.repaint();
-			testPagePanel.revalidate();
 		}
 
 	}
