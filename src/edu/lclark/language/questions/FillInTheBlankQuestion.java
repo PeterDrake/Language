@@ -22,7 +22,11 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	public void setText(String text) {
 		int blank = text.indexOf('_');
 		before = text.substring(0, blank);
-		after = text.substring(blank + 2, text.length());
+		if(blank == text.length() - 1){
+			after = "";
+		}else{
+			after = text.substring(blank + 2, text.length());
+		}
 		this.text = text;
 	}
 

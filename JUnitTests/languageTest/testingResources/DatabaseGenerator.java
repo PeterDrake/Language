@@ -50,5 +50,6 @@ public class DatabaseGenerator {
 		questions.add(ex3);
 		
 		return questions;
+
 	}
 }
