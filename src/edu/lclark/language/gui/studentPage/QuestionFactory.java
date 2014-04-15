@@ -20,7 +20,8 @@ public class QuestionFactory {
 	private ArrayList<AbstractQuestion> database;
 
 	public QuestionFactory() {
-		database = DatabaseGenerator.createExampleQuestions();
+		//database = DatabaseGenerator.createExampleQuestions();
+		database = DatabaseGenerator.createLargeDatabase();
 	}
 	
 	public void printDatabase(){

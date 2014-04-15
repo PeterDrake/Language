@@ -19,18 +19,27 @@ public class ProgressTracker {
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;
 	}
+	
+	public int getQuestionsAnswered(){
+		return questionsAnswered;
+	}
+	
+	public int getQuestionsCorrect(){
+		return questionsCorrect;
+	}
 
+	/**Called when a question has just been answered. Updates the test status based on whether the answer was correct. */
 	public void updateTestProgress(boolean correct) {
-		questionsAnswered = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
-				: questionsAnswered + 1;
 		System.out.println(questionsAnswered);
 		if (correct) {
-			questionsCorrect = QuestionInfo.QUESTIONS_CORRECT_TO_PASS == questionsCorrect ? 1
+			questionsCorrect = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
 					: questionsCorrect + 1;
 		} else {
-			questionsCorrect = QuestionInfo.QUESTIONS_CORRECT_TO_PASS == questionsCorrect ? 0
+			questionsCorrect = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 0
 					: questionsCorrect;
 		}
+		questionsAnswered = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
+				: questionsAnswered + 1;
 	}
 
 	public AbstractQuestionPanel getNextQuestionPanel()
@@ -52,7 +61,7 @@ public class ProgressTracker {
 		return panel;
 	}
 
-	private QuestionLevel getLevelForNextQuestion() {
+	public QuestionLevel getLevelForNextQuestion() {
 		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL && questionsCorrect == QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getNextLevel(currentLevel);
 			return currentLevel;

@@ -50,6 +50,50 @@ public class DatabaseGenerator {
 		questions.add(ex3);
 		
 		return questions;
-
+	}
+	
+	public static ArrayList<AbstractQuestion> createLargeDatabase(){
+		ArrayList<AbstractQuestion> database = new ArrayList<AbstractQuestion>();
+		for(int i = 0; i < 100; i++){
+			MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+			question.setLevel(QuestionLevel.LEVEL_101);
+			question.setText(QuestionLevel.LEVEL_101.toString() + " #" + i);
+			question.setAnswers(new String[]{"True", "False"});
+			question.setCorrectAnswers(new String[] {"True"});
+			database.add(question);
+		}
+		for(int i = 0; i < 100; i++){
+			MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+			question.setLevel(QuestionLevel.LEVEL_102);
+			question.setText(QuestionLevel.LEVEL_102.toString() + " #" + i);
+			question.setAnswers(new String[]{"True", "False"});
+			question.setCorrectAnswers(new String[] {"True"});
+			database.add(question);
+		}
+		for(int i = 0; i < 100; i++){
+			MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+			question.setLevel(QuestionLevel.LEVEL_201);
+			question.setText(QuestionLevel.LEVEL_201.toString() + " #" + i);
+			question.setAnswers(new String[]{"True", "False"});
+			question.setCorrectAnswers(new String[] {"True"});
+			database.add(question);
+		}
+		for(int i = 0; i < 100; i++){
+			MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+			question.setLevel(QuestionLevel.LEVEL_202);
+			question.setText(QuestionLevel.LEVEL_202.toString() + " #" + i);
+			question.setAnswers(new String[]{"True", "False"});
+			question.setCorrectAnswers(new String[] {"True"});
+			database.add(question);
+		}
+		for(int i = 0; i < 100; i++){
+			MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+			question.setLevel(QuestionLevel.LEVEL_301);
+			question.setText(QuestionLevel.LEVEL_301.toString() + " #" + i);
+			question.setAnswers(new String[]{"True", "False"});
+			question.setCorrectAnswers(new String[] {"True"});
+			database.add(question);
+		}
+		return database;
 	}
 }
