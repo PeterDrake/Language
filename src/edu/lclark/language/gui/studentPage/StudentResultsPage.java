@@ -56,6 +56,16 @@ public class StudentResultsPage extends AbstractUserPage {
 		JLabel studentTestInformation = new JLabel(text);
 		
 		JLabel instructions = new JLabel(conditionalText);
+		
+		// test for accents 
+		
+		JTextArea area = new JTextArea("test", 2, 2);
+		content.add(area,
+				new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
+		
+		
+		
+		//accents end test
 
 		// add components to GridBagLayout
 		content.add(endText,
