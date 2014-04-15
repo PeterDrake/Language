@@ -24,34 +24,51 @@ import java.util.Scanner;
 public class StudentResultsPage extends AbstractUserPage {
 
 	QuestionLevel level;
+	String conditionalText;
 
-	public StudentResultsPage(MainWindow main) {
+	public StudentResultsPage(MainWindow main, QuestionLevel studentLevel) {
 		super(main);
-
+		level = studentLevel;
+		String levelText = level.toString().substring(6);
+		
 		JPanel content = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		content.setLayout(layout);
 		content.setBackground(Color.WHITE);
 		title.setText("Student Results");
 
-		String text = "You have placed into Español " + level + "!";
-
 		JButton exitTestButton = new JButton("Exit Test");
 		exitTestButton.addActionListener(new BeginButtonAction());
-
+		
+		String text = "You have placed into Español " + levelText + "!";
+		
+		if(Integer.parseInt(levelText) == 202 || Integer.parseInt(levelText) == 301){
+			conditionalText = "You have placed high enough to fulfill your foriegn language requirement. "
+					+ "As a result, you will have to take this test again.";
+			
+		} else {
+			conditionalText = "You are now cleared to register in Spanish " + levelText + " or lower.";
+			
+		}
+		
 		JLabel endText = new JLabel(
 				"You have now completed the Spanish Foreign Language Exam");
 		JLabel studentTestInformation = new JLabel(text);
+		
+		JLabel instructions = new JLabel(conditionalText);
 
 		// add components to GridBagLayout
 		content.add(endText,
-				new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.CENTER));
+				new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.SOUTH));
+		
+		content.add(instructions, 
+				new GBC(0, 3).setWeight(50, 50).setAnchor(GBC.NORTH));
 
 		content.add(exitTestButton,
-				new GBC(0, 3).setWeight(0, 0).setAnchor(GBC.CENTER));
+				new GBC(0, 4).setWeight(50, 50).setAnchor(GBC.CENTER));
 
-		content.add(studentTestInformation, new GBC(0, 2).setWeight(100, 100)
-				.setAnchor(GBC.NORTH));
+		content.add(studentTestInformation, new GBC(0, 2).setWeight(50, 50)
+				.setAnchor(GBC.CENTER));
 
 		JScrollPane sPane = new JScrollPane(content);
 		sPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -75,10 +92,6 @@ public class StudentResultsPage extends AbstractUserPage {
 	public void refresh() {
 		// TODO Auto-generated method stub
 
-	}
-
-	public void setLevel(QuestionLevel currentLevel) {
-		level = currentLevel;
 	}
 
 }

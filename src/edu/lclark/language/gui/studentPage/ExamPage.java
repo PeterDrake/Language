@@ -62,9 +62,8 @@ public class ExamPage extends AbstractUserPage {
 			try{
 				questionPanel = tracker.getNextQuestionPanel();
 			} catch (EmptyDatabaseException ex){
-				StudentResultsPage srp = new StudentResultsPage(windowCopy);
-				srp.setLevel(tracker.getCurrentLevel());
-				windowCopy.switchPage(new StudentResultsPage(windowCopy));
+				StudentResultsPage srp = new StudentResultsPage(windowCopy, tracker.getCurrentLevel());
+				windowCopy.switchPage(srp);
 				System.out.println("Out of Questions");
 			}
 			testPagePanel.add(questionPanel);
