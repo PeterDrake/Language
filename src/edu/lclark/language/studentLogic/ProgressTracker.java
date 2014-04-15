@@ -72,4 +72,8 @@ public class ProgressTracker {
 			return currentLevel;
 		}
 	}
+
+	public QuestionLevel getCurrentLevel() {
+		return currentLevel;
+	}
 }
