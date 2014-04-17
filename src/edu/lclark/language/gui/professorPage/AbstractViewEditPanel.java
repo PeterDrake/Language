@@ -242,7 +242,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	 */
 	protected void saveContent() {
 		question.setText(questionField.getText());
-		QuestionLevel level = (QuestionLevel) levelDropDown.getSelectedItem();
+		QuestionLevel level = QuestionInfo.getLevelAtIndex(levelIndex);
 		question.setLevel(level);
 		for (Topic topic : level.getTopics()) {
 			if (topic.equals(topicDropDown.getSelectedItem())) {
