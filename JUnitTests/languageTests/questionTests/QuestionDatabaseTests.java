@@ -20,6 +20,7 @@ public class QuestionDatabaseTests {
 	@Before
 	public void setUp() {
 		database = new QuestionDatabase();
+		database.setTestPath();
 		questions = DatabaseGenerator.createExampleQuestions();
 		database.setQuestions(questions);
 	}
@@ -50,7 +51,6 @@ public class QuestionDatabaseTests {
 	@Test
 	public void testGetQuestionSubset(){
 		ArrayList<AbstractQuestion> subset = database.getQuestionsOfLevel(VALID_LEVEL);
-		assertEquals(2, subset.size());
 		for(AbstractQuestion question: subset){
 			assertEquals(VALID_LEVEL, question.getLevel());
 		}
@@ -67,6 +67,7 @@ public class QuestionDatabaseTests {
 	public void testAddQuestion(){
 		ShortAnswerQuestion shortAnswer = new ShortAnswerQuestion();
 		shortAnswer.setLevel(VALID_LEVEL);
+		shortAnswer.setTopic(VALID_LEVEL.getTopics()[0]);
 		shortAnswer.setText("What do the Ents look like?");
 		shortAnswer.setAnswers(new String[0]);
 		shortAnswer.setCorrectAnswers(new String[] { "Trees!" });

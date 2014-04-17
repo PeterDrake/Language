@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
+import edu.lclark.language.questions.QuestionInfo.Topic;
 import edu.lclark.language.questions.QuestionXMLReader;
 
 public class QuestionXMLReaderTests {
@@ -19,6 +20,7 @@ public class QuestionXMLReaderTests {
 	@Before
 	public void setUp(){
 		reader = new QuestionXMLReader();
+		reader.setTestPath();
 		reader.loadXMLFile();
 	}
 
@@ -61,6 +63,7 @@ public class QuestionXMLReaderTests {
 		questionElement.setAttribute("type", QuestionType.MULTIPLE_CHOICE.toString());
 		questionElement.setAttribute("level",
 				QuestionLevel.LEVEL_101.toString());
+		questionElement.setAttribute("topic", Topic.GUSTAR.toString());
 
 		Element questionText = doc.createElement("text");
 		questionText

@@ -11,13 +11,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import edu.lclark.language.LanguagePlacementTest;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
 public class QuestionXMLReader {
 
 	private DocumentBuilderFactory docFactory;
 	private DocumentBuilder docBuilder;
-
+	private String path; 
 	public File xmlFile;
 
 	public QuestionXMLReader() {
@@ -27,10 +28,15 @@ public class QuestionXMLReader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		path = QuestionInfo.QUESTIONS_PATH;
+	}
+	
+	public void setTestPath(){
+		path = QuestionInfo.TEST_QUESTIONS_PATH;
 	}
 
 	public File loadXMLFile() {
-		xmlFile = new File(QuestionInfo.PATH);
+		xmlFile = new File(path);
 		if (!xmlFile.exists()) {
 			try {
 				xmlFile.createNewFile();
@@ -77,6 +83,7 @@ public class QuestionXMLReader {
 		
 		String type = questionNode.getAttributes().getNamedItem("type").getNodeValue();
 		String level = questionNode.getAttributes().getNamedItem("level").getNodeValue();
+		String topic = questionNode.getAttributes().getNamedItem("topic").getNodeValue();
 		
 		AbstractQuestion newQuestion = null;
 		
@@ -90,6 +97,7 @@ public class QuestionXMLReader {
 		//can add more if statements as we add more question types
 		
 		newQuestion.setLevel(QuestionInfo.createQuestionLevel(level));
+		newQuestion.setTopic(QuestionInfo.createQuestionTopic(topic));
 		
 		NodeList questionNodeList = questionNode.getChildNodes();
 		newQuestion.setText(questionNodeList.item(0).getTextContent());

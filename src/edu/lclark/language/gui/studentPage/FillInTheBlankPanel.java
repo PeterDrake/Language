@@ -2,6 +2,7 @@ package edu.lclark.language.gui.studentPage;
 
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -23,6 +24,7 @@ public class FillInTheBlankPanel extends AbstractQuestionPanel {
 
 	public FillInTheBlankPanel(FillInTheBlankQuestion question) {
 		super(question);
+		setBackground(Color.WHITE);
 		
 		for (String w : question.getWordsBeforeBlank()) {
 			add(new JLabel(w));

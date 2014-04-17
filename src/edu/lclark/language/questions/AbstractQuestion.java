@@ -7,6 +7,7 @@ public abstract class AbstractQuestion {
 	protected int questionId;
 	protected QuestionType type;
 	protected QuestionLevel level;
+	protected Topic topic;
 	protected String text;
 	protected String[] answers;
 	protected String[] correctAnswers;
@@ -16,6 +17,12 @@ public abstract class AbstractQuestion {
 	}
 	public void setLevel(QuestionLevel level){
 		this.level = level;
+	}
+	public void setTopic(Topic topic){
+		this.topic = topic;
+	}
+	public Topic getTopic(){
+		return topic;
 	}
 	public String getText(){
 		return text;

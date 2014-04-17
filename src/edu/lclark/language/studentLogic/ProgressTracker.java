@@ -12,6 +12,7 @@ public class ProgressTracker {
 	private int questionsAnswered;
 	private int questionsCorrect;
 	private QuestionLevel currentLevel;
+	private int iterationsComplete;
 
 	public ProgressTracker() {
 		factory = new QuestionFactory();
@@ -19,17 +20,33 @@ public class ProgressTracker {
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;
 	}
+	
+	public int getQuestionsAnswered(){
+		return questionsAnswered;
+	}
+	
+	public int getQuestionsCorrect(){
+		return questionsCorrect;
+	}
+	
+	public int getIterationsComplete(){
+		return iterationsComplete;
+	}
 
+	/**Called when a question has just been answered. Updates the test status based on whether the answer was correct. */
 	public void updateTestProgress(boolean correct) {
-		questionsAnswered = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
-				: questionsAnswered + 1;
 		System.out.println(questionsAnswered);
 		if (correct) {
-			questionsCorrect = QuestionInfo.QUESTIONS_CORRECT_TO_PASS == questionsCorrect ? 1
+			questionsCorrect = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
 					: questionsCorrect + 1;
 		} else {
-			questionsCorrect = QuestionInfo.QUESTIONS_CORRECT_TO_PASS == questionsCorrect ? 0
+			questionsCorrect = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 0
 					: questionsCorrect;
+		}
+		questionsAnswered = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
+				: questionsAnswered + 1;
+		if(questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL){
+			iterationsComplete++;
 		}
 	}
 
@@ -52,7 +69,8 @@ public class ProgressTracker {
 		return panel;
 	}
 
-	private QuestionLevel getLevelForNextQuestion() {
+	public QuestionLevel getLevelForNextQuestion() {
+		
 		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL && questionsCorrect == QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getNextLevel(currentLevel);
 			return currentLevel;
