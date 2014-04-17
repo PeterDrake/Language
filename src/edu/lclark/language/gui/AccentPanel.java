@@ -8,16 +8,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class AccentPanel extends JPanel{
 	
 	JButton[] buttons = new JButton[16];
-	JTextArea text;
+	MainWindow main;
 
 
-public AccentPanel(JTextArea area){
-	text = area;
+public AccentPanel(MainWindow main){
+	this.main = main;
+	
 	JButton a = new JButton("á");
 	JButton e = new JButton("é");
 	JButton i = new JButton("í");
@@ -59,7 +61,8 @@ public AccentPanel(JTextArea area){
 	
 
 			for (int j = 0; j < buttons.length; j++) {
-				buttons[j].addActionListener(new PrintAction());
+				buttons[j].addActionListener(new PrintAction(buttons[j].getText()));
+				buttons[j].setFocusable(false);
 				add(buttons[j]);
 			}
 	
@@ -67,59 +70,15 @@ public AccentPanel(JTextArea area){
 
 private class PrintAction implements ActionListener {
 
+	String s;
+	public PrintAction(String text) {
+		s  = text;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource() == buttons[0]){
-			text.append("á");
-		}
-		if (e.getSource() == buttons[1]){
-			text.append("é");
-		}
-		if (e.getSource() == buttons[2]){
-			text.append("í");
-		}
-		if (e.getSource() == buttons[3]){
-			text.append("ó");
-		}
-		if (e.getSource() == buttons[4]){
-			text.append("ú");
-		}
-		if (e.getSource() == buttons[5]){
-			text.append("ü");
-		}
-		if (e.getSource() == buttons[6]){
-			text.append("ñ");
-		}
-		if (e.getSource() == buttons[7]){
-			text.append("¡");
-		}
-		if (e.getSource() == buttons[8]){
-			text.append("Á");
-		}
-		if (e.getSource() == buttons[9]){
-			text.append("É");
-		}
-		if (e.getSource() == buttons[10]){
-			text.append("Í");
-		}
-		if (e.getSource() == buttons[11]){
-			text.append("Ó");
-		}
-		if (e.getSource() == buttons[12]){
-			text.append("Ú");
-		}
-		if (e.getSource() == buttons[13]){
-			text.append("Ü");
-		}
-		if (e.getSource() == buttons[14]){
-			text.append("Ñ");
-		}
-		if (e.getSource() == buttons[15]){
-			text.append("¿");
-		}
-			
-		
+		JTextField f =(JTextField)(main.getFocusOwner());
+		f.setText(f.getText() + (((JButton) e.getSource()).getText()));
 		
 	}
 
