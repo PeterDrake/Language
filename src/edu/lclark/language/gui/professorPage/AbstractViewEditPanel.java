@@ -20,6 +20,7 @@ import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import edu.lclark.language.questions.QuestionInfo.Topic;
 
 public abstract class AbstractViewEditPanel extends JPanel {
 
@@ -30,8 +31,10 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	protected AbstractQuestion question;
 	protected int numberOfAnswers;
 	protected int levelIndex;
+	protected int topicIndex;
 	protected JComboBox numberOfAnswersDropDown;
 	protected JComboBox levelDropDown;
+	protected JComboBox topicDropDown;
 	protected JTextArea[] answerFields;
 	protected JLabel[] answerLabels;
 	protected JLabel title;
@@ -39,6 +42,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	protected JTextArea questionField;
 	protected JLabel chooseNumber;
 	protected JLabel levelType;
+	protected JPanel buttonPanel;
 	protected JButton saveChangesButton;
 	protected JButton deleteQuestionButton;
 	protected boolean isEditing;
@@ -59,26 +63,15 @@ public abstract class AbstractViewEditPanel extends JPanel {
 
 	protected void setAll() {
 		questionField.setText(question.getText());
-		switch (question.getLevel()) {
-		case LEVEL_101:
-			levelIndex = 0;
-			break;
-		case LEVEL_102:
-			levelIndex = 1;
-			break;
-		case LEVEL_201:
-			levelIndex = 2;
-			break;
-		case LEVEL_202:
-			levelIndex = 3;
-			break;
-		case LEVEL_301:
-			levelIndex = 4;
-			break;
-		default:
-			break;
-		}
+		levelIndex = question.getLevel().getIndex();
 		levelDropDown.setSelectedIndex(levelIndex);
+		createTopics(); 
+		for (Topic topic : ((QuestionLevel)levelDropDown.getSelectedItem()).getTopics()) {
+			if (topic.equals(question.getTopic())) {
+				topicDropDown.setSelectedItem(topic);
+				System.out.println(topic);
+			}
+		}
 		setSpecific();
 	}
 
@@ -103,11 +96,12 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		levelType = new JLabel();
 		levelType.setText("Choose Level: ");
 
-		String[] levelArray = { "101", "102", "201", "202", "301" };
-		levelDropDown = new JComboBox(levelArray);
+		levelDropDown = new JComboBox(QuestionLevel.values());
 		levelDropDown.setSelectedIndex(levelIndex);
 		levelDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "levelAction"));
+
+		createTopics();
 
 		createAnswerFields();
 
@@ -120,6 +114,11 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		deleteQuestionButton.setText("Delete Question");
 		deleteQuestionButton.addActionListener(EventHandler.create(
 				ActionListener.class, this, "deleteAction"));
+		buttonPanel = new JPanel();
+		buttonPanel.setBackground(Color.WHITE);
+		buttonPanel.add(deleteQuestionButton);
+		buttonPanel.add(saveChangesButton);
+
 		createSpecific();
 	}
 
@@ -137,19 +136,37 @@ public abstract class AbstractViewEditPanel extends JPanel {
 
 		add(chooseNumber, new GBC(0, 2).setAnchor(GBC.EAST));
 		add(levelType, new GBC(0, 10).setAnchor(GBC.EAST));
-		add(numberOfAnswersDropDown, new GBC(1, 2));
+		add(numberOfAnswersDropDown, new GBC(1, 2).setAnchor(GBC.WEST));
 
-		add(levelDropDown, new GBC(1, 10));
+		add(levelDropDown, new GBC(1, 10).setAnchor(GBC.WEST));
+		add(topicDropDown, new GBC(1, 11).setAnchor(GBC.WEST));
 
 		showAnswerFields(numberOfAnswers);
 
-		add(saveChangesButton, new GBC(2, 11).setAnchor(GBC.CENTER));
-		add(deleteQuestionButton, new GBC(2, 11).setAnchor(GBC.WEST));
+		add(buttonPanel, new GBC(2, 12).setAnchor(GBC.EAST));
 
 		drawSpecific();
 
 		revalidate();
 		repaint();
+	}
+
+	/**
+	 * Creates the topic ComboBox based on level
+	 */
+	protected void createTopics() {
+		Topic[] topics = new Topic[0];
+		for (QuestionLevel level : QuestionLevel.values()) {
+			if (level.getIndex() == levelIndex) {
+				topics = level.getTopics();
+				break;
+			}
+		}
+		topicIndex = 0;
+		topicDropDown = new JComboBox(topics);
+		topicDropDown.setSelectedIndex(topicIndex);
+		topicDropDown.addActionListener(EventHandler.create(
+				ActionListener.class, this, "topicAction"));
 	}
 
 	/**
@@ -225,10 +242,11 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	 */
 	protected void saveContent() {
 		question.setText(questionField.getText());
-
-		for (QuestionLevel level : QuestionLevel.values()) {
-			if (levelIndex == level.getIndex()) {
-				question.setLevel(level);
+		QuestionLevel level = (QuestionLevel) levelDropDown.getSelectedItem();
+		question.setLevel(level);
+		for (Topic topic : level.getTopics()) {
+			if (topic.equals(topicDropDown.getSelectedItem())) {
+				question.setTopic(topic);
 			}
 		}
 		saveSpecificContent();
@@ -238,7 +256,18 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	 * Changes the level when levelDropDown is changed
 	 */
 	public void levelAction() {
-		levelIndex = levelDropDown.getSelectedIndex();
+		if (levelIndex != levelDropDown.getSelectedIndex()) {
+			levelIndex = levelDropDown.getSelectedIndex();
+			createTopics();
+			updatePage();
+		}
+	}
+
+	/**
+	 * Changes the topic when topicDropDown is changed
+	 */
+	public void topicAction() {
+		topicIndex = topicDropDown.getSelectedIndex();
 	}
 
 	/**
