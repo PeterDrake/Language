@@ -35,7 +35,6 @@ public class QuestionFactory {
 	}
 
 	public AbstractQuestionPanel getQuestionPanelOfLevel(QuestionLevel level) {
-		// TODO: Implement this method!
 		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
 		AbstractQuestionPanel panel = null;
 		
