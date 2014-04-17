@@ -20,6 +20,7 @@ public class QuestionDatabaseTests {
 	@Before
 	public void setUp() {
 		database = new QuestionDatabase();
+		database.setTestPath();
 		questions = DatabaseGenerator.createExampleQuestions();
 		database.setQuestions(questions);
 	}

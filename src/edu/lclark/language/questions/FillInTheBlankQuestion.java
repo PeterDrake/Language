@@ -17,6 +17,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 	/** Example of argument: "��D��nde _ el ba��o, por favor?" */
 	public FillInTheBlankQuestion() {
 		setQuestionType(QuestionType.FILL_IN_THE_BLANK);
+		setAnswers(new String[0]);
 	}
 
 	public void setText(String text) {

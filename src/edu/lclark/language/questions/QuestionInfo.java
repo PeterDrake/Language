@@ -2,14 +2,16 @@ package edu.lclark.language.questions;
 
 import java.io.File;
 
+import edu.lclark.language.LanguagePlacementTest;
+
 public final class QuestionInfo {
 
 	public static final int QUESTIONS_PER_LEVEL = 2;
 	public static final int QUESTIONS_CORRECT_TO_PASS = 2;
 	public static final int MAX_ITERATIONS = 7;
 
-	public static final String PATH = System.getProperty("user.dir")
-			+ File.separator + "questions.xml";
+	public static String QUESTIONS_PATH = LanguagePlacementTest.PATH + "questions.xml";
+	public static final String TEST_QUESTIONS_PATH = LanguagePlacementTest.PATH + "testQuestions.xml";
 
 	public enum QuestionType {
 		MULTIPLE_CHOICE, FILL_IN_THE_BLANK, SHORT_ANSWER

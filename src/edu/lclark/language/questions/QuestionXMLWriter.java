@@ -13,13 +13,11 @@ import org.w3c.dom.*;
 
 public class QuestionXMLWriter {
 	
-	public static final String PATH = System.getProperty("user.dir") + File.separator + "questions.xml";
-	
 	private DocumentBuilderFactory docFactory;
 	private DocumentBuilder docBuilder;
 	private TransformerFactory transformerFactory;
 	private Transformer transformer;
-	
+	private String path; 
 
 	private Document document;
 
@@ -32,6 +30,15 @@ public class QuestionXMLWriter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		path = QuestionInfo.QUESTIONS_PATH;
+	}
+	
+	public void setTestPath(){
+		path = QuestionInfo.TEST_QUESTIONS_PATH;
+	}
+	
+	public String getPath(){
+		return path; 
 	}
 
 	public void createNewDocument() {
@@ -90,7 +97,7 @@ public class QuestionXMLWriter {
 	public void writeToFile() {
 		try {
 			DOMSource source = new DOMSource(document);
-			StreamResult result = new StreamResult(new File(PATH));
+			StreamResult result = new StreamResult(new File(path));
 			//transformer.setOutputProperty(OutputKeys.INDENT,"yes");
 			transformer.transform(source, result);
 		} catch (Exception e) {
