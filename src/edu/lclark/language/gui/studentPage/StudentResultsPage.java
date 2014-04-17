@@ -59,9 +59,9 @@ public class StudentResultsPage extends AbstractUserPage {
 		
 		// test for accents 
 		
-		JTextArea area = new JTextArea("test", 2, 2);
-		content.add(area,
-				new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
+		//JTextArea area = new JTextArea("test", 2, 2);
+		//content.add(area,
+			//	new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
 		
 		
 		

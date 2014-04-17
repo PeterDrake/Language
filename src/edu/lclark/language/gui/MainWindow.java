@@ -35,7 +35,7 @@ public class MainWindow extends JFrame {
 		repaint();
 		revalidate();
 	}
-
+	
 	/**
 	 * Switches the page to the Login page.
 	 */
