@@ -29,7 +29,7 @@ public class StudentResultsPage extends AbstractUserPage {
 	public StudentResultsPage(MainWindow main, QuestionLevel studentLevel) {
 		super(main);
 		level = studentLevel;
-		String levelText = level.toString().substring(6);
+		String levelText = level.toString();
 		
 		JPanel content = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
