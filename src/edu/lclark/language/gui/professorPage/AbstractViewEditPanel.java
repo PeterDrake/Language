@@ -19,6 +19,7 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 public abstract class AbstractViewEditPanel extends JPanel {
 
@@ -225,24 +226,10 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	protected void saveContent() {
 		question.setText(questionField.getText());
 
-		switch (levelIndex) {
-		case 0:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_101);
-			break;
-		case 1:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_102);
-			break;
-		case 2:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_201);
-			break;
-		case 3:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_202);
-			break;
-		case 4:
-			question.setLevel(QuestionInfo.QuestionLevel.LEVEL_301);
-			break;
-		default:
-			break;
+		for (QuestionLevel level : QuestionLevel.values()) {
+			if (levelIndex == level.getIndex()) {
+				question.setLevel(level);
+			}
 		}
 		saveSpecificContent();
 	}

@@ -19,6 +19,10 @@ public final class QuestionInfo {
 
 	public enum QuestionLevel {
 		LEVEL_101, LEVEL_102, LEVEL_201, LEVEL_202, LEVEL_301;
+		
+		public int getIndex(){
+			return 0;
+		}
 	}
 	
 	
