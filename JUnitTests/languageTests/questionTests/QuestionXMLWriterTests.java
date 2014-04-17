@@ -39,7 +39,7 @@ public class QuestionXMLWriterTests {
 	@Test
 	public void testWriteQuestionMultipleChoice() {
 		assertEquals(
-				"<test><question level=\"LEVEL_102\" topic=\"Direct/Indirect Objects\" type=\"MULTIPLE_CHOICE\"><text>Which of these words does not belong?</text><answers quantity=\"4\"><answer>el queso</answer><answer>la manzana</answer><answer>la zanahoria</answer><answer>el jabón</answer></answers><correct-answers quantity=\"1\"><correct>el jabón</correct></correct-answers></question></test>",
+				"<test><question level=\"102\" topic=\"Direct/Indirect Objects\" type=\"MULTIPLE_CHOICE\"><text>Which of these words does not belong?</text><answers quantity=\"4\"><answer>el queso</answer><answer>la manzana</answer><answer>la zanahoria</answer><answer>el jabón</answer></answers><correct-answers quantity=\"1\"><correct>el jabón</correct></correct-answers></question></test>",
 				writer.getDocumentString());
 	}
 
