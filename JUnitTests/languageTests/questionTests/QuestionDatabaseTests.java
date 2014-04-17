@@ -67,6 +67,7 @@ public class QuestionDatabaseTests {
 	public void testAddQuestion(){
 		ShortAnswerQuestion shortAnswer = new ShortAnswerQuestion();
 		shortAnswer.setLevel(VALID_LEVEL);
+		shortAnswer.setTopic(VALID_LEVEL.getTopics()[0]);
 		shortAnswer.setText("What do the Ents look like?");
 		shortAnswer.setAnswers(new String[0]);
 		shortAnswer.setCorrectAnswers(new String[] { "Trees!" });
