@@ -18,18 +18,20 @@ public final class QuestionInfo {
 	}
 
 	public enum QuestionLevel {
-		LEVEL_101(0, new Topic[] { Topic.SER_ESTAR, Topic.GUSTAR, Topic.SABER_CONOCER }),
-		LEVEL_102(1, new Topic[] { Topic.DO_IO, Topic.CONJ_PRET_IRREG, Topic.COMPARATIVE_SUPERLATIVE}),
-		LEVEL_201(2, new Topic[] { Topic.POSSESSIVES, Topic.REFLEXIVES }),
-		LEVEL_202(3,new Topic[] { Topic.CONJ_PRES_IRREG, Topic.CONJ_PRET_REG }),
-		LEVEL_301(4,new Topic[] { Topic.CONJ_PRES_REG, Topic.DO_IO });
+		LEVEL_101(0, "101", new Topic[] { Topic.SER_ESTAR, Topic.GUSTAR, Topic.SABER_CONOCER }),
+		LEVEL_102(1, "102", new Topic[] { Topic.DO_IO, Topic.CONJ_PRET_IRREG, Topic.COMPARATIVE_SUPERLATIVE}),
+		LEVEL_201(2, "201", new Topic[] { Topic.POSSESSIVES, Topic.REFLEXIVES }),
+		LEVEL_202(3, "202", new Topic[] { Topic.CONJ_PRES_IRREG, Topic.CONJ_PRET_REG }),
+		LEVEL_301(4, "301", new Topic[] { Topic.CONJ_PRES_REG, Topic.DO_IO });
 
 		private Topic[] topics;
 		private int index;
-
-		private QuestionLevel(int index, Topic[] topics) {
+		private String name;
+		
+		private QuestionLevel(int index, String name, Topic[] topics) {
 			this.topics = topics;
 			this.index = index;
+			this.name = name; 
 		}
 		
 		public int getIndex(){
@@ -39,6 +41,12 @@ public final class QuestionInfo {
 		public Topic[] getTopics() {
 			return topics;
 		}
+
+		
+		public String toString() {
+			return name;
+		}
+		
 	}
 
 	public enum Topic {
@@ -63,6 +71,15 @@ public final class QuestionInfo {
 		public String toString() {
 			return name;
 		}
+	}
+
+	public static QuestionLevel getLevelAtIndex(int i){
+		for (QuestionLevel level : QuestionLevel.values()) {
+			if (i == level.getIndex()) {
+				return level;
+			}
+		}
+		return null; 
 	}
 	
 	public static Topic createQuestionTopic(String name){
