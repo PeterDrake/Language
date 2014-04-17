@@ -1,5 +1,6 @@
 package edu.lclark.language.gui.studentPage;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.lclark.language.gui.AbstractUserPage;
+import edu.lclark.language.gui.AccentPanel;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.studentLogic.ProgressTracker;
@@ -36,6 +38,9 @@ public class ExamPage extends AbstractUserPage {
 		testPagePanel.setSize(1500, 1500);
 		testPagePanel
 				.add(submitButton, new GBC(750, 1500).setAnchor(GBC.SOUTH));
+		
+		AccentPanel accentPanel = new AccentPanel(main);
+		add(accentPanel, BorderLayout.WEST);
 
 		title.setText("Language Placement Test");
 		testPagePanel.add(questionPanel);
