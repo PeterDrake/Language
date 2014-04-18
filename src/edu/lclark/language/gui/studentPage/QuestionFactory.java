@@ -21,7 +21,8 @@ public class QuestionFactory {
 
 	public QuestionFactory() {
 		//database = DatabaseGenerator.createExampleQuestions();
-		database = DatabaseGenerator.createLargeDatabase();
+		//database = DatabaseGenerator.createLargeDatabase();
+		database = LanguagePlacementTest.questionDatabase.getAllQuestions();
 	}
 	
 	public void printDatabase(){
