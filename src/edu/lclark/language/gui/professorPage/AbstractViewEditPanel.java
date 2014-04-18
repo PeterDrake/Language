@@ -69,7 +69,6 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		for (Topic topic : ((QuestionLevel)levelDropDown.getSelectedItem()).getTopics()) {
 			if (topic.equals(question.getTopic())) {
 				topicDropDown.setSelectedItem(topic);
-				System.out.println(topic);
 			}
 		}
 		setSpecific();
