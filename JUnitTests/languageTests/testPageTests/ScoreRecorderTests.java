@@ -17,15 +17,15 @@ public class ScoreRecorderTests {
 		recorder = new ScoreRecorder();
 
 	}
-
+	
 	@Test
-	public void testRecordQuestion() {
-		FillInTheBlankQuestion blank = DatabaseGenerator.getSampleFillInTheBlank();
-		recorder.addQuestion(blank, "Hola");
-		assertEquals(1, recorder.getQuestionsToWrite().size());
-		assertEquals("Question: " + blank.getText() + ", Student Answer: Hola", recorder
-				.getQuestionsToWrite().get(0));
-
+	public void testWriteToFile(){
+		
+	}
+	
+	@Test
+	public void testReadFile(){
+		
 	}
 
 }

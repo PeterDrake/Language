@@ -7,12 +7,15 @@ import java.awt.Toolkit;
 import javax.swing.*;
 
 import edu.lclark.language.gui.loginPage.LoginPage;
+import edu.lclark.language.gui.loginPage.Session;
 
 /**
  *The main JFrame of the program.
  */
 public class MainWindow extends JFrame {
 
+	private Session session;
+	
 	public MainWindow() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize((int) (0.75 * screenSize.width),
@@ -40,6 +43,11 @@ public class MainWindow extends JFrame {
 	 * Switches the page to the Login page.
 	 */
 	public void logout() {
+		session = null;
 		switchPage(new LoginPage(this));
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
 	}
 }

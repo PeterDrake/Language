@@ -7,5 +7,4 @@ public class ScoreRecorder {
 	public void recordScore(boolean isCorrect, AbstractQuestion question){
 
 	}
-
 }
