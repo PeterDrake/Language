@@ -31,6 +31,11 @@ public class QuestionXMLReader {
         }
         path = QuestionInfo.QUESTIONS_PATH;
     }
+    
+    public static boolean verifyDatabase(File database){
+    	//TODO this method needs to make sure that the file is a valid question database
+    	return false;
+    }
 
     public void setTestPath() {
         path = QuestionInfo.TEST_QUESTIONS_PATH;

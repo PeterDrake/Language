@@ -26,7 +26,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 		if(blank == text.length() - 1){
 			after = "";
 		}else{
-			after = text.substring(blank + 2, text.length());
+			after = text.substring(blank + 1, text.length());
 		}
 		this.text = text;
 	}
