@@ -3,6 +3,7 @@ package edu.lclark.language.studentLogic;
 import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
 import edu.lclark.language.gui.studentPage.EmptyDatabaseException;
 import edu.lclark.language.gui.studentPage.QuestionFactory;
+import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
@@ -13,9 +14,11 @@ public class ProgressTracker {
 	private int questionsCorrect;
 	private QuestionLevel currentLevel;
 	private int iterationsComplete;
+	private ScoreWriter recorder;
 
 	public ProgressTracker() {
 		factory = new QuestionFactory();
+		recorder = new ScoreWriter();
 		questionsAnswered = 0;
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;

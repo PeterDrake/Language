@@ -70,7 +70,7 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 	protected void drawSpecific() {
 		add(chooseCorrect, new GBC(0, 9).setAnchor(GBC.EAST));
 		setCorrectAnswerDropDown();
-		add(correctAnswerDropDown, new GBC(1, 9));
+		add(correctAnswerDropDown, new GBC(1, 9).setAnchor(GBC.WEST));
 
 	}
 
