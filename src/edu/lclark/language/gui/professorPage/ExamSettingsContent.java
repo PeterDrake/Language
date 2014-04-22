@@ -8,14 +8,14 @@ import javax.swing.*;
 /**
  * The content panel for displaying profile information on the professor page
  */
-public class ProfileContent extends AbstractContent{
+public class ExamSettingsContent extends AbstractContent{
 	
 	private String name;
 	
 	/**
 	 * @param name the username of the professor
 	 */
-	public ProfileContent(String name){
+	public ExamSettingsContent(String name){
 		
 //		setLayout(new BorderLayout());
 		
