@@ -7,24 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.lclark.language.questions.FillInTheBlankQuestion;
-import edu.lclark.language.studentLogic.ScoreRecorder;
+import edu.lclark.language.studentLogic.ScoreWriter;
 
-public class ScoreRecorderTests {
-	private ScoreRecorder recorder;
+public class ScoreWriterTests {
+	private ScoreWriter writer;
 
 	@Before
 	public void setUp() throws Exception {
-		recorder = new ScoreRecorder();
-
-	}
-	
-	@Test
-	public void testWriteToFile(){
+		writer = new ScoreWriter();
 		
 	}
 	
 	@Test
-	public void testReadFile(){
+	public void testWriteToFile(){
 		
 	}
 
