@@ -33,7 +33,6 @@ public class ScoreWriterTests {
 	public void testWriteToFile(){
 		writer.writeToFile(score);
 		assertTrue(new File(LanguagePlacementTest.PATH + "Student Results" + "/Connor Lay 06_04_1995.txt").exists());
-	
 	}
 
 }
