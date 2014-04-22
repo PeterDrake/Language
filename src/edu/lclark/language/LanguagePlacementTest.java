@@ -17,7 +17,7 @@ public class LanguagePlacementTest {
             System.getProperty("user.dir") + File.separator;
 
     public static void main(String[] args) {
-        File f = new File(PATH);
+        File f = new File(PATH + "HTMLs");
         if (!f.exists()) {
             f.mkdirs();
         }

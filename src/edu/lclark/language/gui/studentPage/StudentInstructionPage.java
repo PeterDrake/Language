@@ -29,32 +29,12 @@ public class StudentInstructionPage extends AbstractUserPage {
         content.setBackground(Color.WHITE);
         title.setText("Test Instructions");
 
-//        String text = "Welcome to the test! Please read these instructions:\n\n";
-
-        URL htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/instructions.html");
-        if (htmlUrl == null) {
-            htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/instructions.html");
-            System.out.println("NOOOOO");
-        }
-        //Reads sample test information
-//        try {
-//            Scanner in = new Scanner(ClassLoader.getSystemResourceAsStream("edu/lclark/language/resources/latin.txt"));
-//            while (in.hasNext()) {
-//                text += in.nextLine() + "\n";
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error: File not found!");
-//        }
+        URL htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/student_instructions.html");
 
 
         // construct components
         JButton beginTestButton = new JButton("Begin Test");
         beginTestButton.addActionListener(new BeginButtonAction());
-
-        // Should use JTextPane for HTML formatted text
-//        JTextArea testInformation = new JTextArea(text, 33, 66);
-//        testInformation.setLineWrap(true);
-//        testInformation.setEditable(false);
 
         JTextPane testInstructions = new JTextPane();
         try {
@@ -70,10 +50,8 @@ public class StudentInstructionPage extends AbstractUserPage {
                 .setAnchor(GBC.CENTER));
         content.add(logo, new GBC(0, 1).setWeight(100, 100).setAnchor(GBC.CENTER));
 
-//        content.add(testInformation,
-//                new GBC(0, 2).setWeight(100, 100).setAnchor(GBC.CENTER));
         content.add(testInstructions,
-                new GBC(0, 2).setWeight(100, 100).setAnchor(GBC.CENTER));
+                new GBC(0, 2).setWeight(100, 100).setAnchor(GBC.NORTH));
 
         JScrollPane sPane = new JScrollPane(content);
         sPane.getVerticalScrollBar().setUnitIncrement(16);
