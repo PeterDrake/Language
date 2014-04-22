@@ -35,7 +35,7 @@ public class ProfessorPage extends AbstractUserPage {
 		
 		super(main);
 		
-		title.setText("Profile");
+		title.setText("Exam Settings");
 		
 		contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
@@ -47,7 +47,7 @@ public class ProfessorPage extends AbstractUserPage {
 		buttonGroup = new ButtonGroup();
 		contentPanel.add(buttonPanel, BorderLayout.NORTH);
 
-		profileButton = new JToggleButton("Profile", true);
+		profileButton = new JToggleButton("Exam Settings", true);
 		profileButton.addActionListener(new DisplayProfileAction());
 		buttonGroup.add(profileButton);
 		buttonPanel.add(profileButton);
@@ -62,11 +62,7 @@ public class ProfessorPage extends AbstractUserPage {
 		buttonGroup.add(viewResultsButton);
 		buttonPanel.add(viewResultsButton);
 
-		//This will be removed eventually
-		setUserName("Professor");
-
-        //TODO Fix switching views using toggle buttons (doesn't update correctly)
-		currentContent = new ExamSettingsContent(name);
+		currentContent = new ExamSettingsContent();
 		contentPanel.add(currentContent, BorderLayout.CENTER);
 	}
 
@@ -91,9 +87,9 @@ public class ProfessorPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			contentPanel.remove(currentContent);
-			currentContent = new ExamSettingsContent(name);
+			currentContent = new ExamSettingsContent();
 			contentPanel.add(currentContent, BorderLayout.CENTER);
-			title.setText("Profile");
+			title.setText("Exam Settings");
 		}
 	}
 

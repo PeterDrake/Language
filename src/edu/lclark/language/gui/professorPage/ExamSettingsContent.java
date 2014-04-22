@@ -15,18 +15,10 @@ public class ExamSettingsContent extends AbstractContent{
 	/**
 	 * @param name the username of the professor
 	 */
-	public ExamSettingsContent(String name){
+	public ExamSettingsContent(){
 		
-//		setLayout(new BorderLayout());
-		
-		this.name = name;
-		
-//		JLabel message = new JLabel("Welcome, " + name + "!");
-//		message.setFont(new Font("SansSerif", Font.PLAIN, 18));
-//		add(message, BorderLayout.NORTH);
-
-        JLabel message = new JLabel("This will be a page to view information about your profile.");
-        add(message);
+		JButton exportButton = new JButton("Import Database");
+		add(exportButton);
 
     }
 
