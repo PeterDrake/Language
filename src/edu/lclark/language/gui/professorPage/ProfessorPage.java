@@ -66,7 +66,7 @@ public class ProfessorPage extends AbstractUserPage {
 		setUserName("Professor");
 
         //TODO Fix switching views using toggle buttons (doesn't update correctly)
-		currentContent = new ProfileContent(name);
+		currentContent = new ExamSettingsContent(name);
 		contentPanel.add(currentContent, BorderLayout.CENTER);
 	}
 
@@ -91,7 +91,7 @@ public class ProfessorPage extends AbstractUserPage {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			contentPanel.remove(currentContent);
-			currentContent = new ProfileContent(name);
+			currentContent = new ExamSettingsContent(name);
 			contentPanel.add(currentContent, BorderLayout.CENTER);
 			title.setText("Profile");
 		}
