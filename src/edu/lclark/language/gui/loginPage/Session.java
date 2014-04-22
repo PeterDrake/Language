@@ -19,6 +19,6 @@ public class Session {
 	}
 	
 	public String getDate(){
-		return new SimpleDateFormat("MM/dd/yyyy").format(date);
+		return new SimpleDateFormat("MM_dd_yyyy").format(date);
 	}
 }

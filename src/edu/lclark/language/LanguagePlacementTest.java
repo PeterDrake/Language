@@ -21,6 +21,10 @@ public class LanguagePlacementTest {
         if (!f.exists()) {
             f.mkdirs();
         }
+        f = new File(PATH + "Student Results");
+        if (!f.exists()) {
+            f.mkdirs();
+        }
 //        f = new File(PATH + "questions.xml");
 //        if (!f.isFile()) {
 ////            f.createNewFile();

@@ -1,6 +1,9 @@
 package languageTests.testPageTests;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+
 import languageTest.testingResources.DatabaseGenerator;
 
 import org.junit.Before;
@@ -20,8 +23,8 @@ public class ScoreWriterTests {
 	public void setUp() throws Exception {
 		writer = new ScoreWriter();
 		score = new StudentScore();
-		score.setUser("Connor");
-		score.setDate("06/04/1995");
+		score.setUser("Connor Lay");
+		score.setDate("06_04_1995");
 		score.setLevel(QuestionLevel.LEVEL_102);
 		
 	}
@@ -29,6 +32,8 @@ public class ScoreWriterTests {
 	@Test
 	public void testWriteToFile(){
 		writer.writeToFile(score);
+		assertTrue(new File(LanguagePlacementTest.PATH + "Student Results" + "/Connor Lay 06_04_1995.txt").exists());
+	
 	}
 
 }
