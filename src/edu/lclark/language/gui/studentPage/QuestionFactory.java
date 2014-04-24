@@ -20,19 +20,17 @@ public class QuestionFactory {
 	private ArrayList<AbstractQuestion> database;
 
 	public QuestionFactory() {
-		//database = DatabaseGenerator.createExampleQuestions();
-		//database = DatabaseGenerator.createLargeDatabase();
 		database = LanguagePlacementTest.questionDatabase.getAllQuestions();
 	}
 	
+	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
+		database = questions;
+	}
+
 	public void printDatabase(){
 		for (AbstractQuestion question:database){
 			System.out.print(question.getText() + ",");
 		}
-	}
-
-	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
-		database = questions;
 	}
 
 	public AbstractQuestionPanel getQuestionPanelOfLevel(QuestionLevel level) {

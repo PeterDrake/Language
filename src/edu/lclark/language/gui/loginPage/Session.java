@@ -11,7 +11,6 @@ public class Session {
 	public Session(String user){
 		date = new Date();
 		this.user = user;
-		System.out.println(user + " " + getDate());
 	}
 	
 	public String getUser(){

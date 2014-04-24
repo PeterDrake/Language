@@ -15,6 +15,8 @@ public class LanguagePlacementTest {
     public static final String PATH = (System.getProperty("os.name").startsWith("Mac")) ?
             System.getProperty("user.home") + "/Library/Application Support/Foreign Language Exam/" :
             System.getProperty("user.dir") + File.separator;
+    
+    public static final String SCORE_PATH = PATH + "Student Results";
 
     public static void main(String[] args) {
         File f = new File(PATH + "HTMLs");

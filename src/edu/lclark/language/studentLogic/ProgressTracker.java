@@ -1,5 +1,7 @@
 package edu.lclark.language.studentLogic;
 
+import java.util.ArrayList;
+
 import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
 import edu.lclark.language.gui.studentPage.EmptyDatabaseException;
 import edu.lclark.language.gui.studentPage.QuestionFactory;
@@ -17,26 +19,33 @@ public class ProgressTracker {
 	private ScoreWriter recorder;
 
 	public ProgressTracker() {
-		factory = new QuestionFactory();
+		this(new QuestionFactory());
+	}
+
+	public ProgressTracker(QuestionFactory factory) {
+		this.factory = factory;
 		recorder = new ScoreWriter();
 		questionsAnswered = 0;
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;
 	}
-	
-	public int getQuestionsAnswered(){
+
+	public int getQuestionsAnswered() {
 		return questionsAnswered;
 	}
-	
-	public int getQuestionsCorrect(){
+
+	public int getQuestionsCorrect() {
 		return questionsCorrect;
 	}
-	
-	public int getIterationsComplete(){
+
+	public int getIterationsComplete() {
 		return iterationsComplete;
 	}
 
-	/**Called when a question has just been answered. Updates the test status based on whether the answer was correct. */
+	/**
+	 * Called when a question has just been answered. Updates the test status
+	 * based on whether the answer was correct.
+	 */
 	public void updateTestProgress(boolean correct) {
 		System.out.println(questionsAnswered);
 		if (correct) {
@@ -48,7 +57,7 @@ public class ProgressTracker {
 		}
 		questionsAnswered = QuestionInfo.QUESTIONS_PER_LEVEL == questionsAnswered ? 1
 				: questionsAnswered + 1;
-		if(questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL){
+		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL) {
 			iterationsComplete++;
 		}
 	}
@@ -73,11 +82,13 @@ public class ProgressTracker {
 	}
 
 	public QuestionLevel getLevelForNextQuestion() {
-		
-		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL && questionsCorrect == QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
+
+		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL
+				&& questionsCorrect == QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getNextLevel(currentLevel);
 			return currentLevel;
-		} else if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL && questionsCorrect < QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
+		} else if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL
+				&& questionsCorrect < QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getPreviousLevel(currentLevel);
 			return currentLevel;
 		} else {

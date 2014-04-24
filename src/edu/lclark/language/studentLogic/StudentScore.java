@@ -13,9 +13,11 @@ public class StudentScore {
 		user = session.getUser();
 		date = session.getDate();
 	}
-	
-	public StudentScore() {
-		
+
+	public StudentScore(String user, String date, QuestionLevel level) {
+		this.user = user;
+		this.date = date;
+		this.level = level;
 	}
 
 	public void setLevel(QuestionLevel level){
@@ -33,13 +35,9 @@ public class StudentScore {
 	public QuestionLevel getLevel(){
 		return level;
 	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
+	
+	public String toString(){
+		return user + " " + date + " " + level.toString();
 	}
 	
 }

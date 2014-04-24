@@ -18,7 +18,8 @@ public class DatabaseGenerator {
 		multipleChoice.setLevel(QuestionLevel.LEVEL_101);
 		multipleChoice.setTopic(Topic.COMPARATIVE_SUPERLATIVE);
 		multipleChoice.setText("Who is the best Lord of the Rings character?");
-		multipleChoice.setAnswers(new String[] { "Frodo", "Sam", "Gandalf", "Aragorn" });
+		multipleChoice.setAnswers(new String[] { "Frodo", "Sam", "Gandalf",
+				"Aragorn" });
 		multipleChoice.setCorrectAnswers(new String[] { "Sam" });
 		questions.add(multipleChoice);
 
