@@ -66,7 +66,7 @@ public class ExamPage extends AbstractUserPage {
 			tracker.updateTestProgress(correct);
 			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
 				StudentResultsPage srp = new StudentResultsPage(window,
-						tracker.getCurrentLevel());
+						tracker.getPlacementLevel());
 				window.switchPage(srp);
 			} else {
 
@@ -75,7 +75,7 @@ public class ExamPage extends AbstractUserPage {
 					questionPanel = tracker.getNextQuestionPanel();
 				} catch (EmptyDatabaseException ex) {
 					StudentResultsPage srp = new StudentResultsPage(window,
-							tracker.getCurrentLevel());
+							tracker.getPlacementLevel());
 					window.switchPage(srp);
 					System.out.println("Out of Questions");
 				}

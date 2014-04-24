@@ -2,6 +2,7 @@ package edu.lclark.language.gui.professorPage;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.QuestionXMLReader;
 
@@ -25,11 +26,14 @@ import edu.lclark.language.questions.QuestionXMLReader;
  */
 public class ExamSettingsContent extends AbstractContent {
 
-	private File database;	
+	private File database;
 	private JFileChooser fileChooser;
 	private JComponent parent = this;
+	private QuestionXMLReader reader;
 
 	public ExamSettingsContent() {
+
+		reader = new QuestionXMLReader();
 
 		setLayout(new GridBagLayout());
 
@@ -39,7 +43,18 @@ public class ExamSettingsContent extends AbstractContent {
 		JButton exportButton = new JButton("Export");
 		exportButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				fileChooser = new JFileChooser();
+				int returnVal = fileChooser.showSaveDialog(parent);
+				if (returnVal == fileChooser.APPROVE_OPTION) {
+					File destination = fileChooser.getSelectedFile();
+					try {
+						Files.copy(Paths.get(LanguagePlacementExam.PATH + "questions.xml"),
+								destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+						System.exit(0);
+					}
+				}
 			}
 		});
 		add(exportButton, new GBC(2, 1));
@@ -50,11 +65,14 @@ public class ExamSettingsContent extends AbstractContent {
 				fileChooser = new JFileChooser();
 				fileChooser.setFileFilter(new FileNameExtensionFilter("XML Files", "xml"));
 				int returnVal = fileChooser.showOpenDialog(parent);
-				if(returnVal == fileChooser.APPROVE_OPTION){
+				if (returnVal == fileChooser.APPROVE_OPTION) {
 					database = fileChooser.getSelectedFile();
-					if(QuestionXMLReader.verifyDatabase(database)){
+					if (reader.verifyDatabase(database)) {
 						try {
-							Files.copy(database.toPath(), Paths.get(LanguagePlacementTest.PATH + "questions.xml"), StandardCopyOption.REPLACE_EXISTING);
+							Files.copy(database.toPath(),
+									Paths.get(LanguagePlacementExam.PATH + "questions.xml"),
+									StandardCopyOption.REPLACE_EXISTING);
+							LanguagePlacementExam.questionDatabase.reloadDatabase();
 						} catch (IOException e1) {
 							e1.printStackTrace();
 							System.exit(0);
@@ -69,7 +87,7 @@ public class ExamSettingsContent extends AbstractContent {
 		editHtmlButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Desktop.getDesktop().open(new File(LanguagePlacementTest.PATH + "HTMLs"));
+					Desktop.getDesktop().open(new File(LanguagePlacementExam.PATH + "HTMLs"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 					System.exit(0);
@@ -77,6 +95,25 @@ public class ExamSettingsContent extends AbstractContent {
 			}
 		});
 		add(editHtmlButton, new GBC(1, 2));
+		
+		JLabel questionsPerLevel = new JLabel("Questions per Level");
+		add(questionsPerLevel, new GBC(0,3));
+		
+		JTextField numberOfQuestions = new JTextField(3);
+		add(numberOfQuestions, new GBC(1,3));
+		
+		JLabel questionsToAdvance = new JLabel("Correct Answers to Advance Level");
+		add(questionsToAdvance, new GBC(0,4));
+		
+		JTextField numberToAdvance = new JTextField(3);
+		add(numberToAdvance, new GBC(1,4));
+		
+		JLabel maxIterations = new JLabel("Maximum Iterations");
+		add(maxIterations, new GBC(0,4));
+		
+		JTextField numberOfIterations = new JTextField(3);
+		add(numberOfIterations, new GBC(1,4));
 
 	}
+
 }

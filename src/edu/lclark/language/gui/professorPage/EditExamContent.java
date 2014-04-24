@@ -1,6 +1,6 @@
 package edu.lclark.language.gui.professorPage;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
@@ -43,7 +43,7 @@ public class EditExamContent extends AbstractContent {
 	private DefaultMutableTreeNode tree301;
 	
 	public EditExamContent() {
-		database = LanguagePlacementTest.questionDatabase;
+		database = LanguagePlacementExam.questionDatabase;
 
 		setLayout(new BorderLayout());
 

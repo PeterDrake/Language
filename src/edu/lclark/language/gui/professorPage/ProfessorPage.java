@@ -2,7 +2,7 @@ package edu.lclark.language.gui.professorPage;
 
 import javax.swing.*;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.questions.ProfessorDatabaseInterface;
