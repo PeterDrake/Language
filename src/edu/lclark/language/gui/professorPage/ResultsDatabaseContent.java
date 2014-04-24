@@ -71,6 +71,7 @@ public class ResultsDatabaseContent extends AbstractContent {
 		return fakeResults;
 
 	}
+	
 
 	private class ExportAction implements ActionListener {
 
@@ -82,6 +83,7 @@ public class ResultsDatabaseContent extends AbstractContent {
 		}
 
 	}
+
 
 }
 // tableModel idea implemented from
