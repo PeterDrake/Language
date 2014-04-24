@@ -9,7 +9,7 @@ import languageTest.testingResources.DatabaseGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.loginPage.Session;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
@@ -32,7 +32,7 @@ public class ScoreWriterTests {
 	@Test
 	public void testWriteToFile(){
 		writer.writeToFile(score);
-		assertTrue(new File(LanguagePlacementTest.PATH + "Student Results" + "/Connor Lay " + score.getDate() + ".txt").exists());
+		assertTrue(new File(LanguagePlacementExam.PATH + "Student Results" + "/Connor Lay " + score.getDate() + ".txt").exists());
 	}
 
 }

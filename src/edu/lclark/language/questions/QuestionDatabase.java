@@ -93,5 +93,10 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 	public void updateQuestions() {
 		writeQuestionsToFile();
 	}
-
+	
+	@Override
+	public void reloadDatabase()
+	{
+		loadQuestionsFromFile();
+	}
 }

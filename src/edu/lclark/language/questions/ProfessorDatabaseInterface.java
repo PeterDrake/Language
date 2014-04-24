@@ -10,5 +10,6 @@ public interface ProfessorDatabaseInterface {
 	public void deleteQuestion(AbstractQuestion question);
 	public void addQuestion(AbstractQuestion question);
 	public void updateQuestions();
+	public void reloadDatabase();
 
 }

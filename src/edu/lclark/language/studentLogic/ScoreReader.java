@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.QuestionInfo;
 public class ScoreReader {
 
@@ -20,7 +20,7 @@ public class ScoreReader {
 	
 	public ArrayList<StudentScore> getScores(){
 		ArrayList<StudentScore> scores = new ArrayList<StudentScore>();
-		File folder = new File(LanguagePlacementTest.SCORE_PATH);
+		File folder = new File(LanguagePlacementExam.SCORE_PATH);
 		for(File file: folder.listFiles()){
 			if (file.toString().endsWith(".txt")){
 				scores.add(readScoreFile(file));				

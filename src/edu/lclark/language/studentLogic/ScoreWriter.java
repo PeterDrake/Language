@@ -4,8 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-import edu.lclark.language.LanguagePlacementTest;
-import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.LanguagePlacementExam;
 
 public class ScoreWriter {
 
@@ -15,7 +14,7 @@ public class ScoreWriter {
 		String level = score.getLevel().toString();
 
 		try {
-			PrintWriter out = new PrintWriter(LanguagePlacementTest.PATH
+			PrintWriter out = new PrintWriter(LanguagePlacementExam.PATH
 					+ "Student Results/" + user + " " + date + ".txt", "UTF-8");
 			out.println(user);
 			out.println(date);

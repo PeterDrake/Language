@@ -61,7 +61,7 @@ public class ExamPage extends AbstractUserPage {
 	private void writeStudentScore(){
 		ScoreWriter writer = new ScoreWriter();
 		StudentScore score = new StudentScore(window.getSession());
-		score.setLevel(tracker.getCurrentLevel());
+		score.setLevel(tracker.getPlacementLevel());
 		writer.writeToFile(score);
 	}
 
@@ -75,7 +75,7 @@ public class ExamPage extends AbstractUserPage {
 			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
 				writeStudentScore();
 				StudentResultsPage srp = new StudentResultsPage(window,
-						tracker.getCurrentLevel());
+						tracker.getPlacementLevel());
 				window.switchPage(srp);
 			} else {
 				testPagePanel.remove(questionPanel);
@@ -84,7 +84,7 @@ public class ExamPage extends AbstractUserPage {
 				} catch (EmptyDatabaseException ex) {
 					writeStudentScore();
 					StudentResultsPage srp = new StudentResultsPage(window,
-							tracker.getCurrentLevel());
+							tracker.getPlacementLevel());
 					window.switchPage(srp);
 					System.out.println("Out of Questions");
 				}

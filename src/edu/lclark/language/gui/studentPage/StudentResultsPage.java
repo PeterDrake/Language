@@ -15,6 +15,8 @@ import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Scanner;
 
 /**
@@ -30,7 +32,7 @@ public class StudentResultsPage extends AbstractUserPage {
 		super(main);
 		level = studentLevel;
 		String levelText = level.toString();
-		
+
 		JPanel content = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		content.setLayout(layout);
@@ -39,53 +41,61 @@ public class StudentResultsPage extends AbstractUserPage {
 
 		JButton exitTestButton = new JButton("Exit Test");
 		exitTestButton.addActionListener(new BeginButtonAction());
-		
-		String text = "You have placed into Español " + levelText + "!";
-		
-		if(Integer.parseInt(levelText) == 202 || Integer.parseInt(levelText) == 301){
-			conditionalText = "You have placed high enough to fulfill your foriegn language requirement. "
-					+ "As a result, you will have to take this test again.";
-			
-		} else {
-			conditionalText = "You are now cleared to register in Spanish " + levelText + " or lower.";
-			
+
+		URL htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/result1.html");
+
+		if (Integer.parseInt(levelText) == 101) {
+			htmlUrl = ClassLoader
+					.getSystemResource("edu/lclark/language/resources/result1.html");
+		} else if (Integer.parseInt(levelText) == 102) {
+			htmlUrl = ClassLoader
+					.getSystemResource("edu/lclark/language/resources/result2.html");
+		} else if (Integer.parseInt(levelText) == 201) {
+			htmlUrl = ClassLoader
+					.getSystemResource("edu/lclark/language/resources/result3.html");
+		} else if (Integer.parseInt(levelText) == 202
+				|| Integer.parseInt(levelText) == 301) {
+
+			htmlUrl = ClassLoader
+					.getSystemResource("edu/lclark/language/resources/result4.html");
+
 		}
-		
-		JLabel endText = new JLabel(
-				"You have now completed the Spanish Foreign Language Exam");
-		JLabel studentTestInformation = new JLabel(text);
-		
-		JLabel instructions = new JLabel(conditionalText);
-		
-		// test for accents 
-		
-		//JTextArea area = new JTextArea("test", 2, 2);
-		//content.add(area,
-			//	new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
-		
-		
-		
-		//accents end test
+
+		JTextPane testResult = new JTextPane();
+		try {
+			testResult.setPage(htmlUrl);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+		content.add(testResult);
+		// test for accents
+
+		// JTextArea area = new JTextArea("test", 2, 2);
+		// content.add(area,
+		// new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
+
+		// accents end test
 
 		// add components to GridBagLayout
-		content.add(endText,
-				new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.SOUTH));
-		
-		content.add(instructions, 
-				new GBC(0, 3).setWeight(50, 50).setAnchor(GBC.NORTH));
+		// content.add(endText,
+		// new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.SOUTH));
+
+		// content.add(instructions,
+		// new GBC(0, 3).setWeight(50, 50).setAnchor(GBC.NORTH));
 
 		content.add(exitTestButton,
 				new GBC(0, 4).setWeight(50, 50).setAnchor(GBC.CENTER));
 
-		content.add(studentTestInformation, new GBC(0, 2).setWeight(50, 50)
-				.setAnchor(GBC.CENTER));
+		// content.add(studentTestInformation, new GBC(0, 2).setWeight(50, 50)
+		// .setAnchor(GBC.CENTER));
 
 		JScrollPane sPane = new JScrollPane(content);
 		sPane.getVerticalScrollBar().setUnitIncrement(16);
 		add(sPane, BorderLayout.CENTER);
 
 	}
-
 
 	private class BeginButtonAction implements ActionListener {
 

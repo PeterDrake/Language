@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
 import org.xml.sax.SAXException;
 
@@ -30,6 +30,32 @@ public class QuestionXMLReader {
             e.printStackTrace();
         }
         path = QuestionInfo.QUESTIONS_PATH;
+    }
+    
+    public boolean verifyDatabase(File database){
+    	//TODO this method needs to make sure that the file is a valid question database
+    	if(!database.isFile()){
+    		return false;
+    	}
+    	
+    	if(database.length() == 0){
+    		return false;
+    	}
+    	
+    	try {
+            Document doc = docBuilder.parse(database);
+        	NodeList questions = doc.getElementsByTagName("question");
+        	for (int i = 0; i < questions.getLength(); i++) {
+                NodeList nodes = questions.item(i).getChildNodes();
+                if(!nodes.item(0).getNodeName().equals("text") || !nodes.item(1).getNodeName().equals("answers") || !nodes.item(2).getNodeName().equals("correct-answers")){
+                	return false;
+                }
+            }
+        	return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    	return false;
     }
 
     public void setTestPath() {

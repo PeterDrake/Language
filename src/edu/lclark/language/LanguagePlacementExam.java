@@ -2,13 +2,19 @@ package edu.lclark.language;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import javax.swing.JFrame;
 
 import edu.lclark.language.gui.*;
 import edu.lclark.language.questions.QuestionDatabase;
 
-public class LanguagePlacementTest {
+public class LanguagePlacementExam {
 
     public static QuestionDatabase questionDatabase;
 
@@ -23,10 +29,14 @@ public class LanguagePlacementTest {
         if (!f.exists()) {
             f.mkdirs();
         }
+
         f = new File(PATH + "Student Results");
         if (!f.exists()) {
             f.mkdirs();
         }
+        copyFileIfNull("questions.xml", "questions.xml");
+        
+        copyFileIfNull("student_instructions.html", "instructions.html");
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -38,6 +48,19 @@ public class LanguagePlacementTest {
             }
         });
 
+    }
+    
+    private static void copyFileIfNull(String source, String destination){
+    	 File f = new File(PATH + destination);
+         try {
+ 			Path sourcePath = Paths.get(ClassLoader.getSystemResource("edu/lclark/language/resources/" + source).toURI());
+ 			if (!f.isFile()) {
+ 	        	Files.copy(sourcePath, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+ 	        }
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			System.exit(0);
+ 		}
     }
 
 }

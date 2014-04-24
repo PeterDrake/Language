@@ -2,7 +2,7 @@ package edu.lclark.language.questions;
 
 import java.io.File;
 
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 
 public final class QuestionInfo {
 
@@ -10,8 +10,8 @@ public final class QuestionInfo {
 	public static final int QUESTIONS_CORRECT_TO_PASS = 2;
 	public static final int MAX_ITERATIONS = 7;
 
-	public static String QUESTIONS_PATH = LanguagePlacementTest.PATH + "questions.xml";
-	public static final String TEST_QUESTIONS_PATH = LanguagePlacementTest.PATH + "testQuestions.xml";
+	public static String QUESTIONS_PATH = LanguagePlacementExam.PATH + "questions.xml";
+	public static final String TEST_QUESTIONS_PATH = LanguagePlacementExam.PATH + "testQuestions.xml";
 
 	public enum QuestionType {
 		MULTIPLE_CHOICE, FILL_IN_THE_BLANK, SHORT_ANSWER

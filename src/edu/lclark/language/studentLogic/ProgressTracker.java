@@ -15,6 +15,7 @@ public class ProgressTracker {
 	private int questionsAnswered;
 	private int questionsCorrect;
 	private QuestionLevel currentLevel;
+	private QuestionLevel placementLevel;
 	private int iterationsComplete;
 	private ScoreWriter recorder;
 
@@ -28,6 +29,7 @@ public class ProgressTracker {
 		questionsAnswered = 0;
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;
+		placementLevel = QuestionLevel.LEVEL_101;
 	}
 
 	public int getQuestionsAnswered() {
@@ -86,17 +88,23 @@ public class ProgressTracker {
 		if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL
 				&& questionsCorrect == QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getNextLevel(currentLevel);
+			if(currentLevel.getIndex() - placementLevel.getIndex() > 1){
+				placementLevel = QuestionInfo.getNextLevel(placementLevel);
+			}
 			return currentLevel;
 		} else if (questionsAnswered == QuestionInfo.QUESTIONS_PER_LEVEL
 				&& questionsCorrect < QuestionInfo.QUESTIONS_CORRECT_TO_PASS) {
 			currentLevel = QuestionInfo.getPreviousLevel(currentLevel);
+			if(currentLevel.getIndex() - placementLevel.getIndex() < -1){
+				placementLevel = QuestionInfo.getPreviousLevel(placementLevel);
+			}
 			return currentLevel;
 		} else {
 			return currentLevel;
 		}
 	}
 
-	public QuestionLevel getCurrentLevel() {
-		return currentLevel;
+	public QuestionLevel getPlacementLevel() {
+		return placementLevel;
 	}
 }
