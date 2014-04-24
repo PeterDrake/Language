@@ -52,4 +52,8 @@ public class MainWindow extends JFrame {
 	public void setSession(Session session) {
 		this.session = session;
 	}
+	
+	public Session getSession(){
+		return session;
+	}
 }

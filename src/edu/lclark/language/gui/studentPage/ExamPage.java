@@ -15,6 +15,8 @@ import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.studentLogic.ProgressTracker;
+import edu.lclark.language.studentLogic.ScoreWriter;
+import edu.lclark.language.studentLogic.StudentScore;
 
 public class ExamPage extends AbstractUserPage {
 
@@ -38,7 +40,7 @@ public class ExamPage extends AbstractUserPage {
 		testPagePanel.setSize(1500, 1500);
 		testPagePanel
 				.add(submitButton, new GBC(750, 1500).setAnchor(GBC.SOUTH));
-		
+
 		AccentPanel accentPanel = new AccentPanel(main);
 		add(accentPanel, BorderLayout.WEST);
 
@@ -55,6 +57,13 @@ public class ExamPage extends AbstractUserPage {
 	public void refresh() {
 		// TODO Write refresh method for refresh button
 	}
+	
+	private void writeStudentScore(){
+		ScoreWriter writer = new ScoreWriter();
+		StudentScore score = new StudentScore(window.getSession());
+		score.setLevel(tracker.getCurrentLevel());
+		writer.writeToFile(score);
+	}
 
 	private class SubmitAction implements ActionListener {
 
@@ -64,15 +73,16 @@ public class ExamPage extends AbstractUserPage {
 			System.out.println(correct);
 			tracker.updateTestProgress(correct);
 			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
+				writeStudentScore();
 				StudentResultsPage srp = new StudentResultsPage(window,
 						tracker.getCurrentLevel());
 				window.switchPage(srp);
 			} else {
-
 				testPagePanel.remove(questionPanel);
 				try {
 					questionPanel = tracker.getNextQuestionPanel();
 				} catch (EmptyDatabaseException ex) {
+					writeStudentScore();
 					StudentResultsPage srp = new StudentResultsPage(window,
 							tracker.getCurrentLevel());
 					window.switchPage(srp);

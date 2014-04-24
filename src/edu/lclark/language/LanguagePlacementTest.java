@@ -27,16 +27,6 @@ public class LanguagePlacementTest {
         if (!f.exists()) {
             f.mkdirs();
         }
-//        f = new File(PATH + "questions.xml");
-//        if (!f.isFile()) {
-////            f.createNewFile();
-//            //TODO copy file: (ClassLoader.getSystemResource("edu/lclark/language/resources/questionExamples.xml")
-//        }
-//        f = new File(PATH + "instructions.html");
-//        if (!f.isFile()) {
-////            f.createNewFile();
-//            //TODO copy file: (ClassLoader.getSystemResource("edu/lclark/language/resources/instructions.html")
-//        }
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
