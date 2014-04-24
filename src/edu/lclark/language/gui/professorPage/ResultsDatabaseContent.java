@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
-
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
-import edu.lclark.language.studentLogic.StudentResult;
+import edu.lclark.language.studentLogic.ScoreReader;
+import edu.lclark.language.studentLogic.StudentScore;
 
 /**
  * The content panel for viewing student results in the professor page
@@ -35,12 +35,12 @@ public class ResultsDatabaseContent extends AbstractContent {
 		final JTable table = new JTable(tableModel);
 		table.setPreferredScrollableViewportSize(new Dimension(800, 600));
 		table.setFillsViewportHeight(true);
-
-		ArrayList<StudentResult> fakeResults = createFakeResults();
-		for (int i = 0; i < fakeResults.size(); i++) {
-			String name = fakeResults.get(i).getName();
-			String date = fakeResults.get(i).getDate();
-			QuestionLevel level = fakeResults.get(i).getLevel();
+		ScoreReader reader = new ScoreReader();
+		ArrayList<StudentScore> scores = reader.getScores();
+		for (int i = 0; i < scores.size(); i++) {
+			String name = scores.get(i).getUser();
+			String date = scores.get(i).getDate();
+			QuestionLevel level = scores.get(i).getLevel();
 
 			Object[] data = { name, date, level };
 			tableModel.addRow(data);
@@ -55,20 +55,6 @@ public class ResultsDatabaseContent extends AbstractContent {
 		JButton exportButton = new JButton("Export");
 		exportButton.addActionListener(new ExportAction());
 		add(exportButton, new GBC(0, 1));
-
-	}
-
-	public ArrayList<StudentResult> createFakeResults() {
-		ArrayList<StudentResult> fakeResults = new ArrayList<StudentResult>();
-
-		for (int i = 0; i < 125; i++) {
-			StudentResult s = new StudentResult("Andi" + i, "" + i,
-					QuestionLevel.LEVEL_101);
-
-			fakeResults.add(s);
-		}
-
-		return fakeResults;
 
 	}
 	
