@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import languageTest.testingResources.DatabaseGenerator;
-import edu.lclark.language.LanguagePlacementTest;
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
@@ -22,7 +22,7 @@ public class QuestionFactory {
 	public QuestionFactory() {
 		//database = DatabaseGenerator.createExampleQuestions();
 		//database = DatabaseGenerator.createLargeDatabase();
-		database = LanguagePlacementTest.questionDatabase.getAllQuestions();
+		database = LanguagePlacementExam.questionDatabase.getAllQuestions();
 	}
 	
 	public void printDatabase(){
