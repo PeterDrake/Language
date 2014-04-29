@@ -35,8 +35,12 @@ public class LanguagePlacementExam {
             f.mkdirs();
         }
         copyFileIfNull("questionExamples.xml", "questions.xml");
-        
         copyFileIfNull("student_instructions.html", "instructions.html");
+        copyFileIfNull("results1.html", "results1.html");
+        copyFileIfNull("results2.html", "results2.html");
+        copyFileIfNull("results3.html", "results3.html");
+        copyFileIfNull("results4.html", "results4.html");
+        copyFileIfNull("settings.txt", "settings.txt");
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
