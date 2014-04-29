@@ -72,7 +72,7 @@ public class ExamPage extends AbstractUserPage {
 			boolean correct = questionPanel.isCorrectAnswerSelected();
 			System.out.println(correct);
 			tracker.updateTestProgress(correct);
-			if (tracker.getIterationsComplete() == QuestionInfo.MAX_ITERATIONS) {
+			if (tracker.getIterationsComplete() == tracker.getMaxIterations()) {
 				writeStudentScore();
 				StudentResultsPage srp = new StudentResultsPage(window,
 						tracker.getPlacementLevel());

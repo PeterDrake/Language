@@ -6,10 +6,6 @@ import edu.lclark.language.LanguagePlacementExam;
 
 public final class QuestionInfo {
 
-	public static final int QUESTIONS_PER_LEVEL = 2;
-	public static final int QUESTIONS_CORRECT_TO_PASS = 2;
-	public static final int MAX_ITERATIONS = 7;
-
 	public static String QUESTIONS_PATH = LanguagePlacementExam.PATH + "questions.xml";
 	public static final String TEST_QUESTIONS_PATH = LanguagePlacementExam.PATH + "testQuestions.xml";
 
