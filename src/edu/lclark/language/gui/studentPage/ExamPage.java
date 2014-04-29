@@ -62,7 +62,7 @@ public class ExamPage extends AbstractUserPage {
 		ScoreWriter writer = new ScoreWriter();
 		StudentScore score = new StudentScore(window.getSession());
 		score.setLevel(tracker.getPlacementLevel());
-		writer.writeToFile(score);
+		writer.writeScoreToFile(score);
 	}
 
 	private class SubmitAction implements ActionListener {

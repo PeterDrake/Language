@@ -6,26 +6,41 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.studentLogic.ScoreReader;
+import edu.lclark.language.studentLogic.ScoreWriter;
 import edu.lclark.language.studentLogic.StudentScore;
 
 /**
  * The content panel for viewing student results in the professor page
  */
+
 public class ResultsDatabaseContent extends AbstractContent {
 
+	private JFileChooser fileChooser;
+	private JComponent parent = this;
+	private ScoreReader reader;
+	private ScoreWriter writer;
+	
 	public ResultsDatabaseContent() {
 		setLayout(new GridBagLayout());
 		String[] columnNames = { "Name", "Date", "Level" };
@@ -35,7 +50,8 @@ public class ResultsDatabaseContent extends AbstractContent {
 		final JTable table = new JTable(tableModel);
 		table.setPreferredScrollableViewportSize(new Dimension(800, 600));
 		table.setFillsViewportHeight(true);
-		ScoreReader reader = new ScoreReader();
+		reader = new ScoreReader();
+		writer = new ScoreWriter();
 		ArrayList<StudentScore> scores = reader.getScores();
 		for (int i = 0; i < scores.size(); i++) {
 			String name = scores.get(i).getUser();
@@ -63,8 +79,13 @@ public class ResultsDatabaseContent extends AbstractContent {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO
-			System.out.println("helo ");
+			fileChooser = new JFileChooser();
+			int returnVal = fileChooser.showSaveDialog(parent);
+			if (returnVal == fileChooser.APPROVE_OPTION) {
+				File destination = fileChooser.getSelectedFile();
+				System.out.println(destination.toString());
+				writer.writeAllScoresToFile(reader.getScores(), destination.toString());
+			}
 
 		}
 

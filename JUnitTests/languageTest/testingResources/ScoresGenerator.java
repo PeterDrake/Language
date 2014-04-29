@@ -17,16 +17,16 @@ public class ScoresGenerator {
 		session = new Session("Connor Lay");
 		score = new StudentScore(session);
 		score.setLevel(QuestionLevel.LEVEL_201);
-		writer.writeToFile(score);
+		writer.writeScoreToFile(score);
 		
 		session = new Session("Maggie Dreyer");
 		score = new StudentScore(session);
 		score.setLevel(QuestionLevel.LEVEL_301);
-		writer.writeToFile(score);
+		writer.writeScoreToFile(score);
 		
 		session = new Session("Andrew King");
 		score = new StudentScore(session);
 		score.setLevel(QuestionLevel.LEVEL_101);
-		writer.writeToFile(score);
+		writer.writeScoreToFile(score);
 	}
 }
