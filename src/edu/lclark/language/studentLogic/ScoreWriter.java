@@ -27,6 +27,10 @@ public class ScoreWriter {
 	}
 	
 	public void writeAllScoresToFile(ArrayList<StudentScore> scores, String path){
+		
+		if (!path.endsWith(".txt")){
+			path += ".txt";
+		}
 		try {
 			PrintWriter out = new PrintWriter(path, "UTF-8");
 			for(StudentScore score: scores){
