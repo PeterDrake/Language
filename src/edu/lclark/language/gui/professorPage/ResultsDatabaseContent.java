@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.gui.PromptFileChooser;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.studentLogic.ScoreReader;
@@ -79,7 +80,7 @@ public class ResultsDatabaseContent extends AbstractContent {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fileChooser = new JFileChooser();
+			fileChooser = new PromptFileChooser();
 			int returnVal = fileChooser.showSaveDialog(parent);
 			if (returnVal == fileChooser.APPROVE_OPTION) {
 				File destination = fileChooser.getSelectedFile();
