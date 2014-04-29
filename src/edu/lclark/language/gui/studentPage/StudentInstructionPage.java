@@ -37,6 +37,7 @@ public class StudentInstructionPage extends AbstractUserPage {
         beginTestButton.addActionListener(new BeginButtonAction());
 
         JTextPane testInstructions = new JTextPane();
+        testInstructions.setPreferredSize(new Dimension((int)(main.getWidth() * .70), (int)(main.getHeight() * 0.60)));
         try {
             testInstructions.setPage(htmlUrl);
         } catch (IOException e) {
