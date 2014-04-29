@@ -34,7 +34,7 @@ public class LanguagePlacementExam {
         if (!f.exists()) {
             f.mkdirs();
         }
-        copyFileIfNull("questions.xml", "questions.xml");
+        copyFileIfNull("questionExamples.xml", "questions.xml");
         
         copyFileIfNull("student_instructions.html", "instructions.html");
 
