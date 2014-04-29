@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import edu.lclark.language.LanguagePlacementExam;
@@ -26,6 +28,11 @@ public class ScoreReader {
 				scores.add(readScoreFile(file));				
 			}
 		}
+		Collections.sort(scores, new Comparator<StudentScore>(){
+		    public int compare(StudentScore s1, StudentScore s2) {
+		        return s2.getDate().compareTo(s1.getDate());
+		    }
+		});
 		return scores;
 	}
 	
@@ -44,5 +51,6 @@ public class ScoreReader {
 		}
 		return null;
 	}
-	
+
 }
+

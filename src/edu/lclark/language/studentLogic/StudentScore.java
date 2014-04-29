@@ -3,7 +3,7 @@ package edu.lclark.language.studentLogic;
 import edu.lclark.language.gui.loginPage.Session;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
-public class StudentScore {
+public class StudentScore{
 	
 	String user;
 	String date;
