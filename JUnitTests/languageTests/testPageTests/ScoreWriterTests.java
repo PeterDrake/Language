@@ -3,32 +3,26 @@ package languageTests.testPageTests;
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.loginPage.Session;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
-import edu.lclark.language.studentLogic.ScoreReader;
 import edu.lclark.language.studentLogic.ScoreWriter;
 import edu.lclark.language.studentLogic.StudentScore;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 
 public class ScoreWriterTests {
 	private ScoreWriter writer;
-	private ScoreReader reader;
 	private StudentScore score;
 	private Session session;
-	private ArrayList<StudentScore> scores;
 
 	@Before
 	public void setUp() throws Exception {
 		writer = new ScoreWriter();
-		reader = new ScoreReader();
 		session = new Session("Connor Lay");
 		score = new StudentScore(session);
 		score.setLevel(QuestionLevel.LEVEL_101);
-		scores = reader.getScores();
 	}
 	
 	@Test

@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 public class ExamPage extends AbstractUserPage {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
 	private JPanel testPagePanel;
@@ -39,18 +39,18 @@ public class ExamPage extends AbstractUserPage {
 				.add(submitButton, new GBC(750, 1500).setAnchor(GBC.SOUTH));
 
 		AccentPanel accentPanel = new AccentPanel(main);
+		accentPanel.setBorder(BorderFactory.createEmptyBorder(140, 10, 170, 0));
 		add(accentPanel, BorderLayout.WEST);
 
 		title.setText("Language Placement Test");
 		testPagePanel.add(questionPanel);
 
-
 		add(testPagePanel);
 		submitButton.addActionListener(new SubmitAction());
 
 	}
-	
-	private void writeStudentScore(){
+
+	private void writeStudentScore() {
 		ScoreWriter writer = new ScoreWriter();
 		StudentScore score = new StudentScore(window.getSession());
 		score.setLevel(tracker.getPlacementLevel());
