@@ -1,5 +1,6 @@
 package edu.lclark.language.gui.studentPage;
 
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.ImageComponent;
@@ -10,7 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Displays the instructions for a student about to take a test. Contains a "Begin Test" button that will send the student on to the test.
@@ -27,9 +30,6 @@ public class StudentInstructionPage extends AbstractUserPage {
         content.setBackground(Color.WHITE);
         title.setText("Test Instructions");
 
-        URL htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/student_instructions.html");
-
-
         // construct components
         JButton beginTestButton = new JButton("Begin Test");
         beginTestButton.addActionListener(new BeginButtonAction());
@@ -37,9 +37,11 @@ public class StudentInstructionPage extends AbstractUserPage {
         JTextPane testInstructions = new JTextPane();
         testInstructions.setPreferredSize(new Dimension((int)(main.getWidth() * .70), (int)(main.getHeight() * 0.60)));
         try {
+            URL htmlUrl = Paths.get(LanguagePlacementExam.PATH + "HTMLs/instructions.html").toUri().toURL();
             testInstructions.setPage(htmlUrl);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.exit(0);
         }
 
         ImageComponent logo = new ImageComponent("LClogo.jpg", 216, 154);

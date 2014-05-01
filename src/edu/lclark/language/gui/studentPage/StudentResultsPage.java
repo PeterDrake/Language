@@ -1,5 +1,6 @@
 package edu.lclark.language.gui.studentPage;
 
+import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Accessible to students who have already taken the test. Displays the the
@@ -32,36 +34,33 @@ public class StudentResultsPage extends AbstractUserPage {
 		GridBagLayout layout = new GridBagLayout();
 		content.setLayout(layout);
 		content.setBackground(Color.WHITE);
-		title.setText("Student Results");
+        title.setText("Student Results");
 
-		JButton exitTestButton = new JButton("Exit Test");
-		exitTestButton.addActionListener(new BeginButtonAction());
+        JButton exitTestButton = new JButton("Exit Test");
+        exitTestButton.addActionListener(new BeginButtonAction());
 
-		URL htmlUrl = ClassLoader.getSystemResource("edu/lclark/language/resources/result1.html");
+        JTextPane testResult = new JTextPane();
+        testResult.setPreferredSize(new Dimension((int)(main.getWidth() * .70), (int)(main.getHeight() * 0.60)));
 
-		if (Integer.parseInt(levelText) == 101) {
-			htmlUrl = ClassLoader
-					.getSystemResource("edu/lclark/language/resources/result1.html");
-		} else if (Integer.parseInt(levelText) == 102) {
-			htmlUrl = ClassLoader
-					.getSystemResource("edu/lclark/language/resources/result2.html");
-		} else if (Integer.parseInt(levelText) == 201) {
-			htmlUrl = ClassLoader
-					.getSystemResource("edu/lclark/language/resources/result3.html");
-		} else if (Integer.parseInt(levelText) == 202
-				|| Integer.parseInt(levelText) == 301) {
+        try {
+            URL htmlUrl = null;
 
-			htmlUrl = ClassLoader
-					.getSystemResource("edu/lclark/language/resources/result4.html");
+            if (Integer.parseInt(levelText) == 101) {
+                htmlUrl = Paths.get(LanguagePlacementExam.PATH + "HTMLs/result1.html").toUri().toURL();
+            } else if (Integer.parseInt(levelText) == 102) {
+                htmlUrl = Paths.get(LanguagePlacementExam.PATH + "HTMLs/result2.html").toUri().toURL();
+            } else if (Integer.parseInt(levelText) == 201) {
+                htmlUrl = Paths.get(LanguagePlacementExam.PATH + "HTMLs/result3.html").toUri().toURL();
+            } else if (Integer.parseInt(levelText) == 202 || Integer.parseInt(levelText) == 301) {
+                htmlUrl = Paths.get(LanguagePlacementExam.PATH + "HTMLs/result4.html").toUri().toURL();
+            }
 
-		}
+            testResult.setPage(htmlUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
 
-		JTextPane testResult = new JTextPane();
-		try {
-			testResult.setPage(htmlUrl);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 
 		content.add(testResult);
