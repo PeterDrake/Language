@@ -1,25 +1,22 @@
 package edu.lclark.language.gui.studentPage;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.AccentPanel;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.studentLogic.ProgressTracker;
 import edu.lclark.language.studentLogic.ScoreWriter;
 import edu.lclark.language.studentLogic.StudentScore;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class ExamPage extends AbstractUserPage {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton submitButton;
 	private AbstractQuestionPanel questionPanel;
 	private JPanel testPagePanel;
@@ -47,15 +44,10 @@ public class ExamPage extends AbstractUserPage {
 		title.setText("Language Placement Test");
 		testPagePanel.add(questionPanel);
 
-		// testPagePanel.add(shortAnswerQuestionPanel);
 
 		add(testPagePanel);
 		submitButton.addActionListener(new SubmitAction());
 
-	}
-
-	public void refresh() {
-		// TODO Write refresh method for refresh button
 	}
 	
 	private void writeStudentScore(){

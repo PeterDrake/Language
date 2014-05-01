@@ -1,19 +1,18 @@
 package edu.lclark.language.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.*;
-
 import edu.lclark.language.gui.loginPage.LoginPage;
 import edu.lclark.language.gui.loginPage.Session;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * The main JFrame of the program.
  */
 public class MainWindow extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Session session;
 	
 	public MainWindow() {

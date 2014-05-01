@@ -1,11 +1,8 @@
 package edu.lclark.language.questions;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.xml.*;
-
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+
+import java.util.ArrayList;
 
 /**
  * Loads question info from the database and constructs question objects out of

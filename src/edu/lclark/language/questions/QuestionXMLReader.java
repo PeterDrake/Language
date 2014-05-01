@@ -1,19 +1,15 @@
 package edu.lclark.language.questions;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.xml.parsers.*;
-
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import edu.lclark.language.LanguagePlacementExam;
-import edu.lclark.language.questions.QuestionInfo.QuestionType;
-import org.xml.sax.SAXException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * This class reads in and parses an XML document containing all the questions

@@ -1,17 +1,16 @@
 package languageTests.questionTests;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
 import edu.lclark.language.questions.QuestionInfo.Topic;
 import edu.lclark.language.questions.QuestionXMLReader;
+import org.junit.Before;
+import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import static org.junit.Assert.*;
 
 public class QuestionXMLReaderTests {
 

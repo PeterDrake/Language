@@ -1,22 +1,18 @@
 package languageTests.testPageTests;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.util.ArrayList;
-
-import languageTest.testingResources.DatabaseGenerator;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.loginPage.Session;
-import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.studentLogic.ScoreReader;
 import edu.lclark.language.studentLogic.ScoreWriter;
 import edu.lclark.language.studentLogic.StudentScore;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 public class ScoreWriterTests {
 	private ScoreWriter writer;

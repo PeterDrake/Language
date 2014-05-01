@@ -1,19 +1,13 @@
 package edu.lclark.language.studentLogic;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import edu.lclark.language.LanguagePlacementExam;
+import edu.lclark.language.questions.QuestionInfo;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
 
-import edu.lclark.language.LanguagePlacementExam;
-import edu.lclark.language.questions.QuestionInfo;
 
 /**
  * This class reads in text files storing StudentScore information from SCORE_PATH and
@@ -22,6 +16,7 @@ import edu.lclark.language.questions.QuestionInfo;
  * @author Team Language
  * 
  */
+
 public class ScoreReader {
 
 	public ScoreReader() {
@@ -68,8 +63,8 @@ public class ScoreReader {
 			name = in.readLine();
 			date = in.readLine();
 			level = in.readLine();
-			return new StudentScore(name, date,
-					QuestionInfo.createQuestionLevel(level));
+			in.close();
+			return new StudentScore(name, date, QuestionInfo.createQuestionLevel(level));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

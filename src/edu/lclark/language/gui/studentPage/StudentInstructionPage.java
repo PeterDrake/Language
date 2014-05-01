@@ -1,23 +1,21 @@
 package edu.lclark.language.gui.studentPage;
 
-import java.awt.*;
-
-import javax.swing.*;
-
-import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.gui.professorPage.ProfessorPage;
 
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 /**
  * Displays the instructions for a student about to take a test. Contains a "Begin Test" button that will send the student on to the test.
  */
+@SuppressWarnings("serial")
 public class StudentInstructionPage extends AbstractUserPage {
 
     public StudentInstructionPage(MainWindow main) {
@@ -60,15 +58,10 @@ public class StudentInstructionPage extends AbstractUserPage {
 
     }
 
-    public void refresh() {
-        //TODO Write refresh method for refresh button
-    }
-
     private class BeginButtonAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent a) {
-            //System.out.println("Begin button!");
             MainWindow main = getMainWindow();
             main.switchPage(new ExamPage(main));
         }

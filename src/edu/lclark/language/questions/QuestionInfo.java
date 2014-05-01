@@ -1,7 +1,5 @@
 package edu.lclark.language.questions;
 
-import java.io.File;
-
 import edu.lclark.language.LanguagePlacementExam;
 
 /**

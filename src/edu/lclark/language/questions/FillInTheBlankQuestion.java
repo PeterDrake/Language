@@ -1,9 +1,9 @@
 package edu.lclark.language.questions;
 
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.lclark.language.questions.QuestionInfo.QuestionType;
 
 /** A question where the student fills a word or short phrase into a blank. */
 public class FillInTheBlankQuestion extends AbstractQuestion {

@@ -1,35 +1,19 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.GBC;
-import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.PromptFileChooser;
-import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.studentLogic.ScoreReader;
 import edu.lclark.language.studentLogic.ScoreWriter;
 import edu.lclark.language.studentLogic.StudentScore;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * The content panel for viewing student results in the professor page
@@ -37,6 +21,8 @@ import edu.lclark.language.studentLogic.StudentScore;
 
 public class ResultsDatabaseContent extends AbstractContent {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JFileChooser fileChooser;
 	private JComponent parent = this;
 	private ScoreReader reader;
@@ -82,7 +68,7 @@ public class ResultsDatabaseContent extends AbstractContent {
 		public void actionPerformed(ActionEvent e) {
 			fileChooser = new PromptFileChooser();
 			int returnVal = fileChooser.showSaveDialog(parent);
-			if (returnVal == fileChooser.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File destination = fileChooser.getSelectedFile();
 				System.out.println(destination.toString());
 				writer.writeAllScoresToFile(reader.getScores(), destination.toString());

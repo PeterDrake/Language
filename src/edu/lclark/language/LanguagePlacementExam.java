@@ -1,18 +1,15 @@
 package edu.lclark.language;
 
-import java.awt.EventQueue;
+import edu.lclark.language.gui.MainWindow;
+import edu.lclark.language.questions.QuestionDatabase;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
-import javax.swing.JFrame;
-
-import edu.lclark.language.gui.*;
-import edu.lclark.language.questions.QuestionDatabase;
 
 public class LanguagePlacementExam {
 

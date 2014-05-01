@@ -1,11 +1,11 @@
 package edu.lclark.language.studentLogic;
 
+import edu.lclark.language.LanguagePlacementExam;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import edu.lclark.language.LanguagePlacementExam;
 
 /**
  * This class creates text files containing the information from StudentScore
@@ -65,8 +65,8 @@ public class ScoreWriter {
 			}
 			out.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 }

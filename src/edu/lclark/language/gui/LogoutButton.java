@@ -1,15 +1,16 @@
 package edu.lclark.language.gui;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 
 
 /**
  *Sends the user back to the Login screen when clicked.
  */
 public class LogoutButton extends JButton {
+
+	private static final long serialVersionUID = 1L;
 	
 	private MainWindow main;
 

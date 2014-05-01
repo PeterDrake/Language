@@ -1,28 +1,23 @@
 package edu.lclark.language.gui.studentPage;
 
-import edu.lclark.language.gui.AbstractPage;
-import edu.lclark.language.gui.MainWindow;
-
-import java.awt.*;
-
-import javax.swing.*;
-
-import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.loginPage.LoginPage;
-import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 /**
  * Accessible to students who have already taken the test. Displays the the
  * results of the student's test.
  */
+@SuppressWarnings("serial")
 public class StudentResultsPage extends AbstractUserPage {
 
 	QuestionLevel level;
@@ -70,26 +65,9 @@ public class StudentResultsPage extends AbstractUserPage {
 
 
 		content.add(testResult);
-		// test for accents
-
-		// JTextArea area = new JTextArea("test", 2, 2);
-		// content.add(area,
-		// new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.NORTH));
-
-		// accents end test
-
-		// add components to GridBagLayout
-		// content.add(endText,
-		// new GBC(0, 1).setWeight(50, 50).setAnchor(GBC.SOUTH));
-
-		// content.add(instructions,
-		// new GBC(0, 3).setWeight(50, 50).setAnchor(GBC.NORTH));
 
 		content.add(exitTestButton,
 				new GBC(0, 4).setWeight(50, 50).setAnchor(GBC.CENTER));
-
-		// content.add(studentTestInformation, new GBC(0, 2).setWeight(50, 50)
-		// .setAnchor(GBC.CENTER));
 
 		JScrollPane sPane = new JScrollPane(content);
 		sPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -101,17 +79,11 @@ public class StudentResultsPage extends AbstractUserPage {
 
 		@Override
 		public void actionPerformed(ActionEvent a) {
-			// System.out.println("Begin button!");
 			MainWindow main = getMainWindow();
 			main.switchPage(new LoginPage(main));
 		}
 
 	}
 
-	@Override
-	public void refresh() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

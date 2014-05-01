@@ -1,6 +1,8 @@
 package edu.lclark.language.questions;
 
-import edu.lclark.language.questions.QuestionInfo.*;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import edu.lclark.language.questions.QuestionInfo.QuestionType;
+import edu.lclark.language.questions.QuestionInfo.Topic;
 
 /**
  * This is an interface that all questions implement. It contains methods that

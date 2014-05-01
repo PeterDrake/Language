@@ -1,13 +1,12 @@
 package languageTest.testingResources;
 
-import java.util.ArrayList;
-
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.QuestionInfo.Topic;
-import edu.lclark.language.questions.ShortAnswerQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import edu.lclark.language.questions.QuestionInfo.Topic;
+
+import java.util.ArrayList;
 
 public class DatabaseGenerator {
 

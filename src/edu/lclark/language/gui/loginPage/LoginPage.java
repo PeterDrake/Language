@@ -1,23 +1,21 @@
 package edu.lclark.language.gui.loginPage;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
-import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractPage;
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.MainWindow;
 import edu.lclark.language.gui.professorPage.ProfessorPage;
 import edu.lclark.language.gui.studentPage.StudentInstructionPage;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPage extends AbstractPage {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton loginButton;
 	private JLabel name;
 	private JTextField usernameInput;
@@ -74,11 +72,6 @@ public class LoginPage extends AbstractPage {
 		loginButton.addActionListener(new LoginAction());
 
 	}
-
-	// private void add(AccentMarksToolbar toolbar2) {
-	// // TODO Auto-generated method stub
-	//
-	// }
 
 	private class LoginAction implements ActionListener {
 

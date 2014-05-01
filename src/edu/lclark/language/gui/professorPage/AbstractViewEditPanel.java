@@ -1,29 +1,21 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionListener;
-import java.beans.EventHandler;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.AbstractQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.Topic;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
+
+/** Base panel for the question editing window. */
 public abstract class AbstractViewEditPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	public static final int MAX_ANSWERS = 6;
 	public static final int GBL_QUESTION_INDEX_START = 3;
 
@@ -32,9 +24,9 @@ public abstract class AbstractViewEditPanel extends JPanel {
 	protected int numberOfAnswers;
 	protected int levelIndex;
 	protected int topicIndex;
-	protected JComboBox numberOfAnswersDropDown;
-	protected JComboBox levelDropDown;
-	protected JComboBox topicDropDown;
+	protected JComboBox<String> numberOfAnswersDropDown;
+	protected JComboBox<QuestionLevel> levelDropDown;
+	protected JComboBox<Topic> topicDropDown;
 	protected JTextArea[] answerFields;
 	protected JLabel[] answerLabels;
 	protected JLabel title;
@@ -95,7 +87,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 		levelType = new JLabel();
 		levelType.setText("Choose Level: ");
 
-		levelDropDown = new JComboBox(QuestionLevel.values());
+		levelDropDown = new JComboBox<QuestionLevel>(QuestionLevel.values());
 		levelDropDown.setSelectedIndex(levelIndex);
 		levelDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "levelAction"));
@@ -162,7 +154,7 @@ public abstract class AbstractViewEditPanel extends JPanel {
 			}
 		}
 		topicIndex = 0;
-		topicDropDown = new JComboBox(topics);
+		topicDropDown = new JComboBox<Topic>(topics);
 		topicDropDown.setSelectedIndex(topicIndex);
 		topicDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "topicAction"));
