@@ -3,14 +3,11 @@ package edu.lclark.language.studentLogic;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
 
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.QuestionInfo;
@@ -45,6 +42,7 @@ public class ScoreReader {
 			name = in.readLine();
 			date = in.readLine();
 			level = in.readLine();
+			in.close();
 			return new StudentScore(name, date, QuestionInfo.createQuestionLevel(level));
 		} catch (IOException e) {
 			e.printStackTrace();

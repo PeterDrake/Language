@@ -19,11 +19,12 @@ import java.util.ArrayList;
 /**
  * The content panel for editing test questions from the professor page
  */
+@SuppressWarnings("serial")
 public class EditExamContent extends AbstractContent {
 
 	private JTree tree;
     private DefaultTreeModel model;
-	private JComboBox addNewQuestionButton;
+	private JComboBox<String> addNewQuestionButton;
 	private JSplitPane splitPane;
 	private JScrollPane viewEditScrollPane;
 	private JPanel viewEditPanel;
@@ -54,12 +55,9 @@ public class EditExamContent extends AbstractContent {
 		buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		buttonPanel.setBackground(Color.WHITE);
 
-		addNewQuestionButton = new JComboBox(questionTypes);
+		addNewQuestionButton = new JComboBox<String>(questionTypes);
 		addNewQuestionButton.addActionListener(EventHandler.create(
 				ActionListener.class, this, "addNewQuestionAction"));
-
-		// JButton editQuestionButton = new JButton("Edit Question");
-		// editQuestionButton.addActionListener(new EditQuestionAction());
 
         root = new DefaultMutableTreeNode("Root");
 
@@ -99,7 +97,6 @@ public class EditExamContent extends AbstractContent {
 		viewEditScrollPane = new JScrollPane(viewEditPanel);
 
 		buttonPanel.add(addNewQuestionButton);
-		// buttonPanel.add(editQuestionButton);
 
 		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		splitPane.setLeftComponent(treePane);
@@ -153,7 +150,7 @@ public class EditExamContent extends AbstractContent {
         }
 
         model.reload(root);
-        // TODO Might we use model.isertNodeInto() (or remove) down bellow or reload with ifs? Would we need compareTo?
+        //Might we use model.isertNodeInto() (or remove) down bellow or reload with ifs? Would we need compareTo?
     }
 
     /**
@@ -163,18 +160,12 @@ public class EditExamContent extends AbstractContent {
      */
     public void saveEdit(AbstractQuestion q) {
         database.addQuestion(q);
-//        DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-//        temp.setUserObject(q);
-//        model.insertNodeInto(temp,tree101,1);
         updateNodesFromDatabase();
         endEdit();
     }
     
     public void saveEdit() {
         database.updateQuestions();
-//        DefaultMutableTreeNode temp = new DefaultMutableTreeNode();
-//        temp.setUserObject(q);
-//        model.insertNodeInto(temp,tree101,1);
         updateNodesFromDatabase();
         endEdit();
     }
@@ -186,7 +177,6 @@ public class EditExamContent extends AbstractContent {
      */
     public void deleteEdit(AbstractQuestion q) {
         database.deleteQuestion(q);
-        //TODO Could we use node.getUserObject and compare to delete?
         updateNodesFromDatabase();
         endEdit();
     }
@@ -232,8 +222,6 @@ public class EditExamContent extends AbstractContent {
 		DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree
 				.getLastSelectedPathComponent();
 		if (selectedNode != null && selectedNode.isLeaf()) {
-			// System.out.println(selectedNode.getUserObject());
-			// TODO selection on tree when node is closed results in errors
 			if(selectedNode.getUserObject() instanceof FillInTheBlankQuestion){
 				viewEditPanel = new FillInTheBlankViewEditPanel(this, (FillInTheBlankQuestion)selectedNode.getUserObject());
 				viewEditScrollPane.setViewportView(viewEditPanel);

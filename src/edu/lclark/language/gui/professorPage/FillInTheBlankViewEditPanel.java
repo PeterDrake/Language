@@ -94,8 +94,4 @@ public class FillInTheBlankViewEditPanel extends AbstractViewEditPanel{
 		numberOfAnswers = n;
 		updatePage();
 	}
-
-
-	
-	
 }

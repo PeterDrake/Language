@@ -1,9 +1,6 @@
 package edu.lclark.language.questions;
 
 import java.util.ArrayList;
-import java.util.Random;
-
-import javax.xml.*;
 
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 

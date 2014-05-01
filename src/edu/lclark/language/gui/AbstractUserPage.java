@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,7 +14,6 @@ public abstract class AbstractUserPage extends AbstractPage{
 	protected JPanel titlePanel;
 	protected JLabel title;
 	protected LogoutButton logout;
-	protected RefreshButton refresh;
 	
 	public AbstractUserPage(MainWindow main) {
 		
@@ -24,21 +24,18 @@ public abstract class AbstractUserPage extends AbstractPage{
 		titlePanel.setBackground(Color.WHITE);
 		titlePanel.setLayout(new BorderLayout());
 		
+		logout = new LogoutButton(main);
+		titlePanel.add(logout, BorderLayout.EAST);
+		
 		Font bigFont = new Font("SansSerif", Font.PLAIN, 24);
 		title = new JLabel();
 		title.setFont(bigFont);
+		title.setBorder(BorderFactory.createEmptyBorder(0, logout.getPreferredSize().width, 0, 0));
 		title.setHorizontalAlignment(JLabel.CENTER);
 		titlePanel.add(title, BorderLayout.CENTER);
-		
-		logout = new LogoutButton(main);
-		titlePanel.add(logout, BorderLayout.EAST);
-		refresh = new RefreshButton(this);
-		titlePanel.add(refresh, BorderLayout.WEST);
 		
 		add(titlePanel, BorderLayout.NORTH);
 		
 	}
-
-    public abstract void refresh();
 
 }

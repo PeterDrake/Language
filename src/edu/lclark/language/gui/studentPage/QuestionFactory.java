@@ -3,14 +3,10 @@ package edu.lclark.language.gui.studentPage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JPanel;
-
-import languageTest.testingResources.DatabaseGenerator;
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
 import edu.lclark.language.questions.ShortAnswerQuestion;

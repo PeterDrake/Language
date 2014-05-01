@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import javax.xml.parsers.*;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
-import org.xml.sax.SAXException;
 
 public class QuestionXMLReader {
 
@@ -33,7 +30,6 @@ public class QuestionXMLReader {
     }
     
     public boolean verifyDatabase(File database){
-    	//TODO this method needs to make sure that the file is a valid question database
     	if(!database.isFile()){
     		return false;
     	}

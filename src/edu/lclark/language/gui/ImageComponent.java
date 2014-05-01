@@ -22,6 +22,7 @@ public class ImageComponent extends JComponent {
             image = new ImageIcon(ClassLoader.getSystemResource("edu/lclark/language/resources/" + imageName)).getImage();
         } catch (Exception e) {
             System.out.println("error loading image: " + imageName);
+            System.exit(0);
         }
     }
 

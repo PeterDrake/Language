@@ -1,10 +1,8 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +19,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.lclark.language.LanguagePlacementExam;
@@ -34,6 +31,8 @@ import edu.lclark.language.questions.QuestionXMLReader;
  */
 public class ExamSettingsContent extends AbstractContent {
 
+	private static final long serialVersionUID = 1L;
+	
 	private File database;
 	private JFileChooser fileChooser;
 	private JComponent parent = this;
@@ -74,7 +73,7 @@ public class ExamSettingsContent extends AbstractContent {
 			public void actionPerformed(ActionEvent e) {
 				fileChooser = new PromptFileChooser();
 				int returnVal = fileChooser.showSaveDialog(parent);
-				if (returnVal == fileChooser.APPROVE_OPTION) {
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File destination = fileChooser.getSelectedFile();
 					String name = destination.toString();
 					if(!name.endsWith(".xml")){
@@ -99,7 +98,7 @@ public class ExamSettingsContent extends AbstractContent {
 				fileChooser = new JFileChooser();
 				fileChooser.setFileFilter(new FileNameExtensionFilter("XML Files", "xml"));
 				int returnVal = fileChooser.showOpenDialog(parent);
-				if (returnVal == fileChooser.APPROVE_OPTION) {
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					database = fileChooser.getSelectedFile();
 					if (reader.verifyDatabase(database)) {
 						try {
@@ -111,6 +110,12 @@ public class ExamSettingsContent extends AbstractContent {
 							e1.printStackTrace();
 							System.exit(0);
 						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(parent,
+								"Not a valid database. Choose another file.",
+								"Invalid Database", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
 			}

@@ -5,13 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
 import edu.lclark.language.gui.studentPage.EmptyDatabaseException;
 import edu.lclark.language.gui.studentPage.QuestionFactory;
-import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
@@ -23,7 +21,6 @@ public class ProgressTracker {
 	private QuestionLevel currentLevel;
 	private QuestionLevel placementLevel;
 	private int iterationsComplete;
-	private ScoreWriter recorder;
 	
 	private int questionsToPass;
 	private int questionsPerLevel;
@@ -35,7 +32,6 @@ public class ProgressTracker {
 
 	public ProgressTracker(QuestionFactory factory) {
 		this.factory = factory;
-		recorder = new ScoreWriter();
 		questionsAnswered = 0;
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;

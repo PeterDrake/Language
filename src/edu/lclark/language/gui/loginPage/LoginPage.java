@@ -75,11 +75,6 @@ public class LoginPage extends AbstractPage {
 
 	}
 
-	// private void add(AccentMarksToolbar toolbar2) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-
 	private class LoginAction implements ActionListener {
 
 		@Override

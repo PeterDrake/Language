@@ -2,11 +2,8 @@ package edu.lclark.language.gui.professorPage;
 
 import javax.swing.*;
 
-import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.MainWindow;
-import edu.lclark.language.questions.ProfessorDatabaseInterface;
-import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * The professor page, which contains the title and all other content panels for question editing, results viewing, etc.
  */
+@SuppressWarnings("serial")
 public class ProfessorPage extends AbstractUserPage {
 	
 	private JPanel buttonPanel;
@@ -26,7 +24,6 @@ public class ProfessorPage extends AbstractUserPage {
 	private AbstractContent currentContent;
     private JPanel contentPanel;
     
-	private String name;
 	
 	/**
 	 * @param main the main JFrame that contains all components
@@ -66,20 +63,7 @@ public class ProfessorPage extends AbstractUserPage {
 		contentPanel.add(currentContent, BorderLayout.CENTER);
 	}
 
-	/**
-	 * Sets the User's name for display on the professor page
-	 * 
-	 * @param name The user's name
-	 */
-	public void setUserName(String name){
-        this.name = name;
-	}
 
-    public void refresh() {
-        //TODO Write refresh method for refresh button
-    }
-
-	//TODO These actions will be performed even if the button is already depress. Fix?
 	/**
 	 * An action listener that switches to ProfileContent when the "Profile" button is clicked
 	 */

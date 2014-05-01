@@ -3,15 +3,8 @@ package edu.lclark.language.gui.studentPage;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /** Graphic panel for displaying a FillInTheBlankQuestion. */

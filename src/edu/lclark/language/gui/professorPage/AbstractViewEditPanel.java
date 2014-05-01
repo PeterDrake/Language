@@ -22,6 +22,7 @@ import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.Topic;
 
+/** Base panel for the question editing window. */
 public abstract class AbstractViewEditPanel extends JPanel {
 
 	public static final int MAX_ANSWERS = 6;

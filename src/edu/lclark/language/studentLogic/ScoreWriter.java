@@ -41,8 +41,8 @@ public class ScoreWriter {
 			}
 			out.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 }
