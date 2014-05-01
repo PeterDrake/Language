@@ -44,6 +44,11 @@ public class QuestionDatabase implements ProfessorDatabaseInterface, ExamDatabas
 		return filteredQuestions;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.lclark.language.questions.ExamDatabaseInterface#getAllQuestions()
+	 * 
+	 * Returns an ArrayList that is a duplicate of the database ArrayList of AbstractQuestions.
+	 */
 	@Override
 	public ArrayList<AbstractQuestion> getAllQuestions() {
 		ArrayList<AbstractQuestion> allQuestions = new ArrayList<AbstractQuestion>();

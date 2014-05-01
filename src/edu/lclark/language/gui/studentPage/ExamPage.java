@@ -13,6 +13,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A JPanel that displays AbsractQuestionPanels and is the GUI for the Language
+ * Placement Exam.
+ * 
+ * @author Team Language
+ * 
+ */
 public class ExamPage extends AbstractUserPage {
 
 	private static final long serialVersionUID = 1L;
@@ -50,6 +57,10 @@ public class ExamPage extends AbstractUserPage {
 
 	}
 
+	/**
+	 * Creates a new Student Score text file based on the results of the
+	 * Language Placement Exam and the current Session.
+	 */
 	private void writeStudentScore() {
 		ScoreWriter writer = new ScoreWriter();
 		StudentScore score = new StudentScore(window.getSession());

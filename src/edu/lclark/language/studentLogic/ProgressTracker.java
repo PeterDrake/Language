@@ -7,32 +7,50 @@ import edu.lclark.language.gui.studentPage.QuestionFactory;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 
+
+/**
+ * ProgressTracker contains methods and data regarding the state of the Language
+ * Placement Exam while a student is taking the exam. ProgressTracker serves as
+ * the bridge between QuestionFactory and ExamPage.
+ * 
+ * @author Team Language
+ * 
+ */
+
 import java.io.*;
 
 public class ProgressTracker {
-	
+
 	private QuestionFactory factory;
 	private int questionsAnswered;
 	private int questionsCorrect;
 	private QuestionLevel currentLevel;
 	private QuestionLevel placementLevel;
 	private int iterationsComplete;
-	
+
 	private int questionsToPass;
 	private int questionsPerLevel;
 	private int maxIterations;
 
 	public ProgressTracker() {
 		this(new QuestionFactory());
+		loadTestSettings();
 	}
 
+	/**
+	 * This constructor is used for testing purposes only and takes in a custom
+	 * QuestionFactory.
+	 * 
+	 * @param factory
+	 *            A custom QuestionFactory used for testing purposes only.
+	 */
 	public ProgressTracker(QuestionFactory factory) {
 		this.factory = factory;
 		questionsAnswered = 0;
 		questionsCorrect = 0;
 		currentLevel = QuestionLevel.LEVEL_101;
 		placementLevel = QuestionLevel.LEVEL_101;
-		
+
 		loadTestSettings();
 	}
 
@@ -47,14 +65,21 @@ public class ProgressTracker {
 	public int getIterationsComplete() {
 		return iterationsComplete;
 	}
-	
-	public int getMaxIterations(){
+
+	public int getMaxIterations() {
 		return maxIterations;
 	}
-	
-	void loadTestSettings(){
+
+	/**
+	 * Reads in a text file in PATH containing the questionsPerLevel,
+	 * questionsToPass, and maxIterations settings for the Language Placement
+	 * Exam.
+	 */
+	private void loadTestSettings() {
 		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(new File(LanguagePlacementExam.PATH + "settings.txt")), "UTF-8"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					new FileInputStream(new File(LanguagePlacementExam.PATH
+							+ "settings.txt")), "UTF-8"));
 			questionsPerLevel = Integer.parseInt(in.readLine());
 			questionsToPass = Integer.parseInt(in.readLine());
 			maxIterations = Integer.parseInt(in.readLine());
@@ -85,6 +110,13 @@ public class ProgressTracker {
 		}
 	}
 
+	/**
+	 * Returns the next QuestionPanel for the ExamPage based on the progress of
+	 * the Language Placement Exam.
+	 * 
+	 * @return An AbstractQuestionPanel that is the GUI for the next question.
+	 * @throws EmptyDatabaseException
+	 */
 	public AbstractQuestionPanel getNextQuestionPanel()
 			throws EmptyDatabaseException {
 		AbstractQuestionPanel panel = null;
@@ -104,19 +136,25 @@ public class ProgressTracker {
 		return panel;
 	}
 
+	/**
+	 * Returns the appropriate level for the next question depending on the
+	 * settings loaded from loadTestSettings.
+	 * 
+	 * @return A QuestionLevel of the appropriate level.
+	 */
 	public QuestionLevel getLevelForNextQuestion() {
 
 		if (questionsAnswered == questionsPerLevel
 				&& questionsCorrect == questionsToPass) {
 			currentLevel = QuestionInfo.getNextLevel(currentLevel);
-			if(currentLevel.getIndex() - placementLevel.getIndex() > 1){
+			if (currentLevel.getIndex() - placementLevel.getIndex() > 1) {
 				placementLevel = QuestionInfo.getNextLevel(placementLevel);
 			}
 			return currentLevel;
 		} else if (questionsAnswered == questionsPerLevel
 				&& questionsCorrect < questionsToPass) {
 			currentLevel = QuestionInfo.getPreviousLevel(currentLevel);
-			if(currentLevel.getIndex() - placementLevel.getIndex() < -1){
+			if (currentLevel.getIndex() - placementLevel.getIndex() < -1) {
 				placementLevel = QuestionInfo.getPreviousLevel(placementLevel);
 			}
 			return currentLevel;
