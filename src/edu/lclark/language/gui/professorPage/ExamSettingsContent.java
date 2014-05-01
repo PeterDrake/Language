@@ -59,6 +59,7 @@ public class ExamSettingsContent extends AbstractContent {
 
 	}
 
+	
 	private void makeImportExportPanel() {
 		importExportPanel = new JPanel();
 		importExportPanel.setLayout(new GridBagLayout());
@@ -176,6 +177,7 @@ public class ExamSettingsContent extends AbstractContent {
 		getCurrentSettings();
 	}
 
+	/** Load the data saved in the settings file and fill in the appropriate fields with it. */
 	private void getCurrentSettings() {
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(
