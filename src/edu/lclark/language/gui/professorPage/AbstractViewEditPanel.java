@@ -1,26 +1,15 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.ActionListener;
-import java.beans.EventHandler;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.AbstractQuestion;
-import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.Topic;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.beans.EventHandler;
 
 /** Base panel for the question editing window. */
 public abstract class AbstractViewEditPanel extends JPanel {

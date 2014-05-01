@@ -2,10 +2,8 @@ package edu.lclark.language.gui.studentPage;
 
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 
-import java.awt.Color;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
 
 /** Graphic panel for displaying a FillInTheBlankQuestion. */
 public class FillInTheBlankPanel extends AbstractQuestionPanel {

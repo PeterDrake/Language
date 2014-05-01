@@ -1,8 +1,5 @@
 package edu.lclark.language.gui.studentPage;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.FillInTheBlankQuestion;
@@ -10,6 +7,9 @@ import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionInfo.QuestionType;
 import edu.lclark.language.questions.ShortAnswerQuestion;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class QuestionFactory {
 

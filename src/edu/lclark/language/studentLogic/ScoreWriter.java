@@ -1,11 +1,11 @@
 package edu.lclark.language.studentLogic;
 
+import edu.lclark.language.LanguagePlacementExam;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import edu.lclark.language.LanguagePlacementExam;
 
 public class ScoreWriter {
 

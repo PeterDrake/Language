@@ -1,15 +1,14 @@
 package edu.lclark.language.gui.studentPage;
 
-import java.awt.*;
-
-import javax.swing.*;
-
-import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.GBC;
+import edu.lclark.language.gui.ImageComponent;
 import edu.lclark.language.gui.MainWindow;
 
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 

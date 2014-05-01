@@ -1,16 +1,12 @@
 package languageTests.testPageTests;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
+import edu.lclark.language.studentLogic.ScoreReader;
+import edu.lclark.language.studentLogic.StudentScore;
 import languageTest.testingResources.ScoresGenerator;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.lclark.language.studentLogic.ScoreReader;
-import edu.lclark.language.studentLogic.StudentScore;
+import java.util.ArrayList;
 
 public class ScoreReaderTests {
 
