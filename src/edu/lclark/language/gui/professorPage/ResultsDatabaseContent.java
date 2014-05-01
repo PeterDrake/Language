@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class ResultsDatabaseContent extends AbstractContent {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JFileChooser fileChooser;
 	private JComponent parent = this;
 	private ScoreReader reader;
@@ -66,7 +68,7 @@ public class ResultsDatabaseContent extends AbstractContent {
 		public void actionPerformed(ActionEvent e) {
 			fileChooser = new PromptFileChooser();
 			int returnVal = fileChooser.showSaveDialog(parent);
-			if (returnVal == fileChooser.APPROVE_OPTION) {
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File destination = fileChooser.getSelectedFile();
 				System.out.println(destination.toString());
 				writer.writeAllScoresToFile(reader.getScores(), destination.toString());

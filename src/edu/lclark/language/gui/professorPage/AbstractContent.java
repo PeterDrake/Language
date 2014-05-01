@@ -8,6 +8,8 @@ import java.awt.*;
  */
 public abstract class AbstractContent extends JPanel{
 
+	private static final long serialVersionUID = 1L;
+
 	public AbstractContent(){
 		setBackground(Color.WHITE);
 	}

@@ -12,15 +12,14 @@ import java.beans.EventHandler;
  */
 public class FillInTheBlankViewEditPanel extends AbstractViewEditPanel{
 	
-	private EditExamContent previousPage;
+	private static final long serialVersionUID = 1L;
+	
 	
 	public FillInTheBlankViewEditPanel(EditExamContent previousPage) {
 		super(previousPage);
-		this.previousPage = previousPage;
 		
 		setBackground(Color.WHITE);
 		
-		 this.previousPage = previousPage;
 	        question = new FillInTheBlankQuestion();
 	        numberOfAnswers = 1;
 	        createAll();
@@ -48,7 +47,7 @@ public class FillInTheBlankViewEditPanel extends AbstractViewEditPanel{
 		title.setText("Fill in the Blank Question");
 		
 		String[] numOfAnswers = {"1", "2", "3", "4", "5", "6"};
-		numberOfAnswersDropDown = new JComboBox(numOfAnswers);
+		numberOfAnswersDropDown = new JComboBox<String>(numOfAnswers);
 		numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
 		numberOfAnswersDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "numberOfAnswersAction"));

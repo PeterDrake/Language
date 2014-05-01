@@ -13,8 +13,10 @@ import java.beans.EventHandler;
  */
 public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int correctAnswerIndex;
-	private JComboBox correctAnswerDropDown;
+	private JComboBox<String> correctAnswerDropDown;
 	private JLabel chooseCorrect;
 
 	public MultipleChoiceViewEditPanel(EditExamContent previousPage) {
@@ -56,7 +58,7 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 		levelType.setText("Choose Level: ");
 		
 		String[] numOfAnswers = { "2", "3", "4", "5", "6" };
-		numberOfAnswersDropDown = new JComboBox(numOfAnswers);
+		numberOfAnswersDropDown = new JComboBox<String>(numOfAnswers);
 		numberOfAnswersDropDown.setSelectedItem("" + numberOfAnswers);
 		numberOfAnswersDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "numberOfAnswersAction"));
@@ -76,7 +78,7 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 	@Override
 	public void showAnswerFields(int n) {
 		super.showAnswerFields(n);
-		for (int i = 0, j = GBL_QUESTION_INDEX_START; i < n; i++, j++) {
+		for (int i = 0; i < n; i++) {
 			if (i == correctAnswerIndex) {
 				answerFields[i].setBackground(new Color(194, 255, 133));
 			} else {
@@ -110,7 +112,7 @@ public class MultipleChoiceViewEditPanel extends AbstractViewEditPanel {
 		for (int i = 0; i < correctAnswerArray.length; i++) {
 			correctAnswerArray[i] = "" + (i + 1);
 		}
-		correctAnswerDropDown = new JComboBox(correctAnswerArray);
+		correctAnswerDropDown = new JComboBox<String>(correctAnswerArray);
 		correctAnswerDropDown.setSelectedIndex(correctAnswerIndex);
 		correctAnswerDropDown.addActionListener(EventHandler.create(
 				ActionListener.class, this, "highlightCorrectAction"));
