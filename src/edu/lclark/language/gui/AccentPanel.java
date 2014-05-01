@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 
 public class AccentPanel extends JPanel {
 
+
+	private static final long serialVersionUID = 1L;
+	
 	JButton[] buttons = new JButton[16];
 	MainWindow main;
 
@@ -56,7 +59,7 @@ public class AccentPanel extends JPanel {
 		setSize(1500, 1500);
 
 		for (int j = 0; j < buttons.length; j++) {
-			buttons[j].addActionListener(new PrintAction(buttons[j].getText()));
+			buttons[j].addActionListener(new PrintAction());
 			buttons[j].setFocusable(false);
 			add(buttons[j]);
 		}
@@ -64,12 +67,6 @@ public class AccentPanel extends JPanel {
 	}
 
 	private class PrintAction implements ActionListener {
-
-		String s;
-
-		public PrintAction(String text) {
-			s = text;
-		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

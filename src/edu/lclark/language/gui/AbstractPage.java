@@ -5,6 +5,8 @@ import javax.swing.JComponent;
 /** Extended by all pages. Allows pages to access the switchPage method of MainWindow. */
 public abstract class AbstractPage extends JComponent{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private MainWindow main;
 	
 	public AbstractPage(MainWindow main){

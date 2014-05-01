@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 
 public class LoginPage extends AbstractPage {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton loginButton;
 	private JLabel name;
 	private JTextField usernameInput;

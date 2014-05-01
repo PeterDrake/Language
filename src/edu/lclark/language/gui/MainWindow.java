@@ -14,6 +14,8 @@ import edu.lclark.language.gui.loginPage.Session;
  */
 public class MainWindow extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Session session;
 	
 	public MainWindow() {

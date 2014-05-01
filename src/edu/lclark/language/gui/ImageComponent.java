@@ -10,7 +10,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 public class ImageComponent extends JComponent {
-    private int defaultWidth;
+
+	private static final long serialVersionUID = 1L;
+	
+	private int defaultWidth;
     private int defaultHeight;
 
     private Image image;
@@ -29,9 +32,6 @@ public class ImageComponent extends JComponent {
     public void paintComponent(Graphics g) {
         if (image == null)
             return;
-
-        int imageWidth = image.getWidth(this);
-        int imageHeight = image.getHeight(this);
 
         // draw the image in the upper-left corner
         g.drawImage(image, 0, 0, null);

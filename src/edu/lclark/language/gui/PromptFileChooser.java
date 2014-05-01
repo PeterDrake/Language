@@ -7,6 +7,8 @@ import java.io.File;
 
 public class PromptFileChooser extends JFileChooser {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void approveSelection() {
 		File f = getSelectedFile();

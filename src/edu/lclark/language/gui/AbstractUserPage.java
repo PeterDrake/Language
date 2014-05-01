@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 /** Extended by pages that need a title bar and logout and refresh buttons.*/
 public abstract class AbstractUserPage extends AbstractPage{
 	
+	private static final long serialVersionUID = 1L;
+	
 	protected JPanel titlePanel;
 	protected JLabel title;
 	protected LogoutButton logout;
