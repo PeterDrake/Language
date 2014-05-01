@@ -35,6 +35,14 @@ public class QuestionXMLReader {
 		path = QuestionInfo.QUESTIONS_PATH;
 	}
 
+	/**
+	 * Ensures that the file being imported is a correctly formatted question
+	 * database.
+	 * 
+	 * @param database
+	 *            The path of the file being loaded.
+	 * @return True if the database is valid, false otherwise.
+	 */
 	public boolean verifyDatabase(File database) {
 		if (!database.isFile()) {
 			return false;
@@ -67,6 +75,12 @@ public class QuestionXMLReader {
 		path = QuestionInfo.TEST_QUESTIONS_PATH;
 	}
 
+	/**
+	 * Creates a File object based on path. If not such file exists, one is
+	 * created.
+	 * 
+	 * @return A File object of the provided path.
+	 */
 	public File loadXMLFile() {
 		xmlFile = new File(path);
 		if (!xmlFile.exists()) {
@@ -79,6 +93,12 @@ public class QuestionXMLReader {
 		return xmlFile;
 	}
 
+	/**
+	 * Parses an XML database file and returns the corresponding Document
+	 * object.
+	 * 
+	 * @return A Document of the XML file.
+	 */
 	public Document parseXMLFile() {
 		// if the file is empty, create a new document from scratch
 		if (xmlFile.length() == 0) {
@@ -107,6 +127,13 @@ public class QuestionXMLReader {
 		return doc;
 	}
 
+	/**
+	 * Reads in each question node from the Document object created from an XML
+	 * file and returns an ArrayList of AbstractQuestions.
+	 * 
+	 * @return An ArrayList of AbstractQuestions based on the contents of the
+	 *         XML file.
+	 */
 	public ArrayList<AbstractQuestion> loadQuestionsFromFile() {
 		ArrayList<AbstractQuestion> questions = new ArrayList<AbstractQuestion>();
 		Document doc = parseXMLFile();
@@ -118,6 +145,14 @@ public class QuestionXMLReader {
 		return questions;
 	}
 
+	/**
+	 * Creates an AbstractQuestion object based on the type and contents of the
+	 * Node provided.
+	 * 
+	 * @param questionNode
+	 *            A Node from an XML Document object.
+	 * @return An AbstractQuestion based on the data from questionNode.
+	 */
 	public AbstractQuestion makeQuestion(Node questionNode) {
 
 		String type = questionNode.getAttributes().getNamedItem("type")
@@ -153,6 +188,14 @@ public class QuestionXMLReader {
 		return newQuestion;
 	}
 
+	/**
+	 * Returns an array of Strings based on the child nodes of a given Node.
+	 * 
+	 * @param nodeWithChildNodes
+	 *            The Node to be read.
+	 * @return String[] An array of Strings based on the child nodes of
+	 *         nodeWithChildNodes
+	 */
 	private String[] getStringsFromNode(Node nodeWithChildNodes) {
 
 		int quantity = Integer.parseInt(nodeWithChildNodes.getAttributes()
