@@ -1,17 +1,17 @@
 package languageTests.questionTests;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.questions.QuestionXMLWriter;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class QuestionXMLWriterTests {
 

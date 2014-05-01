@@ -1,16 +1,16 @@
 package languageTests.questionTests;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
+import edu.lclark.language.questions.AbstractQuestion;
+import edu.lclark.language.questions.QuestionDatabase;
+import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import edu.lclark.language.questions.ShortAnswerQuestion;
 import languageTest.testingResources.DatabaseGenerator;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.lclark.language.questions.*;
-import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 public class QuestionDatabaseTests {
 	public QuestionDatabase database;

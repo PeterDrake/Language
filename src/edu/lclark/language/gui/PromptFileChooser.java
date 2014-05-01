@@ -1,8 +1,6 @@
 package edu.lclark.language.gui;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 import java.io.File;
 
 public class PromptFileChooser extends JFileChooser {

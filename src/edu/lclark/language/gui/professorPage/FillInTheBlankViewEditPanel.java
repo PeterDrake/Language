@@ -1,16 +1,9 @@
 package edu.lclark.language.gui.professorPage;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
 import edu.lclark.language.questions.FillInTheBlankQuestion;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.KeyboardFocusManager;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
 

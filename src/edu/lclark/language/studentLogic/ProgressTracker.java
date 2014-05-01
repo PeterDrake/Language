@@ -1,17 +1,13 @@
 package edu.lclark.language.studentLogic;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.studentPage.AbstractQuestionPanel;
 import edu.lclark.language.gui.studentPage.EmptyDatabaseException;
 import edu.lclark.language.gui.studentPage.QuestionFactory;
 import edu.lclark.language.questions.QuestionInfo;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+
+import java.io.*;
 
 public class ProgressTracker {
 	

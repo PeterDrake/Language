@@ -1,14 +1,13 @@
 package languageTests.testPageTests;
 
-import static org.junit.Assert.*;
-import languageTest.testingResources.DatabaseGenerator;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import edu.lclark.language.gui.studentPage.QuestionFactory;
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
 import edu.lclark.language.studentLogic.ProgressTracker;
+import languageTest.testingResources.DatabaseGenerator;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class ProgressTrackerTests {
 

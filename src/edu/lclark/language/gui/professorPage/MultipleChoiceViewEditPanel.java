@@ -2,10 +2,8 @@ package edu.lclark.language.gui.professorPage;
 
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
-import edu.lclark.language.questions.QuestionInfo;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.beans.EventHandler;
