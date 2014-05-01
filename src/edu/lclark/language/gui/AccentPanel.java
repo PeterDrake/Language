@@ -52,7 +52,7 @@ public class AccentPanel extends JPanel {
 		GridLayout layout = new GridLayout(8, 2);
 		setLayout(layout);
 		setBackground(Color.WHITE);
-		setSize(1500, 1500);
+		setPreferredSize(new Dimension(100, 400));
 
 		for (int j = 0; j < buttons.length; j++) {
 			buttons[j].addActionListener(new PrintAction());

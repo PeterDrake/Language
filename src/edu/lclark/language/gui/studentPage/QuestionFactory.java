@@ -11,6 +11,13 @@ import edu.lclark.language.questions.ShortAnswerQuestion;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Interfaces between QuestionDatabase and ProgressTracker. Handles filtering
+ * questions based on level and type.
+ * 
+ * @author Team Language
+ * 
+ */
 public class QuestionFactory {
 
 	private ArrayList<AbstractQuestion> database;
@@ -18,29 +25,37 @@ public class QuestionFactory {
 	public QuestionFactory() {
 		database = LanguagePlacementExam.questionDatabase.getAllQuestions();
 	}
-	
+
 	public QuestionFactory(ArrayList<AbstractQuestion> questions) {
 		database = questions;
 	}
 
-	public void printDatabase(){
-		for (AbstractQuestion question:database){
+	public void printDatabase() {
+		for (AbstractQuestion question : database) {
 			System.out.print(question.getText() + ",");
 		}
 	}
 
+	/**
+	 * Returns a random QuestionPanel based on a level.
+	 * 
+	 * @param level
+	 *            The level of question to be returned.
+	 * @return An AbstractQuestionPanel
+	 */
 	public AbstractQuestionPanel getQuestionPanelOfLevel(QuestionLevel level) {
 		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
 		AbstractQuestionPanel panel = null;
-		
+
 		if (question.getQuestionType() == QuestionType.MULTIPLE_CHOICE) {
-			panel = new MultipleChoiceQuestionPanel((MultipleChoiceQuestion) question);
+			panel = new MultipleChoiceQuestionPanel(
+					(MultipleChoiceQuestion) question);
 		} else if (question.getQuestionType() == QuestionType.SHORT_ANSWER) {
 			panel = new ShortAnswerQuestionPanel((ShortAnswerQuestion) question);
 		} else if (question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK) {
 			panel = new FillInTheBlankPanel((FillInTheBlankQuestion) question);
 		}
-		 
+
 		return panel;
 	}
 
@@ -48,6 +63,13 @@ public class QuestionFactory {
 		return database;
 	}
 
+	/**
+	 * Filters each question of a specified level and returns an ArrayList.
+	 * 
+	 * @param level
+	 *            The level to be filtered by.
+	 * @return An ArrayList of AbstractQuestions
+	 */
 	private ArrayList<AbstractQuestion> getQuestionsOfLevel(QuestionLevel level) {
 		ArrayList<AbstractQuestion> filteredQuestions = new ArrayList<AbstractQuestion>();
 		for (AbstractQuestion question : database) {
@@ -58,6 +80,14 @@ public class QuestionFactory {
 		return filteredQuestions;
 	}
 
+	/**
+	 * Removes a random question from an ArrayList of AbstractQuestions and
+	 * returns it.
+	 * 
+	 * @param questions
+	 *            An ArrayList of AbstractQuestions
+	 * @return An AbstractQuestions
+	 */
 	public AbstractQuestion getRandomQuestion(
 			ArrayList<AbstractQuestion> questions) {
 		if (questions.isEmpty()) {
@@ -70,22 +100,29 @@ public class QuestionFactory {
 		return question;
 	}
 
-	public AbstractQuestionPanel getNextQuestion(QuestionLevel level) throws EmptyDatabaseException {
+	/**
+	 * Returns a random AbstractQuestionPanel based on a specified level.
+	 * 
+	 * @param level
+	 *            The level specified.
+	 * @return An AbstractQuestionPanel
+	 * @throws EmptyDatabaseException
+	 */
+	public AbstractQuestionPanel getNextQuestion(QuestionLevel level)
+			throws EmptyDatabaseException {
 		AbstractQuestion question = getRandomQuestion(getQuestionsOfLevel(level));
-		if(question == null){
+		if (question == null) {
 			throw new EmptyDatabaseException();
 		}
-		
-		if(question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK){
-			return new FillInTheBlankPanel((FillInTheBlankQuestion)question);
-		}
-		else if(question.getQuestionType() == QuestionType.MULTIPLE_CHOICE){
-			return new MultipleChoiceQuestionPanel((MultipleChoiceQuestion)question);
-		}
-		else if(question.getQuestionType() == QuestionType.SHORT_ANSWER){
-			return new ShortAnswerQuestionPanel((ShortAnswerQuestion)question);
-		}
-		else{
+
+		if (question.getQuestionType() == QuestionType.FILL_IN_THE_BLANK) {
+			return new FillInTheBlankPanel((FillInTheBlankQuestion) question);
+		} else if (question.getQuestionType() == QuestionType.MULTIPLE_CHOICE) {
+			return new MultipleChoiceQuestionPanel(
+					(MultipleChoiceQuestion) question);
+		} else if (question.getQuestionType() == QuestionType.SHORT_ANSWER) {
+			return new ShortAnswerQuestionPanel((ShortAnswerQuestion) question);
+		} else {
 			return null;
 		}
 
