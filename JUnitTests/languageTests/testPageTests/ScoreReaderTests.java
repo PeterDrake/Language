@@ -24,7 +24,7 @@ public class ScoreReaderTests {
 	@Test
 	public void testReadScoreFiles() {
 		ArrayList<StudentScore> scores = reader.getScores();
-		//assertEquals(3, scores.size());
+		assertEquals(3, scores.size());
 	}
 
 }
