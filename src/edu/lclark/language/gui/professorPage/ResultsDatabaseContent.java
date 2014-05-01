@@ -29,7 +29,6 @@ public class ResultsDatabaseContent extends AbstractContent {
 	private ScoreWriter writer;
 	
 	public ResultsDatabaseContent() {
-		setLayout(new GridBagLayout());
 		String[] columnNames = { "Name", "Date", "Level" };
 
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
@@ -48,17 +47,24 @@ public class ResultsDatabaseContent extends AbstractContent {
 			Object[] data = { name, date, level };
 			tableModel.addRow(data);
 		}
+		
+		JPanel content = new JPanel();
+		content.setLayout(new GridBagLayout());
 
 		// Create the scroll pane and add the table to it.
 		JScrollPane scrollPane = new JScrollPane(table);
+		
 
 		// Add the scroll pane to this panel.
-		add(scrollPane, new GBC(0, 0));
+		content.add(scrollPane, new GBC(0, 0));
 
 		JButton exportButton = new JButton("Export");
 		exportButton.addActionListener(new ExportAction());
-		add(exportButton, new GBC(0, 1));
+		content.add(exportButton, new GBC(0, 1));
 
+		JScrollPane outerScrollPane = new JScrollPane(content);
+		add(outerScrollPane);
+		
 	}
 	
 

@@ -21,9 +21,11 @@ import java.util.ArrayList;
 /**
  * The content panel for editing test questions from the professor page
  */
-@SuppressWarnings("serial")
 public class EditExamContent extends AbstractContent {
 
+
+	private static final long serialVersionUID = 1L;
+	
 	private JTree tree;
     private DefaultTreeModel model;
 	private JComboBox<String> addNewQuestionButton;
