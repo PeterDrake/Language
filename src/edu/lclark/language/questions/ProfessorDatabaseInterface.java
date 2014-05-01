@@ -1,8 +1,8 @@
 package edu.lclark.language.questions;
 
-import java.util.ArrayList;
-
 import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+
+import java.util.ArrayList;
 
 public interface ProfessorDatabaseInterface {
 	

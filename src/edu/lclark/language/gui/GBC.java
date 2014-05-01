@@ -10,7 +10,9 @@ import java.awt.*;
  */
 public class GBC extends GridBagConstraints
 {
-   /**
+	private static final long serialVersionUID = 1L;
+
+/**
     * Constructs a GBC with a given gridx and gridy position and all other grid
     * bag constraint values set to the default.
     * @param gridx the gridx position

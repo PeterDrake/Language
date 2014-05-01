@@ -1,30 +1,19 @@
 package edu.lclark.language.gui.professorPage;
 
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import edu.lclark.language.LanguagePlacementExam;
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.gui.PromptFileChooser;
 import edu.lclark.language.questions.QuestionXMLReader;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * The content panel for displaying options for various exam settings

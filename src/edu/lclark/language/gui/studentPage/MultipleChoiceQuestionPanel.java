@@ -1,16 +1,11 @@
 package edu.lclark.language.gui.studentPage;
 
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.util.Enumeration;
-
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-
 import edu.lclark.language.gui.GBC;
 import edu.lclark.language.questions.MultipleChoiceQuestion;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Enumeration;
 
 public class MultipleChoiceQuestionPanel extends AbstractQuestionPanel {
 	

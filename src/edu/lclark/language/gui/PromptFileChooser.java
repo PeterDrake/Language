@@ -1,11 +1,11 @@
 package edu.lclark.language.gui;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 import java.io.File;
 
 public class PromptFileChooser extends JFileChooser {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void approveSelection() {

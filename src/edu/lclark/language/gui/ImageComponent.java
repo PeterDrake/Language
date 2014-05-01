@@ -1,16 +1,13 @@
 package edu.lclark.language.gui;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
+import javax.swing.*;
+import java.awt.*;
 
 public class ImageComponent extends JComponent {
-    private int defaultWidth;
+
+	private static final long serialVersionUID = 1L;
+	
+	private int defaultWidth;
     private int defaultHeight;
 
     private Image image;
@@ -29,9 +26,6 @@ public class ImageComponent extends JComponent {
     public void paintComponent(Graphics g) {
         if (image == null)
             return;
-
-        int imageWidth = image.getWidth(this);
-        int imageHeight = image.getHeight(this);
 
         // draw the image in the upper-left corner
         g.drawImage(image, 0, 0, null);

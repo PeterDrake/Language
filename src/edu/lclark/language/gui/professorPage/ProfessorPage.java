@@ -1,10 +1,9 @@
 package edu.lclark.language.gui.professorPage;
 
-import javax.swing.*;
-
 import edu.lclark.language.gui.AbstractUserPage;
 import edu.lclark.language.gui.MainWindow;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,15 +1,12 @@
 package edu.lclark.language.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 /** Extended by pages that need a title bar and logout and refresh buttons.*/
 public abstract class AbstractUserPage extends AbstractPage{
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected JPanel titlePanel;
 	protected JLabel title;

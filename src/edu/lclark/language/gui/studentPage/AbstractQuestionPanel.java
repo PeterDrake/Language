@@ -1,8 +1,8 @@
 package edu.lclark.language.gui.studentPage;
 
-import javax.swing.JPanel;
-
 import edu.lclark.language.questions.AbstractQuestion;
+
+import javax.swing.*;
 
 public abstract class AbstractQuestionPanel extends JPanel{
 

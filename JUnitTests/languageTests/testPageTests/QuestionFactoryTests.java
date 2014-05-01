@@ -1,18 +1,16 @@
 package languageTests.testPageTests;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import languageTest.testingResources.DatabaseGenerator;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import edu.lclark.language.gui.studentPage.QuestionFactory;
 import edu.lclark.language.questions.AbstractQuestion;
 import edu.lclark.language.questions.QuestionDatabase;
-import edu.lclark.language.questions.QuestionInfo.QuestionLevel;
+import languageTest.testingResources.DatabaseGenerator;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class QuestionFactoryTests {
 
