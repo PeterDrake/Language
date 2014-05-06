@@ -46,6 +46,7 @@ public class FillInTheBlankQuestion extends AbstractQuestion {
 
 	public boolean isCorrectAnswer(String studentAnswer) {
 		studentAnswer = studentAnswer.trim();
+		studentAnswer = studentAnswer.toLowerCase();
 		for (int i = 0; i < getNumberOfCorrectAnswers(); i++) {
 			if (correctAnswers[i].equals(studentAnswer))
 				return true;
