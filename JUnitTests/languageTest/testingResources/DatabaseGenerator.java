@@ -15,7 +15,7 @@ public class DatabaseGenerator {
 
 		MultipleChoiceQuestion multipleChoice = new MultipleChoiceQuestion();
 		multipleChoice.setLevel(QuestionLevel.LEVEL_101);
-		multipleChoice.setTopic(Topic.COMPARATIVE_SUPERLATIVE);
+		multipleChoice.setTopic(Topic.CONJ_PRES_IRREG);
 		multipleChoice.setText("Who is the best Lord of the Rings character?");
 		multipleChoice.setAnswers(new String[] { "Frodo", "Sam", "Gandalf",
 				"Aragorn" });
@@ -32,7 +32,7 @@ public class DatabaseGenerator {
 
 		FillInTheBlankQuestion ex1 = new FillInTheBlankQuestion();
 		ex1.setLevel(QuestionLevel.LEVEL_102);
-		ex1.setTopic(Topic.DO_IO);
+		ex1.setTopic(Topic.DO_IO_PRONOUNS);
 		ex1.setText("Tú _ (lavar-lavarse) el auto antes de ir a la fiesta.");
 		ex1.setAnswers(new String[0]);
 		ex1.setCorrectAnswers(new String[] { "lavas" });
